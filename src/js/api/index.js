@@ -6,7 +6,7 @@ async function getPopularArticle() {
   const articleFetch = await fetch(MOST_POPULAR_NEWS);
   const articles = await articleFetch.json();
   let { results } = articles;
-  //   console.log(results);
+  console.log(results);
   return results;
 }
 
@@ -21,7 +21,7 @@ async function getCategoryList() {
   return results;
 }
 
-async function getSerchArticle() {
+async function getSearchArticle() {
   const articleFetch = await fetch(
     `${BASE_URL}/search/v2/articlesearch.json?q=automobiles&${KEY}`
   );
@@ -47,6 +47,6 @@ async function getArticleByCategory() {
 export {
   getPopularArticle,
   getCategoryList,
-  getSerchArticle,
+  getSearchArticle,
   getArticleByCategory,
 };

@@ -1,11 +1,6 @@
-import {
-  getPopularArticle,
-  getCategoryList,
-  getSerchArticle,
-  getArticleByCategory,
-} from './js/api';
+import * as api from './js/api';
 
-getPopularArticle();
-getCategoryList();
-getSerchArticle();
-getArticleByCategory();
+api.getPopularArticle();
+api.getCategoryList();
+api.getSearchArticle();
+api.getArticleByCategory();

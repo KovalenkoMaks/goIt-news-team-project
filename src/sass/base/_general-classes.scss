@@ -9,11 +9,11 @@ body {
   padding-left: 16px;
   padding-right: 16px;
 
-  @media screen and (min-width: $tablet) {
+  @media screen and (min-width: $pre_tablet) {
     max-width: 768px;
   }
 
-  @media screen and (min-width: $desktop) {
+  @media screen and (min-width: $pre_desktop) {
     max-width: 1280px;
   }
 }
