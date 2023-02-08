@@ -2,3 +2,18 @@ body {
   font-family: 'Manrope';
   //   color: $primary-text-color;
 }
+
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @media screen and (min-width: $tablet) {
+    max-width: 768px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    max-width: 1280px;
+  }
+}
