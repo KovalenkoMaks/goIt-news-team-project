@@ -1,0 +1,181 @@
+@import '~node_modules/modern-normalize/modern-normalize.css';
+h1,
+h2,
+h3,
+h4,
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ol {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+address {
+  font-style: inherit;
+}
+
+button {
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+:root {
+  --bg-color: #f4f4f4;
+  --text-color: #111321;
+  --white-color: #ffffff;
+  --accent-color: #4440f6;
+  --gray-color: #a8a8a8;
+  --footer-color: #7a7a7a;
+  --switcher-gray: #5f6775;
+  --switcher-accent: #4b48db;
+}
+:root body.darkMode {
+  --bg-color: #2e2e2e;
+  --text-color: #f4f4f4;
+  --switcher-gray: #f4f4f4;
+  --switcher-accent: #4440f7;
+}
+
+body {
+  font-family: "Manrope";
+}
+
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+@media screen and (min-width: 767.98px) {
+  .container {
+    max-width: 768px;
+  }
+}
+@media screen and (min-width: 1279.98px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url(../fonts/Manrope-Regular.woff) format("woff"), url(../fonts/Manrope-Regular.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url(../fonts/Manrope-Medium.woff) format("woff"), url(../fonts/Manrope-Medium.woff2) format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url(../fonts/Manrope-Bold.woff) format("woff"), url(../fonts/Manrope-Bold.woff2) format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url(../fonts/Poppins-Regular.woff) format("woff"), url(../fonts/Poppins-Regular.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url(../fonts/Roboto-Regular.woff) format("woff"), url(../fonts/Roboto-Regular.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+.item-news__article {
+  display: block;
+  width: 288px;
+  height: 630px;
+}
+
+.item-news__wrapper-img {
+  display: block;
+  position: relative;
+}
+
+.item-news__img {
+  width: 288px;
+  height: 395px;
+  border-radius: 4px;
+}
+
+.item-news__category {
+  position: absolute;
+  min-width: 96px;
+  height: auto;
+  padding: 4px 8px;
+  margin: 0;
+  /* align-items: center; */
+  align-items: baseline;
+  left: 0px;
+  top: 40px;
+  background: rgba(68, 64, 247, 0.7);
+  border-radius: 0px 4px 4px 0px;
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.item-news__add-to-favorite {
+  position: absolute;
+  margin: 0;
+  padding: 6px 32px 6px 12px;
+  left: 154px;
+  top: 355px;
+  background: #ffffff;
+  border-radius: 20px;
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: left;
+  color: #111321;
+}
+
+.item-news__icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.item-news__info {
+  display: flex;
+  justify-content: space-between;
+}/*# sourceMappingURL=index.css.map */
