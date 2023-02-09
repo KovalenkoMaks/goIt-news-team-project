@@ -1,6 +1,1 @@
-import * as api from './js/api';
-
-api.getPopularArticle();
-api.getCategoryList();
-api.getSearchArticle();
-api.getArticleByCategory();
+import './js/popular_render';
