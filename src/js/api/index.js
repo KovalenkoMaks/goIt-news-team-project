@@ -23,12 +23,12 @@ async function getCategoryList() {
 
 async function getSearchArticle() {
   const articleFetch = await fetch(
-    `${BASE_URL}/search/v2/articlesearch.json?q=automobiles&${KEY}`
+    `${BASE_URL}/search/v2/articlesearch.json?q=car&${KEY}`
   );
   const articles = await articleFetch.json();
   let { response } = articles;
   let { docs } = response;
-  //   console.log(docs);
+  console.log(docs);
 
   return docs;
 }
