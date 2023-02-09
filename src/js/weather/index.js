@@ -23,6 +23,17 @@ async function fetchWeather() {
   }
 }
 
+async function fetchWeatherByGeo(lat, lon) {
+  const url = `${BASE_URL}lat=${lat}&lon=${lon}&appid=${WEATHER_KEY}&units=metric`;
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // console.log(fetchWeather());
 
 async function renderWeater() {
@@ -42,3 +53,30 @@ async function renderWeater() {
   );
 }
 renderWeater();
+
+async function getGeoposition() {
+  if (navigator.geolocation) {
+    await navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => {
+        fetchWeatherByGeo(latitude, longitude).then(data => {
+          const { feels_like } = data.main;
+          const weather = data.weather[0];
+          const { icon } = data.weather[0];
+          refs.degs.textContent = `${Math.floor(feels_like)}°`;
+          refs.weather.textContent = weather.main;
+          refs.city.textContent = data.name;
+
+          refs.day.textContent = format(new Date(), 'eee');
+          refs.year.textContent = format(new Date(), 'dd LLL y');
+          refs.img.setAttribute(
+            'src',
+            `https://openweathermap.org/img/wn/${icon}@4x.png`
+          );
+        });
+      }
+    );
+  }
+  return;
+}
+
+getGeoposition();
