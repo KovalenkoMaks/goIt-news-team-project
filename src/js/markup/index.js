@@ -1,5 +1,5 @@
-async function getPopularMarkup(arr) {
-  let filtredArr = getFiltredArr(arr);
+async function getPopularMarkup(arr, number) {
+  let filtredArr = getFiltredArr(arr, number);
   const markup = filtredArr
     .map(elem => {
       let mediaElem = elem.media;
@@ -37,8 +37,8 @@ async function getPopularMarkup(arr) {
   return markup;
 }
 
-function getFiltredArr(value) {
-  return value.filter(elem => elem.media.length === 1).slice(0, 8);
+function getFiltredArr(value, number) {
+  return value.filter(elem => elem.media.length === 1).slice(0, number);
 }
 
 export { getPopularMarkup };
