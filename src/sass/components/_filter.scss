@@ -1,0 +1,40 @@
+.is-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    clip: rect(0 0 0 0);
+}
+
+.filter-category {
+    padding-top: 24px;
+    padding-bottom: 40px;
+
+    &__mobile-button {
+        padding-top: 7.5px;
+        padding-right: 13px;
+        padding-bottom: 7.5px;
+        padding-left: 13px;
+        border-radius: 20px;
+
+        color: var(--white-color);
+        background-color: var(--accent-color);
+
+        font-size: 12px;
+        line-height: 16px;
+        text-align: center;
+
+        &::after {
+            content: '';
+            display: block;
+            width: 9.5px;
+            height: 9.5px;
+            border-top: 2px solid var(--white-color);
+            border-right: 2px solid var(--white-color);
+
+        }
+    }
+}
