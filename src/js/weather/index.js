@@ -8,6 +8,7 @@ const refs = {
   location: document.querySelector('.weather__location'),
   day: document.querySelector('.weather__day'),
   year: document.querySelector('.weather__year'),
+  img: document.querySelector('.weather__img'),
 };
 
 async function fetchWeather() {
@@ -28,10 +29,15 @@ async function renderWeater() {
   const data = await fetchWeather();
   const { feels_like } = data.main;
   const weather = data.weather[0];
+  const { icon } = data.weather[0];
   refs.degs.textContent = `${Math.floor(feels_like)}°`;
   refs.weather.textContent = weather.main;
   refs.location.textContent = data.name;
   refs.day.textContent = format(new Date(), 'eee');
   refs.year.textContent = format(new Date(), 'dd LLL y');
+  refs.img.setAttribute(
+    'src',
+    `https://openweathermap.org/img/wn/${icon}@4x.png`
+  );
 }
 renderWeater();
