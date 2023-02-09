@@ -1,17 +1,17 @@
 .header {
-    min-height: 81px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  min-height: 81px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .header-container {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .logo {
   font-weight: 700;
   font-size: 24px;
-  line-height: calc(33/24);
+  line-height: calc(33 / 24);
   display: inline-block;
   padding: 24px 0;
 }
@@ -21,15 +21,15 @@
 }
 
 .search-field {
-    margin-left: auto;
+  margin-left: auto;
 
-    input {
-       width: 20px; 
-    }
+  input {
+    width: 20px;
+  }
 }
 
 .mobile-button {
-    margin-left: 14px;
+  margin-left: 14px;
 }
 
 .theme {
@@ -37,7 +37,7 @@
 }
 
 .mobile-button {
-    @media screen and (min-width: $pre_tablet) {
-        display: none;
-    }
+  @media screen and (min-width: $pre_tablet) {
+    display: none;
+  }
 }
