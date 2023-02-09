@@ -1,39 +1,35 @@
 <!DOCTYPE html>
 <html lang="ru">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>News</title>
-  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News</title>
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Poppins&family=Roboto&display=swap"
     rel="stylesheet"> -->
 
-  <link rel="stylesheet" href="./sass/index.scss" />
+    <link rel="stylesheet" href="./sass/index.scss" />
+  </head>
 
-</head>
+  <body>
+    <!-- Header -->
 
-<body>
+    <include src="./partials/header.html"></include>
+    <include src="./partials/mobile_menu.html"></include>
 
-  <!-- Header -->
+    <!--Main  -->
+    <main>
+      <include src="./partials/filter.html"></include>
+      <include src="./partials/calendar.html"></include>
+      <!-- <include src="./partials/news_section.html"></include> -->
 
-  <include src="./partials/header.html"></include>
-  <include src="./partials/mobile_menu.html"></include>
+      <include src="./partials/weather.html"></include>
+      <include src="./partials/paginations.html"></include>
+    </main>
+    <include src="./partials/footer.html"></include>
 
-  <!--Main  -->
-  <main>
-    <include src="./partials/filter.html"></include>
-    <include src="./partials/calendar.html"></include>
-    <include src="./partials/news_section.html"></include>
-
-    <include src="./partials/weather.html"></include>
-    <include src="./partials/paginations.html"></include>
-  </main>
-  <include src="./partials/footer.html"></include>
-
-  <script type="module" src="./index.js"></script>
-</body>
-
+    <script type="module" src="./index.js"></script>
+  </body>
 </html>
