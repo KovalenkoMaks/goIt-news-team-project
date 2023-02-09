@@ -57,9 +57,11 @@
 }
 
 .item-news__icon {
+  fill: var(--accent-color);
   position: absolute;
   right: 0;
   top: 0;
+  // z-index: 2;
 }
 
 .item-news__title {
@@ -166,6 +168,11 @@
       position: absolute;
       bottom: 20px;
       width: 100%;
+    }
+    .item-news__wrapper-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
     }
     .item-news__title {
       font-size: 32px;
