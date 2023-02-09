@@ -64,6 +64,10 @@
     font-family: 'Roboto';
     font-size: 14px;
     line-height: calc(16 / 14);
+    svg {
+      width: 60px;
+      height: 60px;
+    }
   }
 
   // .weatner__img

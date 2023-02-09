@@ -5,7 +5,7 @@ const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather?';
 const refs = {
   degs: document.querySelector('.weather__deg'),
   weather: document.querySelector('.weather__value'),
-  location: document.querySelector('.weather__location'),
+  city: document.querySelector('.weather__city'),
   day: document.querySelector('.weather__day'),
   year: document.querySelector('.weather__year'),
   img: document.querySelector('.weather__img'),
@@ -32,7 +32,8 @@ async function renderWeater() {
   const { icon } = data.weather[0];
   refs.degs.textContent = `${Math.floor(feels_like)}°`;
   refs.weather.textContent = weather.main;
-  refs.location.textContent = data.name;
+  refs.city.textContent = data.name;
+
   refs.day.textContent = format(new Date(), 'eee');
   refs.year.textContent = format(new Date(), 'dd LLL y');
   refs.img.setAttribute(
