@@ -19,15 +19,26 @@
     <include src="./partials/header.html"></include>
     <include src="./partials/mobile_menu.html"></include>
 
+    <!-- Header -->
+
+    <include src="./partials/header.html"></include>
+    <include src="./partials/mobile_menu.html"></include>
+
     <!--Main  -->
     <main>
-      <include src="./partials/filter.html"></include>
-      <include src="./partials/calendar.html"></include>
-      <include src="./partials/news_section.html"></include>
-      <include src="./partials/weather.html"></include>
-      <include src="./partials/paginations.html"></include>
+      <section>
+        <div class="container">
+          <include src="./partials/filter.html"></include>
+          <include src="./partials/calendar.html"></include>
+          <include src="./partials/news_section.html"></include>
+
+          <include src="./partials/weather.html"></include>
+          <include src="./partials/paginations.html"></include>
+        </div>
+      </section>
     </main>
     <include src="./partials/footer.html"></include>
+
     <script type="module" src="./index.js"></script>
   </body>
 </html>

@@ -79,6 +79,23 @@ body {
   }
 }
 
+.is-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+
+body.is-fixed {
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+}
+
 @font-face {
   font-family: "Manrope";
   src: url(../fonts/Manrope-Regular.woff) format("woff"), url(../fonts/Manrope-Regular.woff2) format("woff2");
@@ -114,68 +131,178 @@ body {
   font-style: normal;
   font-display: swap;
 }
-.item-news__article {
+.list-news__item {
+  position: relative;
   display: block;
-  width: 288px;
-  height: 630px;
+  width: 100%;
+  height: auto;
+  padding-bottom: 20px;
 }
 
 .item-news__wrapper-img {
   display: block;
   position: relative;
+  margin-bottom: 20px;
 }
 
 .item-news__img {
-  width: 288px;
-  height: 395px;
+  width: 100%;
+  height: 100%;
   border-radius: 4px;
 }
 
 .item-news__category {
   position: absolute;
+  display: flex;
   min-width: 96px;
   height: auto;
-  padding: 4px 8px;
+  padding: 4px 14px;
   margin: 0;
-  /* align-items: center; */
-  align-items: baseline;
   left: 0px;
   top: 40px;
   background: rgba(68, 64, 247, 0.7);
   border-radius: 0px 4px 4px 0px;
-  font-family: "Manrope";
-  font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
-  text-align: center;
-  color: #ffffff;
+  justify-content: center;
+  color: var(--white-color);
 }
 
 .item-news__add-to-favorite {
   position: absolute;
   margin: 0;
   padding: 6px 32px 6px 12px;
-  left: 154px;
-  top: 355px;
+  right: 12px;
+  bottom: 12px;
   background: #ffffff;
   border-radius: 20px;
-  font-family: "Manrope";
-  font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
   text-align: left;
-  color: #111321;
+  color: var(--text-color);
 }
 
 .item-news__icon {
+  fill: var(--accent-color);
   position: absolute;
   right: 0;
   top: 0;
 }
 
+.item-news__title {
+  margin-bottom: 20px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 33px;
+  letter-spacing: -0.01em;
+  color: var(--text-color);
+}
+
+.item-news__description {
+  margin-bottom: 20px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: var(--text-color);
+}
+
 .item-news__info {
   display: flex;
   justify-content: space-between;
+}
+
+.item-news__info-date {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  text-align: right;
+  color: var(--gray-color);
+}
+
+.item-news__info-link {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: var(--accent-color);
+}
+
+@media screen and (min-width: 479.98px) {
+  .list-news__item {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .item-news__title {
+    font-size: 32px;
+    line-height: 44px;
+  }
+  .item-news__description {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .item-news__info-date {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .item-news__info-link {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+@media screen and (min-width: 767.98px) {
+  .list-news {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  .list-news__item {
+    width: 353px;
+    height: auto;
+  }
+  .item-news__img {
+    width: 353px;
+    height: auto;
+  }
+  .item-news__description {
+    margin-bottom: 40px;
+  }
+  .item-news__info {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+  }
+}
+@media screen and (min-width: 767.98px) and (min-width: 1279.98px) {
+  .list-news__item {
+    width: 395px;
+    height: auto;
+  }
+  .item-news__img {
+    width: 395px;
+    height: auto;
+  }
+  .item-news__info {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+  }
+  .item-news__wrapper-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .item-news__title {
+    font-size: 32px;
+    line-height: 44px;
+  }
+  .item-news__description {
+    font-size: 16px;
+    line-height: 22px;
+  }
 }/*# sourceMappingURL=index.css.map */

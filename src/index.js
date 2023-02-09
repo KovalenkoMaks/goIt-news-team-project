@@ -1,5 +1,3 @@
-import * as api from './js/api';
-import './js/calendar/index';
-api.getPopularArticle();
-api.getCategoryList();
-api.getSearchArticle();
+import './js/popular_render';
+import { getSearchArticle } from './js/api';
+getSearchArticle();
