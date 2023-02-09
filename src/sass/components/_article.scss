@@ -40,6 +40,9 @@
 }
 .item-news__add-to-favorite {
   position: absolute;
+  display: block;
+  min-width: 40px;
+  min-height: 10px;
   margin: 0;
   padding: 6px 32px 6px 12px;
   right: 12px;
@@ -56,12 +59,15 @@
   color: var(--text-color);
 }
 
-.item-news__icon {
+.item-news__block-icon {
   fill: var(--accent-color);
   position: absolute;
   right: 0;
   top: 0;
   // z-index: 2;
+}
+.item-news__icon {
+  fill: var(--accent-color);
 }
 
 .item-news__title {
