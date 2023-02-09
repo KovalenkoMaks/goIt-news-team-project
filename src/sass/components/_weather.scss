@@ -1,0 +1,79 @@
+.weather {
+  margin: 0 auto;
+  width: 395px;
+
+  background-color: var(--accent-color);
+  padding: 40px 53px 60px;
+  color: white;
+
+  // .weather__info
+  &__info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 90px;
+  }
+  // .weather__deg
+  &__deg {
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 75px;
+    padding-right: 8px;
+    border-right: 1px solid white;
+    font-family: 'Roboto';
+    //  display: inline-block;
+  }
+  // .weather__geo
+  &__geo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 8px;
+    width: 100%;
+  }
+  // .weather__value
+  &__value {
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 42px;
+    font-family: 'Roboto';
+  }
+  // .weather__location
+  &__location {
+    display: flex;
+    align-items: center;
+    height: 42px;
+    background: rgba(254, 254, 255, 0.3);
+    border-radius: 10px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: calc(23 / 20);
+    font-family: 'Roboto';
+  }
+  // .weatner__img
+  &__img {
+    margin: 0 auto 90px;
+    width: 165px;
+    height: 156px;
+    border-radius: 50%;
+    background: linear-gradient(
+      180deg,
+      #fa6c21 0%,
+      rgba(255, 211, 88, 0.2) 100%
+    );
+    box-shadow: inset 0px 20px 65px #fa6c21;
+  }
+  // .weather__date
+  &__date {
+    text-align: center;
+  }
+  // .weather__day
+  &__day {
+    font-family: 'Roboto';
+    font-size: 36px;
+    line-height: 42px;
+  }
+  &__year {
+    font-family: 'Roboto';
+    font-size: 36px;
+    line-height: 42px;
+  }
+}
