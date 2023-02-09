@@ -6,7 +6,7 @@ async function getPopularArticle() {
   const articleFetch = await fetch(MOST_POPULAR_NEWS);
   const articles = await articleFetch.json();
   let { results } = articles;
-  // console.log(results);
+  console.log(results);
   return results;
 }
 
@@ -28,7 +28,7 @@ async function getSearchArticle() {
   const articles = await articleFetch.json();
   let { response } = articles;
   let { docs } = response;
-  console.log(docs);
+  // console.log(docs);
 
   return docs;
 }
