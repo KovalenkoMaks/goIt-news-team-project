@@ -13,8 +13,7 @@ async function getPopularMarkup(arr, number) {
                           alt="">
                       <p class="item-news__category">${elem.section}</p>
                       <p class="item-news__add-to-favorite">Add to favorite
-                          <use class="item-news__block-icon"><svg href="../images/sprite.svg#heart" class="item-news__icon" width="16" height="14"></svg>
-                          </use>
+                          <svg class="item-news__block-icon" width="16" height="14" ><use href="../images/sprite.svg#heart" class="item-news__icon" ></use></svg>
                       </p>
                   </div>
                   <div class="item-news__wrapper-text">
