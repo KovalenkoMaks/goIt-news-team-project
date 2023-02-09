@@ -1,0 +1,17 @@
+.pagination__list {
+    display: flex;
+    list-style: none;
+}
+.pagination__item {
+    list-style: none;
+    text-align: center;
+    border: 1px solid #4440F6;
+}
+.pagination__numb {
+    width: 28px;
+    height: 28px;
+}
+.fas {
+    width: 72px;
+    height: 28px;
+}
