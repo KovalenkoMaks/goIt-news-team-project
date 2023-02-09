@@ -171,8 +171,9 @@
     }
     .item-news__wrapper-text {
       display: flex;
+      min-height: 300px;
       flex-direction: column;
-      justify-content: space-around;
+      justify-content: space-between;
     }
     .item-news__title {
       font-size: 32px;
