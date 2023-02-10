@@ -13,7 +13,7 @@ async function getPopularMarkup(arr, number) {
                           alt="">
                       <p class="item-news__category">${elem.section}</p>
                       <button type="button" class="item-news__add-to-favorite">Add to favorite
-                         <svg
+                         <svg class="item-news__block-icon js-news-icon"
   width="16"
   height="16"
   viewBox="0 0 37 32"
@@ -28,13 +28,15 @@ async function getPopularMarkup(arr, number) {
                       ${elem.title}
                   </h2>
                   <p class="item-news__description">
-                      ${elem.abstract}</p>
+                      ${textCardFormat(elem)}</p>
                   </div>
                   <div class="item-news__info">
                       <span class="item-news__info-date">
                           ${elem.updated}
                       </span>
-                      <a class="item-news__info-link" href="${elem.url}">Read more</a>
+                      <a class="item-news__info-link" href="${
+                        elem.url
+                      }">Read more</a>
                   </div>
               </article>
           </li>`;
@@ -49,3 +51,11 @@ function getFiltredArr(value, number) {
 }
 
 export { getPopularMarkup };
+
+function textCardFormat(element) {
+  let textFormat = element.abstract;
+  if (textFormat.length > 80) {
+    return (textFormat = element.abstract.slice(0, 80) + '...');
+  }
+  return textFormat;
+}

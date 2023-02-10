@@ -36,6 +36,13 @@ address {
 button {
   border: none;
   padding: 0;
+  margin: 0;
   font-family: inherit;
   cursor: pointer;
+  background-color: inherit;
+  box-shadow: none;
+}
+
+svg {
+  fill: currentColor;
 }
