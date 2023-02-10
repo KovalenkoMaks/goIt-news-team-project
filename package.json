@@ -27,7 +27,8 @@
     "date-fns": "^2.29.3",
     "parcel": "^2.6.0",
     "parcel-reporter-clean-dist": "^1.0.4",
-    "posthtml-include": "^1.7.4"
+    "posthtml-include": "^1.7.4",
+    "sweetalert": "^2.1.2"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead"
 }

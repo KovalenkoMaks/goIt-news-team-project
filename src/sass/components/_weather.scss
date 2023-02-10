@@ -3,6 +3,9 @@
   background-color: var(--accent-color);
   padding: 32px 36px;
   color: white;
+  &-hidden {
+    display: none;
+  }
   @media screen and(min-width: $pre_tablet) {
     width: 353px;
     height: 675px;

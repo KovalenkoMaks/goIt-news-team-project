@@ -22,9 +22,9 @@ async function getCategoryList() {
   return results;
 }
 
-async function getSearchArticle() {
+async function getSearchArticle(value) {
   const articleFetch = await fetch(
-    `${BASE_URL}/search/v2/articlesearch.json?q=car&${KEY}`
+    `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}`
   );
   const articles = await articleFetch.json();
   let { response } = articles;
