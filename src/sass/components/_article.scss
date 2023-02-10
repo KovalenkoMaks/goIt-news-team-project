@@ -145,7 +145,7 @@
   }
   .list-news__item {
     width: 353px;
-    // width: (100% -30)/2;
+    // width: calc((100% -30px) / 2);
     height: auto;
   }
   .item-news__img {
@@ -183,7 +183,7 @@
     }
     .item-news__wrapper-text {
       display: flex;
-      min-height: 280px;
+      min-height: 300px;
       flex-direction: column;
       justify-content: space-between;
     }
