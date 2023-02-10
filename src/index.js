@@ -5,3 +5,4 @@ getSearchArticle();
 import './js/mobile_menu';
 import './js/weather';
 import './js/listener';
+import './js/search';
