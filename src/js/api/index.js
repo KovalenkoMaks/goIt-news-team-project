@@ -17,7 +17,8 @@ async function getCategoryList() {
   const categories = await categoryList.json();
   let { results } = categories;
 
-    // console.log(results);
+  // console.log(results);
+  console.log(1);
   return results;
 }
 
