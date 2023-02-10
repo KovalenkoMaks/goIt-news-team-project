@@ -145,7 +145,7 @@
   }
   .list-news__item {
     width: 353px;
-    // width: (100% -30)/2;
+    // width: calc((100% -30px) / 2);
     height: auto;
   }
   .item-news__img {
