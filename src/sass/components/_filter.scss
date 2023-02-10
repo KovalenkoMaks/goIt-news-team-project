@@ -1,3 +1,8 @@
+.filter-category__item-bt.isActive-outsideBt {
+    color: var(--white-color);
+    background-color: var(--accent-color);
+}
+
 .filter-elements {
     display: flex;
     justify-content: space-between;
@@ -50,6 +55,8 @@
     }
 
     &__item-bt {
+        cursor: pointer;
+
         &:nth-child(n + 5) {
             @media screen and (min-width: $tablet) and (max-width: $pre_desktop) {
                 display: none;

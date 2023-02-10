@@ -4,12 +4,15 @@ import debounce from 'lodash.debounce';
 const refs = {
     categoryContainerEl: document.querySelector('.filter-category__container'),
     othersBtEl: document.querySelector('.filter-category__others-button > span'),
-    filterElements: document.querySelector('.filter-elements'),
+    listButtons: document.querySelector('.filter-category__list-bt'),
 }
+
+let selectedCategory;
+let selectedCategoryEl;
 
 let currentNumberCategories = 0;
 let outsideCategories = 0;
-// console.log(window.innerWidth);
+
 getCategoryRender();
 
 window.addEventListener(
@@ -23,24 +26,47 @@ async function getCategoryRender() {
     currentNumberCategories = 13;
     refs.othersBtEl.textContent = 'Categories';
 
-    getCategoryList().then(categoryList => renderMarkupCategory(categoryList, currentNumberCategories, outsideCategories));
+    getCategoryList().then(categoryList => {
+        renderMarkupCategory(categoryList, currentNumberCategories, outsideCategories);
+        refs.listButtons.addEventListener('click', onClickCategory());
+        document.querySelector('.filter-category__list').addEventListener('click', onClickCategory);
+    });
   }
   if (window.innerWidth > 768 && window.innerWidth < 1280) {
     currentNumberCategories = 17;
     outsideCategories = 4;
     refs.othersBtEl.textContent = 'Others';
 
-    getCategoryList().then(categoryList => renderMarkupCategory(categoryList, currentNumberCategories, outsideCategories));
+    getCategoryList().then(categoryList => {
+        renderMarkupCategory(categoryList, currentNumberCategories, outsideCategories);
+        refs.listButtons.addEventListener('click', onClickCategory);
+        document.querySelector('.filter-category__list').addEventListener('click', onClickCategory);
+    });
   }
   if (window.innerWidth >= 1280) {
     currentNumberCategories = 19;
     outsideCategories = 6;
     refs.othersBtEl.textContent = 'Others';
 
-    getCategoryList().then(categoryList => renderMarkupCategory(categoryList, currentNumberCategories, outsideCategories));
+    getCategoryList().then(categoryList => {
+        renderMarkupCategory(categoryList, currentNumberCategories, outsideCategories);
+        refs.listButtons.addEventListener('click', onClickCategory);
+        document.querySelector('.filter-category__list').addEventListener('click', onClickCategory);
+    });
   }
 }
-
+function addActiveClass(evt) {
+    if (selectedCategoryEl) {
+        selectedCategoryEl.classList.remove('isActive-outsideBt');
+    };
+    selectedCategoryEl = evt.target;
+    evt.target.classList.add('isActive-outsideBt');
+}
+function onClickCategory(evt) {
+    addActiveClass(evt);
+    localStorage.setItem('selectedCategory', evt.target.textContent);
+    selectedCategory = evt.target.textContent;
+}
 function renderMarkupCategory(categoryList, currentNumberCategories, outsideCategories) {
 
     const catigorysArray = categoryList.slice(0, currentNumberCategories);
@@ -75,3 +101,4 @@ function createMarkupOtherCategory (category, listEl) {
     //     <button class="filter-category__button">{ Category name}</button>
     // </li>
  }
+ export default selectedCategory;
