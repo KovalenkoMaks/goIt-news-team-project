@@ -7,6 +7,9 @@ const refs = {
   input: document.querySelector('#search-field__input'),
   button: document.querySelector('#form-btn'),
   newsList: document.querySelector('.list-news'),
+  weather: document.querySelector('.weather'),
+  errorMarkup: document.querySelector('.underfined'),
+  pagination: document.querySelector('.pagination'),
 };
 
 refs.form.addEventListener('submit', test);
@@ -18,17 +21,21 @@ async function test(e) {
   const markup = render(data);
   console.log(data);
   console.log(Boolean(value));
-  //   refs.newsList.innerHTML = '';
+  refs.errorMarkup.classList.add('underfined-hidden');
+  refs.weather.classList.remove('weather-hidden');
+  refs.pagination.classList.remove('pagination-hidden');
   if (value === '') {
     console.log('empte');
-    swal('Good job!', 'You clicked the button!', 'info');
+    swal('Ooops..', 'Please enter something', 'info');
   } else {
     refs.newsList.innerHTML = markup;
   }
-  //   if (data.length === 0) {
-  //     const error = createError();
-  //     refs.newsList.innerHTML = error;
-  //   }
+  if (data.length === 0) {
+    refs.newsList.innerHTML = '';
+    refs.pagination.classList.add('pagination-hidden');
+    refs.weather.classList.add('weather-hidden');
+    refs.errorMarkup.classList.remove('underfined-hidden');
+  }
 }
 
 function render(data) {
@@ -71,42 +78,6 @@ viewBox="0 0 37 32"
   </li>`;
     })
     .join('');
-}
-
-function createError() {
-  return `<section class="underfined">
-	<!-- <div class="container"> -->
-		 <p class="underfined___title">We haven't found news from </br> this category</p>
-		 <picture class="underfined___picture">
-			  <source 
-					srcset="./images/mobile.png 1x, ./images/mobile@2x.png 2x" 
-					type="image/png" 
-					media="(max-width: 479.98px)"
-					width="248" 
-					height="198" 
-					alt="underfined-picture"/>
-			  <source 
-					srcset="./images/tablet.png 1x, ./images/tablet@2x.png 2x" 
-					type="image/png" 
-					media="(max-width:767.98px)"
-					width="130" 
-					height="444" 
-					alt="underfined-picture"/>
-			  <source 
-					srcset="./images/desktop.png 1x, ./images/desktop@2x.png 2x" 
-					type="image/png" 
-					media="(min-width: 1279.98px)"
-					width="601" 
-					height="478"
-					alt="underfined-picture"/>
-			  <img 
-					src="./images/mobile.png" 
-					alt="underfined-picture" 
-					width="248" 
-					height="198"/>
-		 </picture>
-	<!-- </div> -->
-</section>`;
 }
 
 // ===============
