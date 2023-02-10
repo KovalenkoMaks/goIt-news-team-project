@@ -57,6 +57,19 @@
   text-align: left;
 
   color: var(--text-color);
+  & .item-news__remove-to-favorite-btn {
+    display: none;
+  }
+  &.hidden-span .item-news__remove-to-favorite-btn {
+    display: block;
+    .active-news-icon {
+      fill: var(--accent-color);
+      stroke: var(--accent-color);
+    }
+  }
+  &.hidden-span .item-news__add-to-favorite-btn {
+    display: none;
+  }
 }
 
 .item-news__block-icon {
@@ -64,10 +77,6 @@
   position: absolute;
   right: 12px;
   top: 6px;
-}
-.js-news-icon {
-  // fill: var(--accent-color);
-  // stroke: var(--accent-color);
 }
 
 .item-news__title {
