@@ -17,7 +17,7 @@ async function getPopularRender() {
     windowWidth = 4;
   }
   if (window.innerWidth > 768 && window.innerWidth < 1280) {
-    windowWidth = 6;
+    windowWidth = 7;
   }
   if (window.innerWidth >= 1280) {
     windowWidth = 8;

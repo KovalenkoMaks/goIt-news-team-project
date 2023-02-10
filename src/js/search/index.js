@@ -17,13 +17,24 @@ refs.form.addEventListener('submit', test);
 async function test(e) {
   e.preventDefault();
   const value = refs.input.value;
+  let windowWidth = 0;
   const data = await getSearchArticle(value);
-  const markup = render(data);
   console.log(data);
-  console.log(Boolean(value));
   refs.errorMarkup.classList.add('underfined-hidden');
   refs.weather.classList.remove('weather-hidden');
   refs.pagination.classList.remove('pagination-hidden');
+
+  if (window.innerWidth < 768) {
+    windowWidth = 4;
+  }
+  if (window.innerWidth > 768 && window.innerWidth < 1280) {
+    windowWidth = 7;
+  }
+  if (window.innerWidth >= 1280) {
+    windowWidth = 8;
+  }
+  const markup = render(data, windowWidth);
+  console.log(markup);
   if (value === '') {
     console.log('empte');
     swal('Ooops..', 'Please enter something', 'info');
@@ -38,8 +49,10 @@ async function test(e) {
   }
 }
 
-function render(data) {
-  return data
+function render(data, number) {
+  let filtredArr = getFiltredArr(data, number);
+  console.log(filtredArr);
+  return filtredArr
     .map(elem => {
       const mediaElem = elem.multimedia;
       let mediaUrl = mediaElem[0].url;
@@ -80,4 +93,6 @@ viewBox="0 0 37 32"
     .join('');
 }
 
-// ===============
+function getFiltredArr(value, number) {
+  return value.length > number ? value.slice(0, number) : value;
+}
