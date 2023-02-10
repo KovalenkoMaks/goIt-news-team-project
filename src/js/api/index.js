@@ -17,18 +17,18 @@ async function getCategoryList() {
   const categories = await categoryList.json();
   let { results } = categories;
 
-    console.log(results);
+    // console.log(results);
   return results;
 }
 
 async function getSearchArticle() {
   const articleFetch = await fetch(
-    `${BASE_URL}/search/v2/articlesearch.json?q=automobiles&${KEY}`
+    `${BASE_URL}/search/v2/articlesearch.json?q=car&${KEY}`
   );
   const articles = await articleFetch.json();
   let { response } = articles;
   let { docs } = response;
-  //   console.log(docs);
+  // console.log(docs);
 
   return docs;
 }

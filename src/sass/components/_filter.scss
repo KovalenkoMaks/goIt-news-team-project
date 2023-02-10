@@ -9,36 +9,89 @@
 
 .filter-category {
     position: relative;
+    display: flex;
 
-    &:hover &__list,
-    &:focus &__list {
+    &__others-container:hover &__list,
+    &__others-container:focus &__list {
         transform: translateY(0);
         transition-duration: 250ms;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    &:hover &__container,
-    &:focus &__container {
+    &__others-container:hover &__container,
+    &__others-container:focus &__container {
         transform: scale(1);
     }
 
-    &:hover &__mobile-button,
-    &:focus &__mobile-button {
+    &__others-container:hover &__others-button,
+    &__others-container:focus &__others-button {
         color: var(--white-color);
         background-color: var(--accent-color);
         transition-duration: 250ms;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    &:hover &__button-arrow,
-    &:focus &__button-arrow {
+    &__others-container:hover &__button-arrow,
+    &__others-container:focus &__button-arrow {
         fill: var(--white-color);
         transform: rotateX(180deg);
         transition-duration: 250ms;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    &__mobile-button {
+    &__list-bt {
+        @media screen and (max-width: $pre_tablet) {
+            display: none;
+        }
+
+        @media screen and (min-width: $tablet) {
+            display: flex;
+        }
+    }
+
+    &__item-bt {
+        &:nth-child(n + 5) {
+            @media screen and (min-width: $tablet) and (max-width: $pre_desktop) {
+                display: none;
+            }
+        }
+
+        &:hover,
+        &:focus {
+            color: var(--white-color);
+            background-color: var(--accent-color);
+            transition-duration: 250ms;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    }
+
+    &__item-bt+&__item-bt {
+        @media screen and (min-width: $tablet) and (max-width: $pre_desktop) {
+            margin-left: 14px;
+        }
+
+        @media screen and (min-width: $desktop) {
+            margin-left: 16px;
+        }
+    }
+
+    &__item-bt {
+        padding-top: 7.5px;
+        padding-right: 13px;
+        padding-bottom: 7.5px;
+        padding-left: 13px;
+        border-radius: 20px;
+        border: 1px solid var(--accent-color);
+
+        color: var(--accent-color);
+        background-color: var(--white-color);
+
+        font-size: 12px;
+        line-height: 16px;
+        text-align: center;
+    }
+
+    &__others-button {
         display: flex;
         align-items: center;
 
@@ -56,8 +109,12 @@
         line-height: 16px;
         text-align: center;
 
-        @media screen and (min-width: $tablet) {
-            display: none;
+        @media screen and (min-width: $tablet) and (max-width: $pre_desktop) {
+            margin-left: 14px;
+        }
+
+        @media screen and (min-width: $desktop) {
+            margin-left: 16px;
         }
     }
 
@@ -67,53 +124,94 @@
     }
 
     &__container {
-        @media screen and (max-width: $pre_tablet) {
-            overflow: hidden;
-            position: absolute;
-            transform: scale(0);
-            z-index: 2;
-        }
+        overflow: hidden;
+        position: absolute;
+        transform: scale(0);
+        z-index: 2;
+
+        @media screen and (max-width: $pre_tablet) {}
     }
 
     &__list {
-        @media screen and (max-width: $pre_tablet) {
-            display: block;
-            width: 148px;
-            padding: 14px;
-            border-radius: 20px;
+        display: block;
+        width: 148px;
+        padding: 14px;
+        border-radius: 20px;
 
-            transform: translateY(-100%);
+        transform: translateY(-100%);
 
-            background-color: #F8F8F8;
-        }
+        background-color: #F8F8F8;
+
+        @media screen and (max-width: $pre_tablet) {}
 
         @media screen and (min-width: $tablet) {
-            display: flex;
-            width: 528px;
+            // width: 528px;
         }
     }
 
     &__button {
-        @media screen and (max-width: $pre_tablet) {
-            font-size: 12px;
-            line-height: calc(16 / 12);
-            letter-spacing: 0.01em;
+        font-size: 12px;
+        line-height: calc(16 / 12);
+        letter-spacing: 0.01em;
 
-            background-color: #F8F8F8;
-            color: #4440F7;
+        background-color: #F8F8F8;
+        color: #4440F7;
 
-            &:hover,
-            &:focus {
-                text-decoration: underline;
-            }
+        &:hover,
+        &:focus {
+            text-decoration: underline;
         }
+
+        @media screen and (max-width: $pre_tablet) {}
 
     }
 
     &__item+&__item {
-        @media screen and (max-width: $pre_tablet) {
+        margin-top: 12px;
+    }
+}
 
-            margin-top: 12px;
-        }
+// ------------------------------------------------------------------
+// анимация loader spinner (загрузки)
+
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 14px;
+    height: 14px;
+}
+
+.lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 12.5px;
+    height: 12.5px;
+    margin: 1.5px;
+    border: 1.5px solid var(--switcher-accent);
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: var(--switcher-accent) transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
     }
 }
