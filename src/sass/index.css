@@ -171,6 +171,9 @@ body.is-fixed {
 
 .item-news__add-to-favorite {
   position: absolute;
+  display: block;
+  min-width: 40px;
+  min-height: 10px;
   margin: 0;
   padding: 6px 32px 6px 12px;
   right: 12px;
@@ -184,11 +187,11 @@ body.is-fixed {
   color: var(--text-color);
 }
 
-.item-news__icon {
-  fill: var(--accent-color);
+.item-news__block-icon {
+  fill: none;
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 12px;
+  top: 6px;
 }
 
 .item-news__title {
@@ -269,6 +272,12 @@ body.is-fixed {
     width: 353px;
     height: auto;
   }
+  .item-news__wrapper-text {
+    display: flex;
+    min-height: 280px;
+    flex-direction: column;
+    justify-content: space-between;
+  }
   .item-news__description {
     margin-bottom: 40px;
   }
@@ -294,8 +303,9 @@ body.is-fixed {
   }
   .item-news__wrapper-text {
     display: flex;
+    min-height: 280px;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
   }
   .item-news__title {
     font-size: 32px;
@@ -304,5 +314,69 @@ body.is-fixed {
   .item-news__description {
     font-size: 16px;
     line-height: 22px;
+  }
+}
+.pagination__list {
+  display: flex;
+  list-style: none;
+}
+
+.pagination__item {
+  list-style: none;
+  text-align: center;
+  border: 1px solid #4440F6;
+}
+
+.pagination__numb {
+  width: 28px;
+  height: 28px;
+}
+
+.fas {
+  width: 72px;
+  height: 28px;
+}
+
+.underfined {
+  font-family: Manrope;
+  font-weight: 700;
+  align-content: center;
+  justify-content: center;
+}
+
+.underfined__title {
+  color: var(--text-color);
+  font-size: 20px;
+  line-height: 27px;
+  text-align: center;
+}
+@media screen and (min-width: 768px) and (max-width: 1279.98px) {
+  .underfined__title {
+    font-size: 40px;
+    line-height: 55px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .underfined__title {
+    margin-bottom: 40px;
+  }
+}
+.underfined__title .underfined__pictures {
+  margin-bottom: 59px;
+  margin-left: 36px;
+  margin-right: 36px;
+}
+@media screen and (min-width: 768px) and (max-width: 1279.98px) {
+  .underfined__title .underfined__pictures {
+    margin-bottom: 101px;
+    margin-left: 104px;
+    margin-right: 104px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .underfined__title .underfined__pictures {
+    margin-bottom: 226px;
+    margin-left: 104px;
+    margin-right: 104px;
   }
 }/*# sourceMappingURL=index.css.map */
