@@ -18,7 +18,7 @@ async function getCategoryList() {
   let { results } = categories;
 
   // console.log(results);
-  console.log(1);
+
   return results;
 }
 
