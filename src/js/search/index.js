@@ -19,7 +19,6 @@ async function test(e) {
   const value = refs.input.value;
   let windowWidth = 0;
   const data = await getSearchArticle(value);
-  console.log(data);
   refs.errorMarkup.classList.add('underfined-hidden');
   refs.weather.classList.remove('weather-hidden');
   refs.pagination.classList.remove('pagination-hidden');
@@ -34,7 +33,6 @@ async function test(e) {
     windowWidth = 8;
   }
   const markup = render(data, windowWidth);
-  console.log(markup);
   if (value === '') {
     console.log('empte');
     swal('Ooops..', 'Please enter something', 'info');
