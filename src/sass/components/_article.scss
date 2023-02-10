@@ -154,7 +154,7 @@
   }
   .item-news__wrapper-text {
     display: flex;
-    min-height: 300px;
+    min-height: 280px;
     flex-direction: column;
     justify-content: space-between;
   }
@@ -183,7 +183,7 @@
     }
     .item-news__wrapper-text {
       display: flex;
-      min-height: 300px;
+      min-height: 280px;
       flex-direction: column;
       justify-content: space-between;
     }
@@ -196,17 +196,4 @@
       line-height: 22px;
     }
   }
-
-  // .item-news__category {
-  // }
-  // .item-news__add-to-favorite {
-  // }
-  // .item-news__title {
-  // }
-  // .item-news__description {
-  // }
-  // .item-news__info-date {
-  // }
-  // .item-news__info-link {
-  // }
 }
