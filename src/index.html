@@ -1,44 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Poppins&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>News</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Poppins&family=Roboto&display=swap"
-    rel="stylesheet">
+    <link rel="stylesheet" href="./sass/index.scss" />
+  </head>
 
-  <link rel="stylesheet" href="./sass/index.scss" />
+  <body>
+    <!-- Header -->
 
-</head>
+    <include src="./partials/header.html"></include>
+    <include src="./partials/mobile_menu.html"></include>
 
-<body>
+    <!-- Main  -->
+    <main>
+      <section>
+        <div class="container">
+          <include src="./partials/filter.html"></include>
+          <include src="./partials/calendar.html"></include>
+          <include src="./partials/news_section.html"></include>
 
-  <!-- Header -->
+          <include src="./partials/weather.html"></include>
+          <!-- <include src="./partials/negative_search.html"></include> -->
+          <include src="./partials/paginations.html"></include>
+        </div>
+      </section>
+    </main>
+    <include src="./partials/footer.html"></include>
 
-  <include src="./partials/header.html"></include>
-  <include src="./partials/mobile_menu.html"></include>
-
-  <!-- Main  -->
-  <main>
-    <section>
-      <div class="container">
-        <include src="./partials/filter.html"></include>
-        <include src="./partials/calendar.html"></include>
-        <include src="./partials/news_section.html"></include>
-
-        <include src="./partials/weather.html"></include>
-        <!-- <include src="./partials/negative_search.html"></include> -->
-        <include src="./partials/paginations.html"></include>
-      </div>
-    </section>
-  </main>
-  <include src="./partials/footer.html"></include>
-
-  <script type="module" src="./index.js"></script>
-</body>
-
+    <script type="module" src="./index.js"></script>
+  </body>
 </html>
