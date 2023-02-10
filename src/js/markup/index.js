@@ -53,7 +53,7 @@ function getFiltredArr(value, number) {
 export { getPopularMarkup };
 
 function textCardFormat(element) {
-  let textFormat = 'element.abstract';
+  let textFormat = element.abstract;
   if (textFormat.length > 80) {
     return (textFormat = element.abstract.slice(0, 80) + '...');
   }
