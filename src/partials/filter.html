@@ -1,8 +1,16 @@
-<div class="filter-category container">
-    <button class="filter-category__mobile-button"><span>Categories</span></button>
-    <ul class="filter-category__list is-hidden">
-        <li class="filter-category__item">
-            <button class="filter-category__button">Admin</button>
-        </li>
-    </ul>
+<div class="filter-elements container">
+    <div class="filter-category">
+        <button class="filter-category__mobile-button">
+            <span>Categories</span>
+            <svg class="filter-category__button-arrow" width="14" height="14">
+                <use href="./images/sprite.svg#arrow-down"></use>
+            </svg>
+        </button>
+        <div class="filter-category__container">
+            <!-- место для динамического списка -->
+        </div>
+    </div>
+    <form action="submit">
+        <input type="text">
+    </form>
 </div>
