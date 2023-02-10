@@ -33,7 +33,7 @@ async function getPopularMarkup(arr, number) {
                       <span class="item-news__info-date">
                           ${elem.updated}
                       </span>
-                      <a class="item-news__info-link" href="${
+                      <a target="_blank" class="item-news__info-link" href="${
                         elem.url
                       }">Read more</a>
                   </div>
