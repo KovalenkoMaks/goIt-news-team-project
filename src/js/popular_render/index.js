@@ -5,19 +5,19 @@ import debounce from 'lodash.debounce';
 
 let windowWidth = 0;
 // console.log(window.innerWidth);
-window.addEventListener(
-  'resize',
-  debounce(e => {
-    getPopularRender();
-  }, 1000)
-);
+// window.addEventListener(
+//   'resize',
+//   debounce(e => {
+//     getPopularRender();
+//   }, 1000)
+// );
 
 async function getPopularRender() {
   if (window.innerWidth < 768) {
     windowWidth = 4;
   }
   if (window.innerWidth > 768 && window.innerWidth < 1280) {
-    windowWidth = 6;
+    windowWidth = 7;
   }
   if (window.innerWidth >= 1280) {
     windowWidth = 8;
