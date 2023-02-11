@@ -21,6 +21,18 @@ async function test(e) {
   const value = refs.input.value;
 
   const data = await getSearchArticle(value);
+  //   console.log(data);
+  for (const obj of data) {
+    const mediaElem = obj.multimedia;
+    //  console.log(mediaElem);
+    if (mediaElem.length === 0) {
+      refs.newsList.innerHTML = '';
+      refs.pagination.classList.add('pagination-hidden');
+      //  refs.weather.classList.add('weather-hidden');
+      refs.errorMarkup.classList.remove('underfined-hidden');
+      return;
+    }
+  }
   refs.errorMarkup.classList.add('underfined-hidden');
   //   refs.weather.classList.remove('weather-hidden');
   refs.pagination.classList.remove('pagination-hidden');
