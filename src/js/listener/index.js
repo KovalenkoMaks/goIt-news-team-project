@@ -7,6 +7,7 @@ let newLocalStorage = [];
 
 function btnAddToFavorite(event) {
   const btn = event.target.closest(`.item-news__add-to-favorite`);
+  console.log(btn.parentNode.parentNode.id);
   let btnLink =
     btn.parentNode.parentNode.lastElementChild.children[1].attributes[2].value;
   if (!btn) return;
@@ -26,6 +27,7 @@ function btnAddToFavorite(event) {
 
 function addToFavoriteLocal(btn) {
   const newsSection = {
+    id: btn.parentNode.parentNode.id,
     img: btn.parentNode.childNodes[1].attributes.src.nodeValue,
     category: btn.parentNode.childNodes[3].innerText,
     title: btn.parentNode.parentNode.childNodes[3].children[0].innerText,
