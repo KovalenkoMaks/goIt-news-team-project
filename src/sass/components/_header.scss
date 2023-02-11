@@ -86,11 +86,10 @@
 
 .search-field {
   margin-left: auto;
-
+  position: relative;
   @media screen and (min-width: $pre_tablet) {
     width: 213px;
     height: 31px;
-    border: 1px solid var(--accent-color);
     margin-top: 44px;
     margin-bottom: 31px;
   }
@@ -104,8 +103,20 @@
   }
 
   input {
-    width: 20px;
+    width: 100%;
+    border: 1px solid #111321;
+    border-radius: 20px;
+    height: 31px;
+    padding-left: 48px;
   }
+}
+
+.search__icon {
+  position: absolute;
+  top: 6px;
+  left: 12px;
+  width: 20px;
+  height: 19px;
 }
 
 .mobile-button {
