@@ -1,17 +1,30 @@
 .calendar-input {
   display: flex;
+  text-align: center;
   margin-right: 16px;
   margin-left: auto;
+  margin-top: -71px;
+  margin-bottom: 40px;
   position: relative;
   width: 152px;
   height: 31px;
-  margin-top: 24px;
   border: 1px solid #4440f7;
   border-radius: 20px;
+  position: relative;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.75;
+  letter-spacing: 0.02em;
+  color: var(--text-color);
 }
-// .calendar-input:hover {
-//   background-color: var(--switcher-accent);
-// }
+.calendar-input.isActive {
+  background-color: var(--accent-color);
+  color: var(--white-color);
+  border-color: var(--accent-color);
+}
+
 .calendar-wrapper {
   margin-left: auto;
   padding: 16px 16px 20px 16px;

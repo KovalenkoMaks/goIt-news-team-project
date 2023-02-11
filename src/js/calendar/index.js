@@ -1,7 +1,3 @@
-// mobiscroll.datepicker('#input-picker', {
-//   controls: ['calendar'],
-//   touchUi: true,
-// });
 const daysTag = document.querySelector('.days'),
   currentDate = document.querySelector('.current-date'),
   prevNextIcon = document.querySelectorAll('.calendar-icons span');
@@ -84,8 +80,9 @@ prevNextIcon.forEach(icon => {
 (() => {
   const refs = {
     openModalBtn: document.querySelector('[data-modal-open]'),
-    closeModalBtn: document.querySelector('[data-modal-close]'),
+    // closeModalBtn: document.querySelector('[data-modal-close]'),
     modal: document.querySelector('[data-modal]'),
+    input: document.querySelector('.calendar-input'),
   };
 
   refs.openModalBtn.addEventListener('click', toggleModal);
@@ -93,5 +90,7 @@ prevNextIcon.forEach(icon => {
 
   function toggleModal() {
     refs.modal.classList.toggle('is-hidden');
+
+    refs.input.classList.add('isActive');
   }
 })();
