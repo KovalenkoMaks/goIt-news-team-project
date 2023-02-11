@@ -267,13 +267,16 @@ input:checked + .theme__dark {
 }
 .sun {
   // fill: var(--accent-color);
+  // fill: var(--switcher-accent);
+  fill: var(--switcher-accent-day);
 }
 .moon {
-  fill: var(--switcher-gray);
+  // fill: var(--switcher-gray);
+  fill: var(--switcher-gray-moon);
 }
-.theme-dark .moon {
-  fill: var(--accent-color);
-}
-.theme-dark .sun {
-  fill: var(--switcher-gray);
-}
+// .theme-dark .moon {
+//   fill: var(--accent-color);
+// }
+// .theme-dark .sun {
+//   fill: var(--switcher-gray);
+// }

@@ -6,16 +6,19 @@
   --gray-color: #a8a8a8; // date
   --footer-color: #7a7a7a;
   // switcher colors
-  --switcher-gray: #5f6775;
-  --switcher-accent: #4b48db;
+  --switcher-gray-moon: #5f6775;
+  // --switcher-accent: #4b48db;
+  --switcher-accent-day: #4b48db;
 
   // DarkMode
   body.darkMode {
     --bg-color: #2e2e2e;
     --text-color: #f4f4f4;
     // switcher colors
-    --switcher-gray: #f4f4f4;
-    --switcher-accent: #4440f7;
+    // --switcher-gray: #f4f4f4;
+    --switcher-accent-day: #f4f4f4;
+
+    --switcher-gray-moon: #4440f7;
   }
 }
 
@@ -29,4 +32,4 @@ $mobile: 480px;
 $tablet: 768px;
 $desktop: 1280px;
 
-// 
+//
