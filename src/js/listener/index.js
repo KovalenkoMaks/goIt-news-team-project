@@ -3,7 +3,7 @@ import { newsList } from '../refs';
 newsList.addEventListener('click', btnAddToFavorite);
 newsList.addEventListener('click', linkReadMore);
 
-const newLocalStorage = [];
+let newLocalStorage = [];
 
 function btnAddToFavorite(event) {
   const btn = event.target.closest(`.item-news__add-to-favorite`);
@@ -19,8 +19,8 @@ function btnAddToFavorite(event) {
   for (let i = 0; i < newLocalStorage.length; i += 1) {
     if (newLocalStorage[i].link === btnLink) {
       newLocalStorage.splice(newLocalStorage[i], 1);
-      localStorage.setItem(`newsSection`, JSON.stringify(newLocalStorage));
     }
+    localStorage.setItem(`newsSection`, JSON.stringify(newLocalStorage));
   }
 }
 
