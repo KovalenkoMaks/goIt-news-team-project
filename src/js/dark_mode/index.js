@@ -4,6 +4,8 @@ bodyTheme = document.querySelector('body');
 changeThemeBtn.addEventListener('click', changeTheme);
 
 function changeTheme() {
+  bodyTheme.classList.toggle('darkMode');
+  // localStorage.setItem('theme', 'dark');
   if (localStorage.getItem('theme') === 'dark') {
     localStorage.removeItem('theme');
   } else {
@@ -15,12 +17,12 @@ function changeTheme() {
 function addDarkClassToHTML() {
   try {
     if (localStorage.getItem('theme') === 'dark') {
-      bodyTheme.classList.add('theme-dark');
+      // bodyTheme.classList.add('theme-dark');
       changeThemeBtn.checked = true;
     } else {
-      bodyTheme.classList.remove('theme-dark');
+      // bodyTheme.classList.remove('theme-dark');
     }
   } catch (err) {}
 }
 
-addDarkClassToHTML();
+// addDarkClassToHTML();
