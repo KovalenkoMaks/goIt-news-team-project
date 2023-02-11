@@ -1,22 +1,26 @@
 <input id="input-picker" class="calendar-input " /> </input>
 
-<div class="calendar-wrapper container">
+<div class="calendar-wrapper ">
       <div class="calendar-switcher">
         <p class="current-date"></p>
+        <!-- <span id = 'next' class="calendar-icons"><svg class="current-date__icon">
+        <use href="./images/sprite.svg#arrow-up"></use>
+      </svg>
+      </span> -->
         <div class="calendar-icons">
           <span id="prev" class="material-symbols-rounded"> < </span>
           <span id="next" class="material-symbols-rounded"> > </span>
         </div>
       </div>
       <div class="calendar">
-        <ul class="weeks">
-          <li>Sun</li>
-          <li>Mon</li>
-          <li>Tue</li>
-          <li>Wed</li>
-          <li>Thu</li>
-          <li>Fri</li>
-          <li>Sat</li>
+        <ul class="calendar-weeks__list">
+          <li class="calendar-weeks__item">Sun</li>
+          <li  class="calendar-weeks__item">Mon</li>
+          <li class="calendar-weeks__item">Tue</li>
+          <li class="calendar-weeks__item">Wed</li>
+          <li class="calendar-weeks__item">Thu</li>
+          <li class="calendar-weeks__item">Fri</li>
+          <li class="calendar-weeks__item">Sat</li>
         </ul>
         <ul class="days"></ul>
       </div>
