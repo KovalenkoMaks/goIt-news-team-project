@@ -2,12 +2,28 @@ import { newsList } from '../refs';
 
 newsList.addEventListener('click', btnAddToFavorite);
 newsList.addEventListener('click', linkReadMore);
-let number = 1;
+
+const newlocalStorage = [];
+
 function btnAddToFavorite(event) {
   const btn = event.target.closest(`.item-news__add-to-favorite`);
+  let btnLink =
+    btn.parentNode.parentNode.lastElementChild.children[1].attributes[2].value;
   if (!btn) return;
   btn.classList.toggle('hidden-span');
+  if (!btn.classList.contains('hidden-span')) {
+    for (let i = 0; i < newlocalStorage.length; i += 1) {
+      if (newlocalStorage[i].link === btnLink) {
+        newlocalStorage.splice(newlocalStorage[i], 1);
+        console.log(newlocalStorage);
+        localStorage.setItem(`newsSection`, JSON.stringify(newlocalStorage));
+        return;
+      }
+    }
+  }
+
   addToFavoriteLocal(btn);
+  console.log(newlocalStorage);
 }
 
 function linkReadMore(event) {
@@ -17,7 +33,6 @@ function linkReadMore(event) {
 }
 
 function addToFavoriteLocal(btn) {
-  number += 1;
   const newsSection = {
     img: btn.parentNode.childNodes[1].attributes.src.nodeValue,
     category: btn.parentNode.childNodes[3].innerText,
@@ -27,5 +42,10 @@ function addToFavoriteLocal(btn) {
     link: btn.parentNode.parentNode.lastElementChild.children[1].attributes[2]
       .value,
   };
-  localStorage.setItem(`newsSection${number}`, JSON.stringify(newsSection));
+  for (let i = 0; i < newlocalStorage.length; i += 1) {
+    if (newlocalStorage[i].link === newsSection.link) return;
+  }
+
+  newlocalStorage.push(newsSection);
+  localStorage.setItem(`newsSection`, JSON.stringify(newlocalStorage));
 }
