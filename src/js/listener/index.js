@@ -15,7 +15,6 @@ function btnAddToFavorite(event) {
     for (let i = 0; i < newlocalStorage.length; i += 1) {
       if (newlocalStorage[i].link === btnLink) {
         newlocalStorage.splice(newlocalStorage[i], 1);
-        console.log(newlocalStorage);
         localStorage.setItem(`newsSection`, JSON.stringify(newlocalStorage));
         return;
       }
