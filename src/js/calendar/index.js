@@ -5,10 +5,20 @@
 const daysTag = document.querySelector('.days'),
   currentDate = document.querySelector('.current-date'),
   prevNextIcon = document.querySelectorAll('.calendar-icons span');
+
 // getting new date, current year and month
+
 let date = new Date(),
   currYear = date.getFullYear(),
   currMonth = date.getMonth();
+currDay = date.getDate();
+function showCurrentDate() {
+  let value1 = currYear + '-' + (currMonth + 1) + '-' + currDay;
+
+  document.getElementById('input-picker').value = value1;
+}
+showCurrentDate();
+
 // storing full name of all months in array
 const months = [
   'January',
@@ -71,3 +81,17 @@ prevNextIcon.forEach(icon => {
     renderCalendar(); // calling renderCalendar function
   });
 });
+(() => {
+  const refs = {
+    openModalBtn: document.querySelector('[data-modal-open]'),
+    closeModalBtn: document.querySelector('[data-modal-close]'),
+    modal: document.querySelector('[data-modal]'),
+  };
+
+  refs.openModalBtn.addEventListener('click', toggleModal);
+  // refs.closeModalBtn.addEventListener('click', toggleModal);
+
+  function toggleModal() {
+    refs.modal.classList.toggle('is-hidden');
+  }
+})();
