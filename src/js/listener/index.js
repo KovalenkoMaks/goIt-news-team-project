@@ -24,12 +24,6 @@ function btnAddToFavorite(event) {
   }
 }
 
-function linkReadMore(event) {
-  const readMore = event.target.closest(`.item-news__info-link`);
-  if (!readMore) return;
-  readMore.parentNode.parentNode.classList.add('opacity');
-}
-
 function addToFavoriteLocal(btn) {
   const newsSection = {
     img: btn.parentNode.childNodes[1].attributes.src.nodeValue,
@@ -39,6 +33,7 @@ function addToFavoriteLocal(btn) {
     date: btn.parentNode.parentNode.lastElementChild.children[0].innerText,
     link: btn.parentNode.parentNode.lastElementChild.children[1].attributes[2]
       .value,
+    favorite: 'active',
   };
   for (let i = 0; i < newLocalStorage.length; i += 1) {
     if (newLocalStorage[i].link === newsSection.link) return;
@@ -46,4 +41,10 @@ function addToFavoriteLocal(btn) {
 
   newLocalStorage.push(newsSection);
   localStorage.setItem(`newsSection`, JSON.stringify(newLocalStorage));
+}
+
+function linkReadMore(event) {
+  const readMore = event.target.closest(`.item-news__info-link`);
+  if (!readMore) return;
+  readMore.parentNode.parentNode.classList.add('opacity');
 }
