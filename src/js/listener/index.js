@@ -4,12 +4,11 @@ newsList.addEventListener('click', btnAddToFavorite);
 newsList.addEventListener('click', linkReadMore);
 
 let newLocalStorage = [];
+let readMoreId = [];
 
 function btnAddToFavorite(event) {
   const btn = event.target.closest(`.item-news__add-to-favorite`);
-  console.log(btn.parentNode.parentNode.id);
-  let btnLink =
-    btn.parentNode.parentNode.lastElementChild.children[1].attributes[2].value;
+  let articleId = +btn.parentNode.parentNode.id;
   if (!btn) return;
   if (!btn.classList.contains('hidden-span')) {
     btn.classList.add('hidden-span');
@@ -18,11 +17,12 @@ function btnAddToFavorite(event) {
   }
   btn.classList.remove('hidden-span');
   for (let i = 0; i < newLocalStorage.length; i += 1) {
-    if (newLocalStorage[i].link === btnLink) {
+    if (+newLocalStorage[i].id === articleId) {
+      console.log(+newLocalStorage[i].id);
       newLocalStorage.splice(newLocalStorage[i], 1);
     }
-    localStorage.setItem(`newsSection`, JSON.stringify(newLocalStorage));
   }
+  localStorage.setItem(`newsSection`, JSON.stringify(newLocalStorage));
 }
 
 function addToFavoriteLocal(btn) {
@@ -35,10 +35,10 @@ function addToFavoriteLocal(btn) {
     date: btn.parentNode.parentNode.lastElementChild.children[0].innerText,
     link: btn.parentNode.parentNode.lastElementChild.children[1].attributes[2]
       .value,
-    favorite: 'active',
+    favorite: 'true',
   };
   for (let i = 0; i < newLocalStorage.length; i += 1) {
-    if (newLocalStorage[i].link === newsSection.link) return;
+    if (+newLocalStorage[i].id === +newsSection.id) return;
   }
 
   newLocalStorage.push(newsSection);
@@ -49,4 +49,16 @@ function linkReadMore(event) {
   const readMore = event.target.closest(`.item-news__info-link`);
   if (!readMore) return;
   readMore.parentNode.parentNode.classList.add('opacity');
+  addReadMore(readMore);
+}
+
+function addReadMore(readMore) {
+  const read = {
+    id: readMore.parentNode.parentNode.id,
+  };
+  for (let i = 0; i < readMoreId.length; i += 1) {
+    if (+readMoreId[i].id === +read.id) return;
+  }
+  readMoreId.push(read);
+  localStorage.setItem(`readMoreLocal`, JSON.stringify(readMoreId));
 }
