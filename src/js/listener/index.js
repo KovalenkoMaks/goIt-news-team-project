@@ -1,10 +1,8 @@
 import { newsList } from '../refs';
 
 newsList.addEventListener('click', btnAddToFavorite);
-newsList.addEventListener('click', linkReadMore);
 
 let newLocalStorage = [];
-let readMoreId = [];
 
 function btnAddToFavorite(event) {
   const btn = event.target.closest(`.item-news__add-to-favorite`);
@@ -43,22 +41,4 @@ function addToFavoriteLocal(btn) {
 
   newLocalStorage.push(newsSection);
   localStorage.setItem(`newsSection`, JSON.stringify(newLocalStorage));
-}
-
-function linkReadMore(event) {
-  const readMore = event.target.closest(`.item-news__info-link`);
-  if (!readMore) return;
-  readMore.parentNode.parentNode.classList.add('opacity');
-  addReadMore(readMore);
-}
-
-function addReadMore(readMore) {
-  const read = {
-    id: readMore.parentNode.parentNode.id,
-  };
-  for (let i = 0; i < readMoreId.length; i += 1) {
-    if (+readMoreId[i].id === +read.id) return;
-  }
-  readMoreId.push(read);
-  localStorage.setItem(`readMoreLocal`, JSON.stringify(readMoreId));
 }
