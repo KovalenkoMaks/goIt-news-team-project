@@ -12,9 +12,16 @@ function linkReadMore(event) {
 }
 
 function addReadMore(readMore) {
-  console.log(readMore.parentNode);
   const read = {
     id: readMore.parentNode.parentNode.id,
+    date: readMore.parentNode.firstElementChild.innerText,
+    img: readMore.parentNode.parentNode.childNodes[1].children[0].currentSrc,
+    title: readMore.parentNode.parentNode.childNodes[3].children[0].innerText,
+    description:
+      readMore.parentNode.parentNode.childNodes[3].children[1].innerText,
+    link: readMore.parentNode.children[1].href,
+    category:
+      readMore.parentNode.parentNode.childNodes[1].children[1].innerHTML,
   };
   for (let i = 0; i < readMoreId.length; i += 1) {
     if (+readMoreId[i].id === +read.id) return;
@@ -22,11 +29,3 @@ function addReadMore(readMore) {
   readMoreId.push(read);
   localStorage.setItem(`readMoreLocal`, JSON.stringify(readMoreId));
 }
-// id: btn.parentNode.parentNode.id,
-// img: btn.parentNode.childNodes[1].attributes.src.nodeValue,
-// category: btn.parentNode.childNodes[3].innerText,
-// title: btn.parentNode.parentNode.childNodes[3].children[0].innerText,
-// description: btn.parentNode.parentNode.childNodes[3].children[1].innerText,
-// date: btn.parentNode.parentNode.lastElementChild.children[0].innerText,
-// link: btn.parentNode.parentNode.lastElementChild.children[1].attributes[2]
-//   .value,
