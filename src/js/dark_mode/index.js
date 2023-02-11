@@ -7,8 +7,8 @@ changeThemeBtn.addEventListener('click', changeTheme);
 
 function changeTheme() {
   bodyTheme.classList.toggle('darkMode');
-  themeDarkEl.classList.toggle('opacity');
-  themeLightEl.classList.toggle('opacity');
+  themeDarkEl.classList.toggle('opacityForDark');
+  themeLightEl.classList.toggle('opacityForDark');
   // localStorage.setItem('theme', 'dark');
   if (localStorage.getItem('theme') !== 'dark') {
     localStorage.setItem('theme', 'dark');
