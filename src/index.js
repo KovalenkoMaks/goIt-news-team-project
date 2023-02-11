@@ -5,3 +5,5 @@ import './js/weather';
 import './js/listener';
 import './js/search';
 import './js/dark_mode';
+import './js/readMore';
+import './js/calendar';
