@@ -12,7 +12,7 @@ function linkReadMore(event) {
 }
 
 function addReadMore(readMore) {
-  console.log(readMore.parentNode.childNodes[1].attributes.src.nodeValue);
+  console.log(readMore.parentNode);
   const read = {
     id: readMore.parentNode.parentNode.id,
   };
