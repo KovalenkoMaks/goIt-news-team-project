@@ -1,6 +1,20 @@
+html,
+body {
+  height: 100%;
+}
 body {
   font-family: 'Manrope';
+  height: 100vh;
   //   color: $primary-text-color;
+}
+
+.wraper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.main {
+  flex: 1 1 auto;
 }
 
 .container {
