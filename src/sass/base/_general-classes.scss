@@ -5,7 +5,8 @@ body {
 body {
   font-family: 'Manrope';
   height: 100vh;
-  //   color: $primary-text-color;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .wraper {
