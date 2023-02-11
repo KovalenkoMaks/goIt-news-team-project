@@ -17,13 +17,14 @@ async function getCategoryList() {
   const categories = await categoryList.json();
   let { results } = categories;
 
-  //   console.log(results);
+  // console.log(results);
+
   return results;
 }
 
-async function getSearchArticle() {
+async function getSearchArticle(value) {
   const articleFetch = await fetch(
-    `${BASE_URL}/search/v2/articlesearch.json?q=car&${KEY}`
+    `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}`
   );
   const articles = await articleFetch.json();
   let { response } = articles;

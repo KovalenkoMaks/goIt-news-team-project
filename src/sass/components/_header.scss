@@ -1,0 +1,141 @@
+.header {
+  min-height: 81px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+
+  @media screen and (min-width: $pre_tablet) {
+    align-items: none;
+  }
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: calc(33 / 24);
+  display: inline-block;
+  padding: 24px 0;
+
+  @media screen and (min-width: $pre_tablet) {
+    padding-top: 32px;
+    padding-bottom: 30px;
+    font-size: 32px;
+    line-height: calc(44 / 32);
+  }
+
+  @media screen and (min-width: $pre_desktop) {
+    padding: 28px 0;
+    font-size: 42px;
+    line-height: calc(57 / 42);
+  }
+}
+
+.navbar {
+  display: none;
+
+  @media screen and (min-width: $pre_tablet) {
+    display: flex;
+    margin-left: 48px;
+    gap: 44px;
+  }
+
+  @media screen and (min-width: $pre_desktop) {
+    margin-left: 102px;
+    gap: 69px;
+  }
+}
+
+.navbar__item {
+  padding-top: 48px;
+  padding-bottom: 36px;
+
+  @media screen and (min-width: $pre_desktop) {
+    padding-top: 55px;
+    padding-bottom: 33px;
+  }
+}
+
+.navbar__link {
+  font-weight: 700;
+  line-height: calc(22 / 16);
+
+  @media screen and (min-width: $pre_desktop) {
+    font-size: 18px;
+    line-height: calc(25 / 18);
+  }
+
+  &--current {
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--accent-color);
+    padding-left: 6px;
+    padding-right: 6px;
+
+    @media screen and (min-width: $pre_desktop) {
+      padding-bottom: 5px;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    color: var(--accent-color);
+  }
+}
+
+.search-field {
+  margin-left: auto;
+
+  @media screen and (min-width: $pre_tablet) {
+    width: 213px;
+    height: 31px;
+    border: 1px solid var(--accent-color);
+    margin-top: 44px;
+    margin-bottom: 31px;
+  }
+
+  @media screen and (min-width: $pre_desktop) {
+    width: 288px;
+    height: 31px;
+    margin: 0 auto;
+    margin-top: 51px;
+    margin-bottom: 31px;
+  }
+
+  input {
+    width: 20px;
+  }
+}
+
+.mobile-button {
+  margin-left: 14px;
+}
+
+.theme {
+  display: none;
+
+  @media screen and (min-width: $pre_tablet) {
+    display: block;
+    width: 98px;
+    height: 21px;
+    border: 1px solid var(--accent-color);
+    margin-left: 24px;
+    margin-top: 49px;
+    margin-bottom: 36px;
+  }
+
+  @media screen and (min-width: $pre_desktop) {
+    width: 148px;
+    height: 24px;
+    margin: 0;
+    margin-top: 49px;
+    margin-bottom: 40px;
+  }
+}
+
+.mobile-button {
+  @media screen and (min-width: $pre_tablet) {
+    display: none;
+  }
+}
