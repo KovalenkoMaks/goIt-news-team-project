@@ -77,6 +77,7 @@ prevNextIcon.forEach(icon => {
     renderCalendar(); // calling renderCalendar function
   });
 });
+//активні кнопки та модульний календар
 (() => {
   const refs = {
     openModalBtn: document.querySelector('[data-modal-open]'),
@@ -95,3 +96,8 @@ prevNextIcon.forEach(icon => {
     refs.arrow.classList.toggle('switched');
   }
 })();
+// вибір дати
+// const anyDateChoose = document.querySelector('.datepicker-here');
+// anyDateChoose.addEventListener('click', e => {
+//   currentDate.innerHTML = e.target.value;
+// });
