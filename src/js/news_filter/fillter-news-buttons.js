@@ -1,8 +1,11 @@
 import { getCategoryList } from '../api/index';
 import debounce from 'lodash.debounce';
+import { renderByCategory } from './render-by-category';
+
 
 const refs = {
   categoryContainerEl: document.querySelector('.filter-category__container'),
+  otherList: document.querySelector('.filter-category__others-container'),
   othersBtEl: document.querySelector('.filter-category__others-button > span'),
   listButtons: document.querySelector('.filter-category__list-bt'),
 };
@@ -15,12 +18,8 @@ let outsideCategories = 0;
 
 getCategoryRender();
 
-// window.addEventListener(
-//   'resize',
-//   debounce(e => {
-//     getCategoryRender();
-//   }, 1000)
-// );
+refs.otherList.addEventListener('click', onClickOther);
+
 async function getCategoryRender() {
   if (window.innerWidth < 768) {
     currentNumberCategories = 13;
@@ -32,13 +31,13 @@ async function getCategoryRender() {
         currentNumberCategories,
         outsideCategories
       );
-      refs.listButtons.addEventListener('click', onClickCategory());
+      refs.listButtons.addEventListener('click', onClickCategory);
       document
         .querySelector('.filter-category__list')
         .addEventListener('click', onClickCategory);
     });
   }
-  if (window.innerWidth > 768 && window.innerWidth < 1280) {
+  if (window.innerWidth >= 768 && window.innerWidth < 1280) {
     currentNumberCategories = 17;
     outsideCategories = 4;
     refs.othersBtEl.textContent = 'Others';
@@ -82,8 +81,9 @@ function addActiveClass(evt) {
 }
 function onClickCategory(evt) {
   addActiveClass(evt);
-  localStorage.setItem('selectedCategory', evt.target.textContent);
-  selectedCategory = evt.target.textContent;
+  // localStorage.setItem('selectedCategory', evt.target.textContent);
+  selectedCategory = evt.target.textContent.toLowerCase();
+  renderByCategory(selectedCategory);
 }
 function renderMarkupCategory(
   categoryList,
@@ -128,4 +128,6 @@ function createMarkupOtherCategory(category, listEl) {
   //     <button class="filter-category__button">{ Category name}</button>
   // </li>
 }
-export default selectedCategory;
+function onClickOther (evt) {
+  evt.currentTarget.classList.toggle('is-open');
+}

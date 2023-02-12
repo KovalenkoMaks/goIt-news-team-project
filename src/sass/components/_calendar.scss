@@ -9,7 +9,7 @@
   text-align: center;
   width: 152px;
   height: 31px;
-  border: 1px solid #4440f7;
+  border: 1px solid var(--accent-color);
   border-radius: 20px;
   position: relative;
   font-family: 'Manrope';
@@ -19,6 +19,7 @@
   line-height: 1.75;
   letter-spacing: 0.02em;
   color: var(--text-color);
+  background-color: transparent;
   gap: 13px;
   padding: 5px 12px;
   justify-content: space-between;
@@ -31,7 +32,14 @@
     gap: 18px;
   }
 }
-
+.calendar__button-calendar {
+  position: absolute;
+  fill: var(--accent-color);
+  margin-left: 12px;
+}
+.calendar__button-calendar.switchedColor {
+  color: var(--white-color);
+}
 .input-form {
   position: relative;
 
@@ -42,9 +50,10 @@
 .calendar__button-arrow {
   margin-left: 12px;
   display: flex;
-  position: fixed;
+  position: absolute;
   z-index: 3;
   fill: var(--accent-color);
+  right: 12px;
 }
 .calendar__button-arrow.switched {
   fill: var(--white-color);
@@ -59,6 +68,7 @@
 .calendar__button-back {
   fill: var(--accent-color);
 }
+
 .calendar-wrapper {
   z-index: 2;
   position: absolute;
@@ -68,8 +78,7 @@
   width: 250px;
   height: 250px;
   right: 0px;
-  background: #fff;
-  background: #f8f8f8;
+  background: var(--white-color);
   box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
 }
@@ -79,6 +88,7 @@
   padding: 7px 0px;
   height: 44px;
   margin-bottom: 2px;
+  align-items: center;
 }
 .current-date {
   font-family: 'Manrope';
@@ -93,24 +103,25 @@
 
 .calendar-icons {
   display: flex;
+  color: var(--accent-color);
 }
 .calendar-icons span {
-  height: 38px;
   width: 38px;
   margin: 0 1px;
   cursor: pointer;
-  color: #878787;
   text-align: center;
   line-height: 38px;
   font-size: 1.9rem;
   user-select: none;
   border-radius: 50%;
+  fill: var(--accent-color);
+  display: flex;
 }
 .calendar-icons span:last-child {
   margin-right: -10px;
 }
 .calendar-icons span:hover {
-  background: #f2f2f2;
+  background: var(--white-color);
 }
 
 .calendar ul {
@@ -156,7 +167,7 @@
 //   color: #5f6775;
 // }
 .days li.active {
-  color: #ffffff;
+  color: var(--white-color);
 }
 .days li::before {
   position: absolute;
