@@ -21,6 +21,7 @@ async function test(e) {
   const value = refs.input.value;
 
   const data = await getSearchArticle(value);
+
   console.log(data);
   for (const obj of data) {
     const mediaElem = obj.multimedia;
@@ -41,7 +42,7 @@ async function test(e) {
     windowWidth = 4;
     wetherPosition = -1;
   }
-  if (window.innerWidth > 768 && window.innerWidth < 1280) {
+  if (window.innerWidth >= 768 && window.innerWidth < 1280) {
     windowWidth = 7;
     wetherPosition = 0;
   }
@@ -79,6 +80,7 @@ function render(data, number) {
       }
       const mediaElem = elem.multimedia;
       let mediaUrl = mediaElem[0].url;
+      console.log(elem.snippet);
       return `<li class="list-news__item ${opacity}">
 		<article class="item-news__article">
 			 <div class="item-news__wrapper-img">
@@ -87,7 +89,7 @@ function render(data, number) {
 						alt="">
 				  <p class="item-news__category">${elem.section_name}</p>
 				  <button type="button" class="item-news__add-to-favorite">
-                      <span class="item-news__add-to-favorite-btn">Add to favorite
+                      <span class="item-news__add-to-favorite-btn">
                          <svg class="item-news__block-icon active-news-icon"
 									width="16"
 									height="16"
@@ -110,13 +112,15 @@ function render(data, number) {
 				  ${elem.headline.main}
 			 </h2>
 			 <p class="item-news__description">
-				  ${elem.snippet}</p>
+				  ${sliceText(elem.snippet)}</p>
 			 </div>
 			 <div class="item-news__info">
 				  <span class="item-news__info-date">
 						${elem.pub_date}
 				  </span>
-				  <a target="_blank" class="item-news__info-link" href="${elem.web_url}">Read more</a>
+				  <a target="_blank" class="item-news__info-link" href="${
+            elem.web_url
+          }">Read more</a>
           <p class='is-hidden'>${elem.uri}</p>
 			 </div>
 		</article>
@@ -206,4 +210,12 @@ function getWetherPosition() {
   // console.log(secondElInList);
   getWeatherRefs();
   // return secondElInList;
+}
+
+function sliceText(element) {
+  let textFormat = element;
+  if (textFormat.length > 80) {
+    return (textFormat = element.slice(0, 80) + '...');
+  }
+  return textFormat;
 }

@@ -1,14 +1,26 @@
 const block = document.querySelector('.list-news');
 
-window.addEventListener('storage', e => {
-  console.log(e);
-  const data = e.storageArea['newsSection'];
-  const res = JSON.parse(data);
-  console.log(res);
-  console.log(typeof res);
-  const markup = createMarkup(res);
-  block.innerHTML = markup;
-});
+function getLocalData() {
+  if (JSON.parse(localStorage.getItem('newsSection')).length === 0) {
+    console.log('error');
+    return;
+  }
+  const data = JSON.parse(localStorage.getItem('newsSection'));
+  const markup = createMarkup(data);
+  block.insertAdjacentHTML('beforeend', markup);
+}
+
+// window.addEventListener('storage', e => {
+//   const data = e.storageArea['newsSection'];
+//   const res = JSON.parse(data);
+//   if (res.length === 0) {
+//     block.innerHTML = '';
+//     return;
+//   }
+//   const markup = createMarkup(res);
+//   block.insertAdjacentHTML('beforeend', markup);
+// });
+getLocalData();
 
 function createMarkup(arr) {
   return arr
@@ -43,6 +55,7 @@ function createMarkup(arr) {
 					  ${elem.date}
 				 </span>
 				 <a target="_blank" class="item-news__info-link" href="${elem.link}">Read more</a>
+				 <p class='is-hidden'>${elem.uri}</p>
 			</div>
 	  </article>
  </li>`;
