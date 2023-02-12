@@ -4,9 +4,9 @@ const daysTag = document.querySelector('.days'),
 // getting new date, current year and month
 
 let date = new Date(),
-  currYear = date.getFullYear(),
+  currDay = date.getDate(),
   currMonth = date.getMonth(),
-  currDay = date.getDate();
+  currYear = date.getFullYear();
 // function showCurrentDate() {
 //   let value1 = currYear + '-' + (currMonth + 1) + '-' + currDay;
 //   document.getElementById('input-picker').value = value1;
@@ -82,15 +82,19 @@ const renderCalendar = () => {
     const dayChange = document.querySelector('.days');
     dayChange.addEventListener('click', evt => {
       evt.preventDefault();
+
       let newValueDay = evt.target.textContent;
-      // console.dir(evt.target);
-      //console.log(evt);
+      // if (!newValueDay.length === 1) {
+      //   return newValueDay.padStart(2, '0');
+      // }
+      // newValueDay;
+      // console.log(newValueDay);
       if (evt.target.textContent.length > 10) {
         return;
       }
       console.log(newValueDay);
       document.getElementById('input-picker').value =
-        currYear + '-' + (currMonth + 1) + '-' + newValueDay;
+        newValueDay + '/' + (currMonth + 1) + '/' + currYear;
       console.dir(document.getElementById('input-picker').value);
     });
   }
