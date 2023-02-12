@@ -6,7 +6,7 @@ const listReadMoreEl = document.querySelector('.list-news');
 getMarkupLoadMore();
 function getMarkupLoadMore() {
   const arr = JSON.parse(localStorage.getItem('readMoreLocal'));
-
+  if (arr === null) return;
   const markupReadMore = arr
     .map(element => {
       return `<li class="list-news__item">
