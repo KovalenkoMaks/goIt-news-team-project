@@ -16,33 +16,41 @@
     position: relative;
     display: flex;
 
-    // &__others-container:hover &__list,
-    // &__others-container:focus &__list {
-    //     transform: translateY(0);
-    //     transition-duration: 250ms;
-    //     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    // }
+    &__others-container:hover &__list,
+    &__others-container:focus &__list {
+        @media screen and (min-width: $tablet) {
+            transform: translateY(0);
+            transition-duration: 250ms;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    }
 
-    // &__others-container:hover &__container,
-    // &__others-container:focus &__container {
-    //     transform: scale(1);
-    // }
+    &__others-container:hover &__container,
+    &__others-container:focus &__container {
+        @media screen and (min-width: $tablet) {
+            transform: scale(1);
+        }
+    }
 
-    // &__others-container:hover &__others-button,
-    // &__others-container:focus &__others-button {
-    //     color: var(--white-color);
-    //     background-color: var(--accent-color);
-    //     transition-duration: 250ms;
-    //     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    // }
+    &__others-container:hover &__others-button,
+    &__others-container:focus &__others-button {
+        @media screen and (min-width: $tablet) {
+            color: var(--white-color);
+            background-color: var(--accent-color);
+            transition-duration: 250ms;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    }
 
-    // &__others-container:hover &__button-arrow,
-    // &__others-container:focus &__button-arrow {
-    //     fill: var(--white-color);
-    //     transform: rotateX(180deg);
-    //     transition-duration: 250ms;
-    //     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    // }
+    &__others-container:hover &__button-arrow,
+    &__others-container:focus &__button-arrow {
+        @media screen and (min-width: $tablet) {
+            fill: var(--white-color);
+            transform: rotateX(180deg);
+            transition-duration: 250ms;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    }
 
     // mobile on click
     .filter-category__others-container.is-open &__list {
