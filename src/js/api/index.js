@@ -36,14 +36,15 @@ async function getSearchArticle(value) {
 
 async function getArticleByCategory() {
   const articleFetch = await fetch(
-    `${BASE_URL}/news/v3/content/inyt/automobiles.json?${KEY}`
+    `${BASE_URL}/news/v3/content/inyt/arts.json?${KEY}`
   );
   const articles = await articleFetch.json();
   let { results } = articles;
-  //   console.log(results);
+  // console.log(results);
 
   return results;
 }
+getArticleByCategory();
 
 export {
   getPopularArticle,

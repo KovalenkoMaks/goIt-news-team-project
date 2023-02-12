@@ -1,13 +1,14 @@
-changeThemeBtn = document.querySelector('.switch-checkbox');
-bodyTheme = document.querySelector('body');
-themeDarkEl = document.querySelector('.theme__dark');
-themeLightEl = document.querySelector('.theme__light');
+const changeThemeBtn = document.querySelector('.switch-checkbox');
+const bodyTheme = document.querySelector('body');
+const themeDarkEl = document.querySelector('.theme__dark');
+const themeLightEl = document.querySelector('.theme__light');
+
 changeThemeBtn.addEventListener('click', changeTheme);
 
 function changeTheme() {
   bodyTheme.classList.toggle('darkMode');
-  themeDarkEl.classList.toggle('opacity');
-  themeLightEl.classList.toggle('opacity');
+  themeDarkEl.classList.toggle('opacityForDark');
+  themeLightEl.classList.toggle('opacityForDark');
   // localStorage.setItem('theme', 'dark');
   if (localStorage.getItem('theme') !== 'dark') {
     localStorage.setItem('theme', 'dark');

@@ -1,5 +1,5 @@
 import { getSearchArticle } from '../api';
-import * as markup from '../markup';
+import { checkLokalStorage } from '../markup';
 import swal from 'sweetalert';
 import { getWeatherRefs } from '../weather';
 const refs = {
@@ -21,7 +21,7 @@ async function test(e) {
   const value = refs.input.value;
 
   const data = await getSearchArticle(value);
-  //   console.log(data);
+  console.log(data);
   for (const obj of data) {
     const mediaElem = obj.multimedia;
     //  console.log(mediaElem);
@@ -71,9 +71,15 @@ function render(data, number) {
   //   console.log(filtredArr);
   return filtredArr
     .map(elem => {
+      let opacity = '';
+      let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
+      let check = checkLokalStorage(elem, localArr);
+      if (check === true) {
+        opacity = 'opacity';
+      }
       const mediaElem = elem.multimedia;
       let mediaUrl = mediaElem[0].url;
-      return `<li class="list-news__item">
+      return `<li class="list-news__item ${opacity}">
 		<article class="item-news__article">
 			 <div class="item-news__wrapper-img">
 				  <img class="item-news__img"
@@ -111,6 +117,7 @@ function render(data, number) {
 						${elem.pub_date}
 				  </span>
 				  <a target="_blank" class="item-news__info-link" href="${elem.web_url}">Read more</a>
+          <p class='is-hidden'>${elem.uri}</p>
 			 </div>
 		</article>
   </li>`;

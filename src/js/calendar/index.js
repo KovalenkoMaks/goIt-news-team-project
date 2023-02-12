@@ -1,7 +1,3 @@
-// mobiscroll.datepicker('#input-picker', {
-//   controls: ['calendar'],
-//   touchUi: true,
-// });
 const daysTag = document.querySelector('.days'),
   currentDate = document.querySelector('.current-date'),
   prevNextIcon = document.querySelectorAll('.calendar-icons span');
@@ -10,8 +6,8 @@ const daysTag = document.querySelector('.days'),
 
 let date = new Date(),
   currYear = date.getFullYear(),
-  currMonth = date.getMonth();
-currDay = date.getDate();
+  currMonth = date.getMonth(),
+  currDay = date.getDate();
 function showCurrentDate() {
   let value1 = currYear + '-' + (currMonth + 1) + '-' + currDay;
 
@@ -81,17 +77,27 @@ prevNextIcon.forEach(icon => {
     renderCalendar(); // calling renderCalendar function
   });
 });
+//активні кнопки та модульний календар
 (() => {
   const refs = {
     openModalBtn: document.querySelector('[data-modal-open]'),
     closeModalBtn: document.querySelector('[data-modal-close]'),
     modal: document.querySelector('[data-modal]'),
+    input: document.querySelector('.calendar-input'),
+    arrow: document.querySelector('.calendar__button-arrow'),
   };
 
   refs.openModalBtn.addEventListener('click', toggleModal);
-  // refs.closeModalBtn.addEventListener('click', toggleModal);
+  refs.closeModalBtn.addEventListener('click', toggleModal);
 
   function toggleModal() {
     refs.modal.classList.toggle('is-hidden');
+    refs.input.classList.toggle('isActive');
+    refs.arrow.classList.toggle('switched');
   }
 })();
+// вибір дати
+// const anyDateChoose = document.querySelector('.datepicker-here');
+// anyDateChoose.addEventListener('click', e => {
+//   currentDate.innerHTML = e.target.value;
+// });
