@@ -12,29 +12,23 @@ function isLocalEmpty() {
   newLocalStorage = JSON.parse(localStorage.getItem('newsSection'));
 }
 isLocalEmpty();
-console.log(newLocalStorage);
+
 function btnAddToFavorite(event) {
   const btn = event.target.closest(`.item-news__add-to-favorite`);
   if (!btn) return;
-  let uri =
-    btn.parentNode.nextElementSibling.nextElementSibling.lastElementChild
-      .textContent;
-
+  let articleId = +btn.parentNode.parentNode.id;
   if (!btn.classList.contains('hidden-span')) {
     btn.classList.add('hidden-span');
     addToFavoriteLocal(btn);
     return;
   }
   btn.classList.remove('hidden-span');
-  let test;
   for (let i = 0; i < newLocalStorage.length; i += 1) {
-    if (newLocalStorage[i].uri === uri) {
-      console.log(newLocalStorage);
-      test = newLocalStorage.splice(i, 1);
-      console.log(i);
+    if (+newLocalStorage[i].id === articleId) {
+      newLocalStorage.splice(i, 1);
     }
   }
-  localStorage.setItem(`newsSection`, JSON.stringify(test));
+  localStorage.setItem(`newsSection`, JSON.stringify(newLocalStorage));
 }
 
 function addToFavoriteLocal(btn) {
