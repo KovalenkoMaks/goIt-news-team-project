@@ -5,11 +5,13 @@ import { getWeatherRefs } from '../weather';
 const refs = {
     listNewsEl: document.querySelector('ul.list-news'),
     weather: document.querySelector('.weather'),
+    errorMarkup: document.querySelector('.underfined'),
+    pagination: document.querySelector('.pagination'),
+    newsList: document.querySelector('.list-news'),
 }
 
 async function renderByCategory(selectedCategory) {
-    console.log(selectedCategory.replaceAll(' ', '-'));
-
+    // console.log(selectedCategory.replaceAll(' ', '-'));
     if (window.innerWidth < 768) {
         windowWidth = 4;
         wetherPosition = -1;
@@ -28,6 +30,12 @@ async function renderByCategory(selectedCategory) {
     }
     
     try {
+
+        if (refs.pagination.classList.contains('pagination-hidden')) {
+            refs.pagination.classList.remove('pagination-hidden');
+            refs.errorMarkup.classList.add('underfined-hidden');
+        }
+
         const dataNewsArray = await getArticleByCategory(selectedCategory.replace(' ', '_'));
         const markup = dataNewsArray.map(data => {
             let opacity = '';
@@ -36,16 +44,19 @@ async function renderByCategory(selectedCategory) {
             if (check === true) {
                 opacity = 'opacity';
             }
-            console.log(data);
+            // console.log(data);
             return createMarkup(data, opacity);
         }).join('');
         refs.listNewsEl.innerHTML = markup;
-        
+
         getWetherPosition();
     } catch {
         // если не удалось найти по категории
-        console.log('oops');
-        refs.listNewsEl.innerHTML = '';
+
+        refs.newsList.innerHTML = '';
+        refs.pagination.classList.add('pagination-hidden');
+        //  refs.weather.classList.add('weather-hidden');
+        refs.errorMarkup.classList.remove('underfined-hidden');
     }
 }
 function createMarkup({section, multimedia, title, first_published_date, abstract}, opacity) {
