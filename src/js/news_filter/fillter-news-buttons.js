@@ -34,13 +34,13 @@ async function getCategoryRender() {
         currentNumberCategories,
         outsideCategories
       );
-      refs.listButtons.addEventListener('click', onClickCategory());
+      refs.listButtons.addEventListener('click', onClickCategory);
       document
         .querySelector('.filter-category__list')
         .addEventListener('click', onClickCategory);
     });
   }
-  if (window.innerWidth > 768 && window.innerWidth < 1280) {
+  if (window.innerWidth >= 768 && window.innerWidth < 1280) {
     currentNumberCategories = 17;
     outsideCategories = 4;
     refs.othersBtEl.textContent = 'Others';
