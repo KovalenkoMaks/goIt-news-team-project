@@ -9,6 +9,8 @@ const refs = {
     pagination: document.querySelector('.pagination'),
     newsList: document.querySelector('.list-news'),
 }
+let windowWidth;
+let wetherPosition;
 
 async function renderByCategory(selectedCategory) {
     // console.log(selectedCategory.replaceAll(' ', '-'));
