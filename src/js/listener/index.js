@@ -1,13 +1,24 @@
 import { newsList } from '../refs';
 
 newsList.addEventListener('click', btnAddToFavorite);
-
 let newLocalStorage = [];
+
+function isLocalEmpty() {
+  if (JSON.parse(localStorage.getItem('newsSection')) === null) {
+    newLocalStorage = [];
+    return;
+  }
+  newLocalStorage = JSON.parse(localStorage.getItem('newsSection'));
+}
+isLocalEmpty();
 
 function btnAddToFavorite(event) {
   const btn = event.target.closest(`.item-news__add-to-favorite`);
-  let articleId = +btn.parentNode.parentNode.id;
   if (!btn) return;
+  isLocalEmpty();
+  let uri =
+    btn.parentNode.nextElementSibling.nextElementSibling.lastElementChild
+      .textContent;
   if (!btn.classList.contains('hidden-span')) {
     btn.classList.add('hidden-span');
     addToFavoriteLocal(btn);
@@ -15,9 +26,8 @@ function btnAddToFavorite(event) {
   }
   btn.classList.remove('hidden-span');
   for (let i = 0; i < newLocalStorage.length; i += 1) {
-    if (+newLocalStorage[i].id === articleId) {
-      console.log(+newLocalStorage[i].id);
-      newLocalStorage.splice(newLocalStorage[i], 1);
+    if (newLocalStorage[i].uri === uri) {
+      newLocalStorage.splice(i, 1);
     }
   }
   localStorage.setItem(`newsSection`, JSON.stringify(newLocalStorage));
@@ -34,9 +44,11 @@ function addToFavoriteLocal(btn) {
     link: btn.parentNode.parentNode.lastElementChild.children[1].attributes[2]
       .value,
     favorite: 'true',
+    uri: btn.parentNode.nextElementSibling.nextElementSibling.lastElementChild
+      .textContent,
   };
   for (let i = 0; i < newLocalStorage.length; i += 1) {
-    if (+newLocalStorage[i].id === +newsSection.id) return;
+    if (newLocalStorage[i].uri === newsSection.uri) return;
   }
 
   newLocalStorage.push(newsSection);

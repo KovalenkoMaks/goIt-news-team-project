@@ -21,6 +21,7 @@
     "body-scroll-lock": "^4.0.0-beta.0",
     "flatpickr": "^4.6.13",
     "lodash.debounce": "^4.0.8",
+    "lodash.uniq": "^4.5.0",
     "modern-normalize": "^1.1.0"
   },
   "devDependencies": {
