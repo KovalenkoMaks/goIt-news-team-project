@@ -42,7 +42,7 @@
 .calendar__button-arrow {
   margin-left: 12px;
   display: flex;
-  position: fixed;
+  position: absolute;
   z-index: 3;
   fill: var(--accent-color);
 }

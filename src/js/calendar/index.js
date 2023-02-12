@@ -1,19 +1,40 @@
 const daysTag = document.querySelector('.days'),
   currentDate = document.querySelector('.current-date'),
   prevNextIcon = document.querySelectorAll('.calendar-icons span');
-
 // getting new date, current year and month
 
 let date = new Date(),
   currYear = date.getFullYear(),
   currMonth = date.getMonth();
 currDay = date.getDate();
-function showCurrentDate() {
-  let value1 = currYear + '-' + (currMonth + 1) + '-' + currDay;
+// function showCurrentDate() {
+//   let value1 = currYear + '-' + (currMonth + 1) + '-' + currDay;
+//   document.getElementById('input-picker').value = value1;
+// }
 
-  document.getElementById('input-picker').value = value1;
-}
-showCurrentDate();
+//активні кнопки та модульний календар
+(() => {
+  const refs = {
+    openModalBtn: document.querySelector('[data-modal-open]'),
+    closeModalBtn: document.querySelector('[data-modal-close]'),
+    modal: document.querySelector('[data-modal]'),
+    input: document.querySelector('.calendar-input'),
+    arrow: document.querySelector('.calendar__button-arrow'),
+  };
+
+  refs.openModalBtn.addEventListener('click', toggleModal);
+  refs.closeModalBtn.addEventListener('click', toggleModal);
+  //   function cleanInput() {
+  //     refs.input.classList.remove('isActive');
+  //   }
+  function toggleModal() {
+    refs.modal.classList.toggle('is-hidden');
+    refs.input.classList.toggle('isActive');
+    refs.arrow.classList.toggle('switched');
+    // showCurrentDate();
+  }
+})();
+//вибір дати
 
 // storing full name of all months in array
 const months = [
@@ -57,6 +78,23 @@ const renderCalendar = () => {
   }
   currentDate.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
   daysTag.innerHTML = liTag;
+  function addChangingDayListener() {
+    const dayChange = document.querySelector('.days');
+    dayChange.addEventListener('click', evt => {
+      evt.preventDefault();
+      let newValueDay = evt.target.textContent;
+      // console.dir(evt.target);
+      //console.log(evt);
+      if (evt.target.textContent.length > 10) {
+        return;
+      }
+      console.log(newValueDay);
+      document.getElementById('input-picker').value =
+        currYear + '-' + (currMonth + 1) + '-' + newValueDay;
+      console.dir(document.getElementById('input-picker').value);
+    });
+  }
+  addChangingDayListener();
 };
 renderCalendar();
 prevNextIcon.forEach(icon => {
@@ -77,27 +115,3 @@ prevNextIcon.forEach(icon => {
     renderCalendar(); // calling renderCalendar function
   });
 });
-//активні кнопки та модульний календар
-(() => {
-  const refs = {
-    openModalBtn: document.querySelector('[data-modal-open]'),
-    closeModalBtn: document.querySelector('[data-modal-close]'),
-    modal: document.querySelector('[data-modal]'),
-    input: document.querySelector('.calendar-input'),
-    arrow: document.querySelector('.calendar__button-arrow'),
-  };
-
-  refs.openModalBtn.addEventListener('click', toggleModal);
-  refs.closeModalBtn.addEventListener('click', toggleModal);
-
-  function toggleModal() {
-    refs.modal.classList.toggle('is-hidden');
-    refs.input.classList.toggle('isActive');
-    refs.arrow.classList.toggle('switched');
-  }
-})();
-// вибір дати
-// const anyDateChoose = document.querySelector('.datepicker-here');
-// anyDateChoose.addEventListener('click', e => {
-//   currentDate.innerHTML = e.target.value;
-// });
