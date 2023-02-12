@@ -1,3 +1,6 @@
+import './js/mobile_menu';
+import './js/search';
+import './js/dark_mode';
 const block = document.querySelector('.list-news');
 const newList = document.querySelector('.list-news');
 
