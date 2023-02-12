@@ -5,6 +5,14 @@ newsList.addEventListener('click', linkReadMore);
 // checkLokalStorage();
 
 let readMoreId = [];
+isLocalEmpty();
+
+function isLocalEmpty() {
+  if (JSON.parse(localStorage.getItem('readMoreLocal')) === null) {
+    return;
+  }
+  readMoreId = JSON.parse(localStorage.getItem('readMoreLocal'));
+}
 
 function linkReadMore(event) {
   const readMore = event.target.closest(`.item-news__info-link`);
