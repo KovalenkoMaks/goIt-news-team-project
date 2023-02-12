@@ -5,6 +5,7 @@ import { renderByCategory } from './render-by-category';
 
 const refs = {
   categoryContainerEl: document.querySelector('.filter-category__container'),
+  otherList: document.querySelector('.filter-category__others-container'),
   othersBtEl: document.querySelector('.filter-category__others-button > span'),
   listButtons: document.querySelector('.filter-category__list-bt'),
 };
@@ -17,12 +18,8 @@ let outsideCategories = 0;
 
 getCategoryRender();
 
-// window.addEventListener(
-//   'resize',
-//   debounce(e => {
-//     getCategoryRender();
-//   }, 1000)
-// );
+refs.otherList.addEventListener('click', onClickOther);
+
 async function getCategoryRender() {
   if (window.innerWidth < 768) {
     currentNumberCategories = 13;
@@ -130,4 +127,7 @@ function createMarkupOtherCategory(category, listEl) {
   // <li class="filter-category__item">
   //     <button class="filter-category__button">{ Category name}</button>
   // </li>
+}
+function onClickOther (evt) {
+  evt.currentTarget.classList.toggle('is-open');
 }
