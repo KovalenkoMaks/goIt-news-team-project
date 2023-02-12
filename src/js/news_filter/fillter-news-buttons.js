@@ -1,5 +1,7 @@
 import { getCategoryList } from '../api/index';
 import debounce from 'lodash.debounce';
+import { renderByCategory } from './render-by-category';
+
 
 const refs = {
   categoryContainerEl: document.querySelector('.filter-category__container'),
@@ -82,8 +84,9 @@ function addActiveClass(evt) {
 }
 function onClickCategory(evt) {
   addActiveClass(evt);
-  localStorage.setItem('selectedCategory', evt.target.textContent);
-  selectedCategory = evt.target.textContent;
+  // localStorage.setItem('selectedCategory', evt.target.textContent);
+  selectedCategory = evt.target.textContent.toLowerCase();
+  renderByCategory(selectedCategory);
 }
 function renderMarkupCategory(
   categoryList,
@@ -128,4 +131,3 @@ function createMarkupOtherCategory(category, listEl) {
   //     <button class="filter-category__button">{ Category name}</button>
   // </li>
 }
-export default selectedCategory;
