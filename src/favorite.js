@@ -1,6 +1,7 @@
 const block = document.querySelector('.list-news');
 
 window.addEventListener('storage', e => {
+  console.log(e);
   const data = e.storageArea['newsSection'];
   const res = JSON.parse(data);
   console.log(res);

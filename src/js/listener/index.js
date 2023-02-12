@@ -6,8 +6,8 @@ let newLocalStorage = [];
 
 function btnAddToFavorite(event) {
   const btn = event.target.closest(`.item-news__add-to-favorite`);
-  let articleId = +btn.parentNode.parentNode.id;
   if (!btn) return;
+  let articleId = +btn.parentNode.parentNode.id;
   if (!btn.classList.contains('hidden-span')) {
     btn.classList.add('hidden-span');
     addToFavoriteLocal(btn);
