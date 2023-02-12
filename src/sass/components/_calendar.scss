@@ -9,7 +9,7 @@
   text-align: center;
   width: 152px;
   height: 31px;
-  border: 1px solid #4440f7;
+  border: 1px solid var(--accent-color);
   border-radius: 20px;
   position: relative;
   font-family: 'Manrope';
@@ -18,7 +18,7 @@
   font-size: 12px;
   line-height: 1.75;
   letter-spacing: 0.02em;
-  color: #111321;
+  color: var(--text-color);
   background-color: transparent;
   gap: 13px;
   padding: 5px 12px;
@@ -69,8 +69,7 @@
   width: 250px;
   height: 250px;
   right: 0px;
-  background: #fff;
-  background: #f8f8f8;
+  background: var(--white-color);
   box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
 }
@@ -89,7 +88,7 @@
   line-height: 1.38;
   letter-spacing: -0.408px;
   font-feature-settings: 'case' on;
-  color: #000000;
+  color: var(--text-color);
 }
 
 .calendar-icons {
@@ -100,7 +99,6 @@
   width: 38px;
   margin: 0 1px;
   cursor: pointer;
-  color: #878787;
   text-align: center;
   line-height: 38px;
   font-size: 1.9rem;
@@ -111,7 +109,7 @@
   margin-right: -10px;
 }
 .calendar-icons span:hover {
-  background: #f2f2f2;
+  background: var(--white-color);
 }
 
 .calendar ul {
@@ -143,7 +141,7 @@
   font-size: 14px;
   line-height: 1.79;
   letter-spacing: 0.38px;
-  color: #000000;
+  color: var(--text-color);
   z-index: 1;
   cursor: pointer;
   position: relative;
@@ -157,7 +155,7 @@
 //   color: #5f6775;
 // }
 .days li.active {
-  color: #ffffff;
+  color: var(--white-color);
 }
 .days li::before {
   position: absolute;
