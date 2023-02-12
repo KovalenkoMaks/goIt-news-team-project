@@ -84,11 +84,6 @@ const renderCalendar = () => {
       evt.preventDefault();
 
       let newValueDay = evt.target.textContent;
-      // if (!newValueDay.length === 1) {
-      //   return newValueDay.padStart(2, '0');
-      // }
-      // newValueDay;
-      // console.log(newValueDay);
       if (evt.target.textContent.length > 10) {
         return;
       }
