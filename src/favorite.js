@@ -26,7 +26,7 @@ function createMarkup(arr) {
   return arr
     .map(elem => {
       return `<li class="list-news__item">
-	  <article class="item-news__article" id="${elem.id}>
+	  <article class="item-news__article" id="${elem.id}">
 			<div class="item-news__wrapper-img">
 				 <img class="item-news__img"
 					  src="${elem.img}"
