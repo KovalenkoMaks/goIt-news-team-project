@@ -18,7 +18,7 @@ async function renderByCategory(selectedCategory) {
         windowWidth = 4;
         wetherPosition = -1;
       }
-    if (window.innerWidth > 768 && window.innerWidth < 1280) {
+    if (window.innerWidth >= 768 && window.innerWidth < 1280) {
         windowWidth = 7;
         wetherPosition = 0;
       }
