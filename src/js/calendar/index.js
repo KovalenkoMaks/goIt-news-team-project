@@ -5,8 +5,8 @@ const daysTag = document.querySelector('.days'),
 
 let date = new Date(),
   currYear = date.getFullYear(),
-  currMonth = date.getMonth();
-currDay = date.getDate();
+  currMonth = date.getMonth(),
+  currDay = date.getDate();
 // function showCurrentDate() {
 //   let value1 = currYear + '-' + (currMonth + 1) + '-' + currDay;
 //   document.getElementById('input-picker').value = value1;
