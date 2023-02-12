@@ -16,33 +16,69 @@
     position: relative;
     display: flex;
 
-    &__others-container:hover &__list,
-    &__others-container:focus &__list {
-        transform: translateY(0);
-        transition-duration: 250ms;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    // &__others-container:hover &__list,
+    // &__others-container:focus &__list {
+    //     transform: translateY(0);
+    //     transition-duration: 250ms;
+    //     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    // }
+
+    // &__others-container:hover &__container,
+    // &__others-container:focus &__container {
+    //     transform: scale(1);
+    // }
+
+    // &__others-container:hover &__others-button,
+    // &__others-container:focus &__others-button {
+    //     color: var(--white-color);
+    //     background-color: var(--accent-color);
+    //     transition-duration: 250ms;
+    //     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    // }
+
+    // &__others-container:hover &__button-arrow,
+    // &__others-container:focus &__button-arrow {
+    //     fill: var(--white-color);
+    //     transform: rotateX(180deg);
+    //     transition-duration: 250ms;
+    //     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    // }
+
+    // mobile on click
+    .filter-category__others-container.is-open &__list {
+        @media screen and (max-width: $pre_tablet) {
+            visibility: visible;
+            transform: translateY(0);
+            transition-duration: 250ms;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
     }
 
-    &__others-container:hover &__container,
-    &__others-container:focus &__container {
-        transform: scale(1);
+    .filter-category__others-container.is-open &__container {
+        @media screen and (max-width: $pre_tablet) {
+            transform: scale(1);
+        }
     }
 
-    &__others-container:hover &__others-button,
-    &__others-container:focus &__others-button {
-        color: var(--white-color);
-        background-color: var(--accent-color);
-        transition-duration: 250ms;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    .filter-category__others-container.is-open &__others-button {
+        @media screen and (max-width: $pre_tablet) {
+            color: var(--white-color);
+            background-color: var(--accent-color);
+            transition-duration: 250ms;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
     }
 
-    &__others-container:hover &__button-arrow,
-    &__others-container:focus &__button-arrow {
-        fill: var(--white-color);
-        transform: rotateX(180deg);
-        transition-duration: 250ms;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    .filter-category__others-container.is-open &__button-arrow {
+        @media screen and (max-width: $pre_tablet) {
+            fill: var(--white-color);
+            transform: rotateX(180deg);
+            transition-duration: 250ms;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
     }
+
+    // --------
 
     &__list-bt {
         @media screen and (max-width: $pre_tablet) {
@@ -116,6 +152,9 @@
         line-height: 16px;
         text-align: center;
 
+        transition-duration: 250ms;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
         @media screen and (min-width: $tablet) and (max-width: $pre_desktop) {
             margin-left: 14px;
         }
@@ -128,15 +167,16 @@
     &__button-arrow {
         margin-left: 10px;
         fill: var(--accent-color);
+        transition-duration: 250ms;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     &__container {
         overflow: hidden;
         position: absolute;
-        transform: scale(0);
         z-index: 2;
-
-        @media screen and (max-width: $pre_tablet) {}
+        transition-duration: 250ms;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     &__list {
@@ -148,8 +188,8 @@
         transform: translateY(-100%);
 
         background-color: #F8F8F8;
-
-        @media screen and (max-width: $pre_tablet) {}
+        transition-duration: 250ms;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
         @media screen and (min-width: $tablet) {
             // width: 528px;
