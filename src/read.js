@@ -46,7 +46,7 @@ function getMarkupLoadMore() {
                       <span class="item-news__info-date">
                           ${element.date}
                       </span>
-                      <a target="_blank" class="item-news__info-link" href="${element.url}">Read more</a>
+                      <a target="_blank" class="item-news__info-link" href="${element.link}">Read more</a>
                       <p class='is-hidden'>${element.uri}</p>
                   </div>
               </article>
