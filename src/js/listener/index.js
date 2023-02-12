@@ -16,7 +16,9 @@ isLocalEmpty();
 function btnAddToFavorite(event) {
   const btn = event.target.closest(`.item-news__add-to-favorite`);
   if (!btn) return;
-  let articleId = +btn.parentNode.parentNode.id;
+  let uri =
+    btn.parentNode.nextElementSibling.nextElementSibling.lastElementChild
+      .textContent;
   if (!btn.classList.contains('hidden-span')) {
     btn.classList.add('hidden-span');
     addToFavoriteLocal(btn);
@@ -24,7 +26,7 @@ function btnAddToFavorite(event) {
   }
   btn.classList.remove('hidden-span');
   for (let i = 0; i < newLocalStorage.length; i += 1) {
-    if (+newLocalStorage[i].id === articleId) {
+    if (newLocalStorage[i].uri === uri) {
       newLocalStorage.splice(i, 1);
     }
   }
