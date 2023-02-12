@@ -94,7 +94,7 @@ const renderCalendar = () => {
       }
       console.log(newValueDay);
       document.getElementById('input-picker').value =
-        newValueDay + '/' + (currMonth + 1) + '/' + currYear;
+        newValueDay.padStart(2, '0') + '/' + (currMonth + 1) + '/' + currYear;
       console.dir(document.getElementById('input-picker').value);
     });
   }
