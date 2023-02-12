@@ -64,7 +64,11 @@
   </div>
   <div class="calendar-form">
     <div class="input-form" data-modal-open data-modal-close>
-      <input id="input-picker" class="calendar-input datepicker-here" />
+      <input
+        id="input-picker"
+        class="calendar-input datepicker-here"
+        placeholder="Виберіть дату..."
+      />
       <svg class="calendar__button-arrow" width="14" height="14">
         <use href="./images/sprite.svg#arrow-down"></use>
       </svg>
@@ -109,9 +113,10 @@
           <li class="calendar-weeks__item">Fri</li>
           <li class="calendar-weeks__item">Sat</li>
         </ul>
-        <ul class="days"></ul>
+        <ul class="days">
+          <li class="calendar-days"></li>
+        </ul>
       </div>
     </div>
   </div>
 </div>
-
