@@ -44,6 +44,7 @@
     align-items: center;
     justify-content: center;
     width: 248px;
+    height: auto;
     @media screen and (min-width: $tablet) and (max-width: $pre_desktop) {
       margin-bottom: 101px;
       width: 560px;
