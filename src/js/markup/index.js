@@ -3,11 +3,17 @@ async function getPopularMarkup(arr, number) {
   //   console.log(arr);
   const markup = filtredArr
     .map(elem => {
+      let opacity = '';
+      let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
+      let check = checkLokalStorage(elem, localArr);
+      if (check === true) {
+        opacity = 'opacity';
+      }
       let mediaElem = elem.media;
       if (mediaElem.length === 1) {
         let mediaUrl = mediaElem[0]['media-metadata'][2].url;
-        return `<li class="list-news__item">
-              <article class="item-news__article" id="${elem.id}">
+        return `<li class="list-news__item ${opacity}">
+              <article class="item-news__article " id="${elem.id}">
                   <div class="item-news__wrapper-img">
                       <img class="item-news__img"
                           src="${mediaUrl}"
@@ -46,6 +52,7 @@ async function getPopularMarkup(arr, number) {
                       <a target="_blank" class="item-news__info-link" href="${
                         elem.url
                       }">Read more</a>
+                      <p class='is-hidden'>${elem.uri}</p>
                   </div>
               </article>
           </li>`;
@@ -68,3 +75,16 @@ function textCardFormat(element) {
   }
   return textFormat;
 }
+
+function checkLokalStorage(elem, localArr) {
+  if (localArr === null) {
+    return;
+  }
+  for (let i = 0; i < localArr.length; i += 1) {
+    if (localArr[i].uri === elem.uri) {
+      return true;
+    }
+  }
+}
+
+export { checkLokalStorage };

@@ -17,7 +17,7 @@ async function getCategoryList() {
   const categories = await categoryList.json();
   let { results } = categories;
 
-  // console.log(results);
+  console.log(results);
 
   return results;
 }
@@ -34,16 +34,17 @@ async function getSearchArticle(value) {
   return docs;
 }
 
-async function getArticleByCategory() {
+async function getArticleByCategory(value) {
   const articleFetch = await fetch(
-    `${BASE_URL}/news/v3/content/inyt/automobiles.json?${KEY}`
+    `${BASE_URL}/news/v3/content/inyt/${value}.json?${KEY}`
   );
   const articles = await articleFetch.json();
   let { results } = articles;
-  //   console.log(results);
+  // console.log(results);
 
   return results;
 }
+// getArticleByCategory('automobiles');
 
 export {
   getPopularArticle,

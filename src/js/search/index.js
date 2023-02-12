@@ -1,5 +1,5 @@
 import { getSearchArticle } from '../api';
-import * as markup from '../markup';
+import { checkLokalStorage } from '../markup';
 import swal from 'sweetalert';
 import { getWeatherRefs } from '../weather';
 const refs = {
@@ -21,7 +21,7 @@ async function test(e) {
   const value = refs.input.value;
 
   const data = await getSearchArticle(value);
-  //   console.log(data);
+  console.log(data);
   for (const obj of data) {
     const mediaElem = obj.multimedia;
     //  console.log(mediaElem);
@@ -71,9 +71,15 @@ function render(data, number) {
   //   console.log(filtredArr);
   return filtredArr
     .map(elem => {
+      let opacity = '';
+      let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
+      let check = checkLokalStorage(elem, localArr);
+      if (check === true) {
+        opacity = 'opacity';
+      }
       const mediaElem = elem.multimedia;
       let mediaUrl = mediaElem[0].url;
-      return `<li class="list-news__item">
+      return `<li class="list-news__item ${opacity}">
 		<article class="item-news__article">
 			 <div class="item-news__wrapper-img">
 				  <img class="item-news__img"
@@ -97,7 +103,7 @@ function render(data, number) {
 									>
 								<path style="stroke: var(--color1, #4440f7)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M10.666 2.286c-4.207 0-7.619 3.377-7.619 7.543 0 3.363 1.333 11.345 14.458 19.413 0.235 0.143 0.505 0.219 0.78 0.219s0.545-0.076 0.78-0.219c13.125-8.069 14.458-16.050 14.458-19.413 0-4.166-3.412-7.543-7.619-7.543s-7.619 4.571-7.619 4.571-3.412-4.571-7.619-4.571z"></path>
 								</svg></span>
-               </button>
+          </button>
 			 </div>
 			 <div class="item-news__wrapper-text">
 			 <h2 class="item-news__title">
@@ -111,6 +117,7 @@ function render(data, number) {
 						${elem.pub_date}
 				  </span>
 				  <a target="_blank" class="item-news__info-link" href="${elem.web_url}">Read more</a>
+          <p class='is-hidden'>${elem.uri}</p>
 			 </div>
 		</article>
   </li>`;
