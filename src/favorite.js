@@ -1,4 +1,27 @@
 const block = document.querySelector('.list-news');
+const newList = document.querySelector('.list-news');
+
+newList.addEventListener('click', removeToFavorite);
+const dataInLocal = JSON.parse(localStorage.getItem('newsSection'));
+console.log(dataInLocal);
+function removeToFavorite(e) {
+  const btn = e.target.closest(`.item-news__remove-to-favorite-btn`);
+  if (!btn) return;
+  if (!dataInLocal) {
+    return;
+  }
+  let uri =
+    btn.parentNode.parentNode.nextElementSibling.nextElementSibling
+      .lastElementChild.textContent;
+  console.log(uri);
+  for (let i = 0; i < dataInLocal.length; i += 1) {
+    if (dataInLocal[i].uri === uri) {
+      dataInLocal.splice(i, 1);
+    }
+  }
+  localStorage.setItem(`newsSection`, JSON.stringify(dataInLocal));
+  location.reload();
+}
 
 function getLocalData() {
   if (JSON.parse(localStorage.getItem('newsSection')).length === 0) {
@@ -10,16 +33,6 @@ function getLocalData() {
   block.insertAdjacentHTML('beforeend', markup);
 }
 
-// window.addEventListener('storage', e => {
-//   const data = e.storageArea['newsSection'];
-//   const res = JSON.parse(data);
-//   if (res.length === 0) {
-//     block.innerHTML = '';
-//     return;
-//   }
-//   const markup = createMarkup(res);
-//   block.insertAdjacentHTML('beforeend', markup);
-// });
 getLocalData();
 
 function createMarkup(arr) {
