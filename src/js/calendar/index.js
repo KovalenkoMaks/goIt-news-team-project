@@ -145,7 +145,7 @@ prevNextIcon.forEach(icon => {
     //console.log(reachUl);
     reachUl.forEach(elem => {
       if (elem.textContent === test) {
-        console.log(elem.textContent);
+        // console.log(elem.textContent);
         elem.classList.add('active');
       }
     });
