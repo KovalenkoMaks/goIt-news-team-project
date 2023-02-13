@@ -3,10 +3,14 @@ import './js/search';
 import './js/dark_mode';
 const block = document.querySelector('.list-news');
 const newList = document.querySelector('.list-news');
+const undefinedReadeMore = document.querySelector('.underfined');
 
 newList.addEventListener('click', removeToFavorite);
 const dataInLocal = JSON.parse(localStorage.getItem('newsSection'));
 console.log(dataInLocal);
+if (dataInLocal === null) {
+  undefinedReadeMore.classList.remove('underfined-hidden');
+}
 function removeToFavorite(e) {
   const btn = e.target.closest(`.item-news__remove-to-favorite-btn`);
   if (!btn) return;
@@ -29,6 +33,7 @@ function removeToFavorite(e) {
 function getLocalData() {
   if (JSON.parse(localStorage.getItem('newsSection')).length === 0) {
     console.log('error');
+    undefinedReadeMore.classList.remove('underfined-hidden');
     return;
   }
   const data = JSON.parse(localStorage.getItem('newsSection'));

@@ -5,10 +5,13 @@ import './js/dark_mode';
 import { getMarkupLoadMore } from './js/read_more_date';
 
 const dateListEl = document.querySelector('.date-list');
-
+const undefinedReadeMore = document.querySelector('.underfined');
 function arrLocal() {
   const local = JSON.parse(localStorage.getItem('readMoreLocal'));
-  if (local === null) return;
+  if (local === null) {
+    undefinedReadeMore.classList.remove('underfined-hidden');
+    return;
+  }
   return local;
 }
 
