@@ -1,25 +1,43 @@
+// import { aaa } from '../popular_render';
+
+// console.log(aaa);
 import { format } from 'date-fns';
 const WEATHER_KEY = 'b61ccf4d4184c2f53b54bff2cbfc4f56';
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather?';
 
-const refs = {
-  degs: document.querySelector('.weather__deg'),
-  weather: document.querySelector('.weather__value'),
-  city: document.querySelector('.weather__city'),
-  day: document.querySelector('.weather__day'),
-  year: document.querySelector('.weather__year'),
-  img: document.querySelector('.weather__img'),
-};
+// const refs = {
+//   degs: document.querySelector('.weather__deg'),
+//   weather: document.querySelector('.weather__value'),
+//   city: document.querySelector('.weather__city'),
+//   day: document.querySelector('.weather__day'),
+//   year: document.querySelector('.weather__year'),
+//   img: document.querySelector('.weather__img'),
+// };
+let refs = {};
+function getWeatherRefs() {
+  //   console.log('refs');
+  refs = {
+    degs: document.querySelector('.weather__deg'),
+    weather: document.querySelector('.weather__value'),
+    city: document.querySelector('.weather__city'),
+    day: document.querySelector('.weather__day'),
+    year: document.querySelector('.weather__year'),
+    img: document.querySelector('.weather__img'),
+  };
+  renderWeater();
+  getGeoposition();
+  return refs;
+}
 
 async function fetchWeather() {
   const url = `${BASE_URL}q=London&units=metric&appid=${WEATHER_KEY}`;
   try {
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
+    //  console.log(data);
     return data;
   } catch (error) {
-    console.log(error);
+    //  console.log(error);
   }
 }
 
@@ -30,7 +48,7 @@ async function fetchWeatherByGeo(lat, lon) {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error);
+    //  console.log(error);
   }
 }
 
@@ -52,7 +70,10 @@ async function renderWeater() {
     `https://openweathermap.org/img/wn/${icon}@4x.png`
   );
 }
-renderWeater();
+// setTimeout(() => {
+//   renderWeater();
+//   getGeoposition();
+// }, 2000);
 
 async function getGeoposition() {
   if (navigator.geolocation) {
@@ -79,4 +100,6 @@ async function getGeoposition() {
   return;
 }
 
-getGeoposition();
+// getGeoposition();
+
+export { getWeatherRefs };

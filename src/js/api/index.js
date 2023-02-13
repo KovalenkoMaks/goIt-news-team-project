@@ -6,7 +6,7 @@ async function getPopularArticle() {
   const articleFetch = await fetch(MOST_POPULAR_NEWS);
   const articles = await articleFetch.json();
   let { results } = articles;
-  console.log(results);
+  // console.log(results);
   return results;
 }
 
@@ -17,32 +17,34 @@ async function getCategoryList() {
   const categories = await categoryList.json();
   let { results } = categories;
 
-  //   console.log(results);
+  // console.log(results);
+
   return results;
 }
 
-async function getSearchArticle() {
+async function getSearchArticle(value) {
   const articleFetch = await fetch(
-    `${BASE_URL}/search/v2/articlesearch.json?q=car&${KEY}`
+    `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}`
   );
   const articles = await articleFetch.json();
   let { response } = articles;
   let { docs } = response;
-  // console.log(docs);
+  //   console.log(docs);
 
   return docs;
 }
 
-async function getArticleByCategory() {
+async function getArticleByCategory(value) {
   const articleFetch = await fetch(
-    `${BASE_URL}/news/v3/content/inyt/automobiles.json?${KEY}`
+    `${BASE_URL}/news/v3/content/inyt/${value}.json?${KEY}`
   );
   const articles = await articleFetch.json();
   let { results } = articles;
-  //   console.log(results);
+  console.log(results);
 
   return results;
 }
+// getArticleByCategory('automobiles');
 
 export {
   getPopularArticle,

@@ -1,0 +1,125 @@
+<div class="filter-elements">
+  <div class="filter-category">
+    <ul class="filter-category__list-bt">
+      <li class="filter-category__item-bt">
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </li>
+      <li class="filter-category__item-bt">
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </li>
+      <li class="filter-category__item-bt">
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </li>
+      <li class="filter-category__item-bt">
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </li>
+      <li class="filter-category__item-bt">
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </li>
+      <li class="filter-category__item-bt">
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </li>
+    </ul>
+    <div class="filter-category__others-container">
+      <button class="filter-category__others-button">
+        <span>Categories</span>
+        <svg class="filter-category__button-arrow" width="14" height="14">
+          <use href="./images/sprite.svg#arrow-down"></use>
+        </svg>
+      </button>
+      <div class="filter-category__container">
+        <!-- место для динамического списка -->
+      </div>
+    </div>
+  </div>
+  <div class="calendar-form">
+    <div class="input-form" data-modal-open data-modal-close>
+      <svg class="calendar__button-calendar" width="14" height="14">
+        <use href="./images/sprite.svg#calendar"></use>
+      </svg>
+      <input
+        id="input-picker"
+        class="calendar-input datepicker-here"
+        placeholder="Виберіть дату..."
+      />
+      <svg class="calendar__button-arrow" width="14" height="14">
+        <use href="./images/sprite.svg#arrow-down"></use>
+      </svg>
+    </div>
+    <div class="calendar-wrapper is-hidden" data-modal>
+      <div class="calendar-switcher">
+        <p class="current-date"></p>
+        <!-- <span id = 'next' class="calendar-icons"><svg class="current-date__icon">
+        <use href="./images/sprite.svg#arrow-up"></use>
+      </svg>
+      </span> -->
+        <div class="calendar-icons">
+          <span id="prev" class="material-symbols-rounded">
+            <svg
+              class="calendar__button-arrow-icon"
+              width="14"
+              height="14"
+              transform="rotate(90)"
+            >
+              <use href="./images/sprite.svg#arrow-down"></use>
+            </svg>
+          </span>
+          <span id="next" class="material-symbols-rounded">
+            <svg
+              class="calendar__button-arrow-icon"
+              width="14"
+              height="14"
+              transform="rotate(270)"
+            >
+              <use href="./images/sprite.svg#arrow-down"></use>
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div class="calendar">
+        <ul class="calendar-weeks__list">
+          <li class="calendar-weeks__item">Sun</li>
+          <li class="calendar-weeks__item">Mon</li>
+          <li class="calendar-weeks__item">Tue</li>
+          <li class="calendar-weeks__item">Wed</li>
+          <li class="calendar-weeks__item">Thu</li>
+          <li class="calendar-weeks__item">Fri</li>
+          <li class="calendar-weeks__item">Sat</li>
+        </ul>
+        <ul class="days">
+          <li class="calendar-days"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
