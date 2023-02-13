@@ -88,10 +88,10 @@ const renderCalendar = () => {
       if (evt.target.textContent.length > 10) {
         return;
       }
-      console.log(newValueDay);
+      // console.log(newValueDay);
       document.getElementById('input-picker').value =
         newValueDay.padStart(2, '0') + '/' + (currMonth + 1) + '/' + currYear;
-      console.dir(document.getElementById('input-picker').value);
+      console.log(document.getElementById('input-picker').value);
     });
   }
   addChangingDayListener();
