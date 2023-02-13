@@ -141,7 +141,7 @@ function render(data, number) {
 }
 
 function getFiltredArr(value, number) {
-  deleteItems = value.slice(number);
+  // deleteItems = value.slice(number);
   return value.slice(0, number);
 }
 
