@@ -37,9 +37,7 @@ async function renderByCategory(selectedCategory) {
       refs.errorMarkup.classList.add('underfined-hidden');
     }
 
-    const dataNewsArray = await getArticleByCategory(
-      selectedCategory.replace(' ', '_')
-    );
+    const dataNewsArray = await getArticleByCategory(selectedCategory);
     const markup = dataNewsArray
       .map(data => {
         let opacity = '';
@@ -64,7 +62,7 @@ async function renderByCategory(selectedCategory) {
     refs.errorMarkup.classList.remove('underfined-hidden');
   }
 }
-let media;
+
 function createMarkup(
   { section, multimedia, title, first_published_date, abstract, uri, url },
   opacity
