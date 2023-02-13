@@ -3,10 +3,17 @@ import './js/search';
 import './js/dark_mode';
 
 const listReadMoreEl = document.querySelector('.list-news');
-
-// window.addEventListener('storage', event => {
-//   console.log(event);
-// });
+const undefinedReadeMore = document.querySelector('.underfined');
+arrLocal();
+function arrLocal() {
+  const local = JSON.parse(localStorage.getItem('readMoreLocal'));
+  if (local === null) {
+    undefinedReadeMore.classList.remove('underfined-hidden');
+    document.querySelector('.date-list__item').classList.add('is-hidden');
+    return;
+  }
+  return local;
+}
 getMarkupLoadMore();
 function getMarkupLoadMore() {
   const arr = JSON.parse(localStorage.getItem('readMoreLocal'));
