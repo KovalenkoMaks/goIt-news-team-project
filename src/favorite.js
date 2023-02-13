@@ -4,6 +4,7 @@ import './js/dark_mode';
 const block = document.querySelector('.list-news');
 const newList = document.querySelector('.list-news');
 
+document.querySelector('.news-loader__container.container').classList.add('is-hidden');
 newList.addEventListener('click', removeToFavorite);
 const dataInLocal = JSON.parse(localStorage.getItem('newsSection'));
 console.log(dataInLocal);
