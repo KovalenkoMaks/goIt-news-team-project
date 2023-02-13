@@ -16,7 +16,7 @@ let date = new Date(),
 (() => {
   const refs = {
     openModalBtn: document.querySelector('[data-modal-open]'),
-    closeModalBtn: document.querySelector('[data-modal-close]'),
+    closeModalBtn: document.querySelector('body'),
     modal: document.querySelector('[data-modal]'),
     input: document.querySelector('.calendar-input'),
     arrow: document.querySelector('.calendar__button-arrow'),
@@ -24,7 +24,7 @@ let date = new Date(),
   };
 
   refs.openModalBtn.addEventListener('click', toggleModal);
-  refs.closeModalBtn.addEventListener('click', toggleModal);
+  refs.closeModalBtn.addEventListener('click', hideModals);
   //   function cleanInput() {
   //     refs.input.classList.remove('isActive');
   //   }
@@ -34,6 +34,15 @@ let date = new Date(),
     refs.arrow.classList.toggle('switched');
     refs.calendar.classList.toggle('switchedColor');
     // showCurrentDate();
+  }
+
+  function hideModals(evt) {
+    if (evt.target.closest('.calendar-input')) {
+      return;
+    }
+    if (refs.input.classList.contains('isActive')) {
+      toggleModal();
+    }
   }
 })();
 
