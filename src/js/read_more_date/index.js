@@ -19,7 +19,14 @@ const item = document.querySelector('.list-news');
 const iconDate = document.querySelector('.date-list__btn-icon');
 
 dateListEl.addEventListener('click', event => {
-  if (event.target.nodeName !== 'BUTTON') return;
-  item.classList.toggle('is-hidden');
-  iconDate.classList.toggle('turn');
+  console.log();
+  if (
+    event.target.nodeName === 'BUTTON' ||
+    event.target.nodeName === 'svg' ||
+    event.target.nodeName === 'SPAN'
+  ) {
+    item.classList.toggle('is-hidden');
+    iconDate.classList.toggle('turn');
+  }
+  return;
 });
