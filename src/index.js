@@ -9,3 +9,4 @@ import './js/dark_mode';
 import './js/readMore';
 import './js/calendar';
 // import './js/read_more_date';
+// import './js/pagination';
