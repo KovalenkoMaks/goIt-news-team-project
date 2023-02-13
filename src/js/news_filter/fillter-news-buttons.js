@@ -2,7 +2,6 @@ import { getCategoryList } from '../api/index';
 import debounce from 'lodash.debounce';
 import { renderByCategory } from './render-by-category';
 
-
 const refs = {
   categoryContainerEl: document.querySelector('.filter-category__container'),
   otherList: document.querySelector('.filter-category__others-container'),
@@ -33,13 +32,13 @@ async function getCategoryRender() {
         currentNumberCategories,
         outsideCategories
       );
-      refs.listButtons.addEventListener('click',(evt) => {
+      refs.listButtons.addEventListener('click', evt => {
         onClickCategory(evt);
         refs.othersBtEl.textContent = 'Categories';
       });
       document
         .querySelector('.filter-category__list')
-        .addEventListener('click',  (evt) => {
+        .addEventListener('click', evt => {
           onClickCategory(evt);
           changeButtonName();
         });
@@ -57,13 +56,13 @@ async function getCategoryRender() {
         currentNumberCategories,
         outsideCategories
       );
-      refs.listButtons.addEventListener('click',(evt) => {
+      refs.listButtons.addEventListener('click', evt => {
         onClickCategory(evt);
         refs.othersBtEl.textContent = 'Others';
       });
       document
         .querySelector('.filter-category__list')
-        .addEventListener('click',  (evt) => {
+        .addEventListener('click', evt => {
           onClickCategory(evt);
           changeButtonName();
         });
@@ -81,13 +80,13 @@ async function getCategoryRender() {
         currentNumberCategories,
         outsideCategories
       );
-      refs.listButtons.addEventListener('click',(evt) => {
+      refs.listButtons.addEventListener('click', evt => {
         onClickCategory(evt);
         refs.othersBtEl.textContent = 'Others';
       });
       document
         .querySelector('.filter-category__list')
-        .addEventListener('click', (evt) => {
+        .addEventListener('click', evt => {
           onClickCategory(evt);
           changeButtonName();
         });
@@ -107,6 +106,7 @@ function onClickCategory(evt) {
   selectedCategory = evt.target.textContent;
   refs.loader.classList.remove('is-hidden');
   renderByCategory(selectedCategory.toLowerCase());
+  document.querySelector('.page-container').classList.add('pagination-hidden');
 }
 function renderMarkupCategory(
   categoryList,
@@ -151,7 +151,7 @@ function createMarkupOtherCategory(category, listEl) {
   //     <button class="filter-category__button">{ Category name}</button>
   // </li>
 }
-function onClickOther (evt) {
+function onClickOther(evt) {
   evt.currentTarget.classList.toggle('is-open');
 }
 

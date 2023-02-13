@@ -31,16 +31,15 @@ async function getSearchArticle(value) {
   const articles = await articleFetch.json();
   let { response } = articles;
   let { docs } = response;
-  // console.log(docs);
+  //   console.log(docs);
 
   return docs;
 }
 
 async function getArticleByCategory(value) {
-  newValue = encodeURIComponent(value);
-  console.log(newValue);
+  // console.log(value);
   const articleFetch = await fetch(
-    `${BASE_URL}/news/v3/content/all/${newValue}.json?${KEY}&limit=8`
+    `${BASE_URL}/news/v3/content/all/${value}.json?${KEY}&limit=8`
   );
   const articles = await articleFetch.json();
   let { results } = articles;

@@ -29,6 +29,7 @@ async function getPopularRender() {
     wetherPosition = 1;
   }
   const popularArticle = await api.getPopularArticle();
+  console.log(popularArticle);
   let markupArr = await markup.getPopularMarkup(popularArticle, windowWidth);
   refs.loader.classList.add('is-hidden');
   getRender(markupArr);
@@ -119,3 +120,5 @@ function getWetherPosition() {
   getWeatherRefs();
   // return secondElInList;
 }
+
+export { getWetherPosition, getRender, getPopularRender };
