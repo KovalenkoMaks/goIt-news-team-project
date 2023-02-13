@@ -4,7 +4,9 @@ const MOST_POPULAR_NEWS = `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.j
 
 async function getPopularArticle() {
   const articleFetch = await fetch(MOST_POPULAR_NEWS);
+
   const articles = await articleFetch.json();
+  console.log(articles);
   let { results } = articles;
   // console.log(results);
   return results;
