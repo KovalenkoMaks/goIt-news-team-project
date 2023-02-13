@@ -20,6 +20,7 @@ let date = new Date(),
     modal: document.querySelector('[data-modal]'),
     input: document.querySelector('.calendar-input'),
     arrow: document.querySelector('.calendar__button-arrow'),
+    calendar: document.querySelector('.calendar__button-calendar'),
   };
 
   refs.openModalBtn.addEventListener('click', toggleModal);
@@ -31,10 +32,10 @@ let date = new Date(),
     refs.modal.classList.toggle('is-hidden');
     refs.input.classList.toggle('isActive');
     refs.arrow.classList.toggle('switched');
+    refs.calendar.classList.toggle('switchedColor');
     // showCurrentDate();
   }
 })();
-//вибір дати
 
 // storing full name of all months in array
 const months = [

@@ -29,7 +29,7 @@ async function getSearchArticle(value) {
   const articles = await articleFetch.json();
   let { response } = articles;
   let { docs } = response;
-  // console.log(docs);
+  //   console.log(docs);
 
   return docs;
 }
@@ -40,7 +40,7 @@ async function getArticleByCategory(value) {
   );
   const articles = await articleFetch.json();
   let { results } = articles;
-  // console.log(results);
+  console.log(results);
 
   return results;
 }

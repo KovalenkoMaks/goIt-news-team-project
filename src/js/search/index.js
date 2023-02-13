@@ -24,14 +24,14 @@ async function test(e) {
   console.log(data);
   for (const obj of data) {
     const mediaElem = obj.multimedia;
-    //  console.log(mediaElem);
-    if (mediaElem.length === 0) {
-      refs.newsList.innerHTML = '';
-      refs.pagination.classList.add('pagination-hidden');
-      //  refs.weather.classList.add('weather-hidden');
-      refs.errorMarkup.classList.remove('underfined-hidden');
-      return;
-    }
+    console.log(mediaElem.length);
+    //  if (mediaElem.length === 0) {
+    //    refs.newsList.innerHTML = '';
+    //    refs.pagination.classList.add('pagination-hidden');
+    //    //  refs.weather.classList.add('weather-hidden');
+    //    refs.errorMarkup.classList.remove('underfined-hidden');
+    //    return;
+    //  }
   }
   refs.errorMarkup.classList.add('underfined-hidden');
   //   refs.weather.classList.remove('weather-hidden');
@@ -78,13 +78,17 @@ function render(data, number) {
         opacity = 'opacity';
       }
       const mediaElem = elem.multimedia;
-      let mediaUrl = mediaElem[0].url;
+      let mediaUrl =
+        'http://lamcdn.net/lookatme.ru/post_image-image/sIaRmaFSMfrw8QJIBAa8mA-small.png';
+      if (mediaElem.length !== 0) {
+        mediaUrl = `https://static01.nyt.com/${mediaElem[0].url}`;
+      }
       return `<li class="list-news__item ${opacity}">
-		<article class="item-news__article">
-			 <div class="item-news__wrapper-img">
-				  <img class="item-news__img"
-						src="https://static01.nyt.com/${mediaUrl}"
-						alt="">
+    <article class="item-news__article">
+       <div class="item-news__wrapper-img">
+          <img class="item-news__img"
+            src="${mediaUrl}"
+            alt="">
 				  <p class="item-news__category">${elem.section_name}</p>
 				  <button type="button" class="item-news__add-to-favorite">
                       <span class="item-news__add-to-favorite-btn">Add to favorite
