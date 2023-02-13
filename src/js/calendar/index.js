@@ -117,11 +117,8 @@ const renderCalendar = number => {
       newValueDay.padStart(2, '0') + '/' + (currMonth + 1) + '/' + currYear;
 
     localStorage.setItem('VALUE', JSON.stringify(newValueDay));
-
-    //console.log(liTag.classList.add('active'));
   });
   //}
-  //addChangingDayListener();
 };
 
 renderCalendar();
@@ -154,11 +151,3 @@ prevNextIcon.forEach(icon => {
     });
   });
 });
-
-// function saveDay(evt) {
-//   evt.preventDefault();
-
-// }
-// function updateOutput() {
-//    = localStorage.getItem(LOCALSTORAGE_KEY) || '';
-// }
