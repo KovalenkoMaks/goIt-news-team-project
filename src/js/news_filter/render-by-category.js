@@ -1,7 +1,7 @@
 import { getArticleByCategory } from '../api/index';
 import { checkLokalStorage } from '../markup';
 import { getWeatherRefs } from '../weather';
-console.log('строчка 4');
+
 const refs = {
   listNewsEl: document.querySelector('ul.list-news'),
   weather: document.querySelector('.weather'),
@@ -13,7 +13,6 @@ let windowWidth;
 let wetherPosition;
 
 async function renderByCategory(selectedCategory) {
-  console.log('render by cat');
   // console.log(selectedCategory.replaceAll(' ', '-'));
   if (window.innerWidth < 768) {
     windowWidth = 4;
@@ -38,7 +37,9 @@ async function renderByCategory(selectedCategory) {
       refs.errorMarkup.classList.add('underfined-hidden');
     }
 
-    const dataNewsArray = await getArticleByCategory(selectedCategory);
+    const dataNewsArray = await getArticleByCategory(
+      selectedCategory.replace(' ', '_')
+    );
     const markup = dataNewsArray
       .map(data => {
         let opacity = '';
@@ -63,10 +64,11 @@ async function renderByCategory(selectedCategory) {
     refs.errorMarkup.classList.remove('underfined-hidden');
   }
 }
-
+let media;
 function createMarkup(
-  { section, multimedia, title, first_published_date, abstract, uri, url },
-  opacity
+  { section, multimedia, title, first_published_date, abstract },
+  opacity,
+  uri
 ) {
   if (!section) {
     section = '';
@@ -120,7 +122,7 @@ function createMarkup(
               <span class="item-news__info-date">
                     ${first_published_date.replaceAll('T', ' ').slice(0, 19)}
               </span>
-              <a target="_blank" class="item-news__info-link" href="${url}">Read more</a>
+              <a target="_blank" class="item-news__info-link" href="${'elem.web_url'}">Read more</a>
       <p class='is-hidden'>${uri}</p>
          </div>
     </article>

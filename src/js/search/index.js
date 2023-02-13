@@ -18,6 +18,7 @@ let wetherPosition = 0;
 
 async function test(e) {
   e.preventDefault();
+
   const value = refs.input.value;
 
   const data = await getSearchArticle(value);
@@ -65,6 +66,7 @@ async function test(e) {
   }
   refs.newsList.innerHTML = markup;
   getWetherPosition();
+  document.querySelector('.page-container').classList.add('pagination-hidden');
 }
 
 function render(data, number) {

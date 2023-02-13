@@ -1,7 +1,6 @@
 import { getCategoryList } from '../api/index';
 import debounce from 'lodash.debounce';
 import { renderByCategory } from './render-by-category';
-console.log('filter btn 5');
 
 const refs = {
   categoryContainerEl: document.querySelector('.filter-category__container'),
@@ -83,8 +82,8 @@ function onClickCategory(evt) {
   addActiveClass(evt);
   // localStorage.setItem('selectedCategory', evt.target.textContent);
   selectedCategory = evt.target.textContent.toLowerCase();
-  console.log(selectedCategory);
   renderByCategory(selectedCategory);
+  document.querySelector('.page-container').classList.add('pagination-hidden');
 }
 function renderMarkupCategory(
   categoryList,
