@@ -51,7 +51,9 @@ refs.pagination.addEventListener('click', e => {
     case 2:
       sliceItems = deleteItems.slice(0, 8);
       uptadeDeleteItems = deleteItems.slice(8);
+      console.log(sliceItems);
       const markup2 = render(sliceItems, windowWidth);
+      // console.log(markup2);
       newsList.innerHTML = markup2;
       getWetherPosition();
       // getRender(sliceItems);
@@ -73,6 +75,8 @@ refs.pagination.addEventListener('click', e => {
 });
 
 function render(data, number) {
+  console.log(data);
+  console.log(number);
   let filtredArr = getFiltredArr(data, number);
   //   console.log(filtredArr);
   return filtredArr
@@ -84,9 +88,13 @@ function render(data, number) {
         opacity = 'opacity';
       }
       let mediaElem = elem.media;
-      if (mediaElem.length === 1) {
-        let mediaUrl = mediaElem[0]['media-metadata'][2].url;
-        return `<li class="list-news__item ${opacity}">
+      let mediaUrl =
+        'https://img.freepik.com/free-vector/internet-network-warning-404-error-page-or-file-not-found-for-web-page_1150-48326.jpg?w=996&t=st=1676297842~exp=1676298442~hmac=6cad659e6a3076ffcb73bbb246c4f7e5e1bf7cee7fa095d67fcced0a51c2405c';
+      if (mediaElem.length !== 0) {
+        mediaUrl = mediaElem[0]['media-metadata'][2].url;
+      }
+
+      return `<li class="list-news__item ${opacity}">
 			  <article class="item-news__article " id="${elem.id}">
 					<div class="item-news__wrapper-img">
 						 <img class="item-news__img"
@@ -130,7 +138,6 @@ function render(data, number) {
 					</div>
 			  </article>
 		 </li>`;
-      }
     })
     .join('');
 }
