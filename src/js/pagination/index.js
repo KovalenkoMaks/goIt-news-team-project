@@ -1,6 +1,4 @@
-import { deleteItems, firstItems } from '../markup';
-// import * as refs from '../refs';
-import { checkLokalStorage } from '../markup';
+import { deleteItems, firstItems, checkLokalStorage } from '../markup';
 import { getWeatherRefs } from '../weather';
 import { getWetherPosition, getPopularRender } from '../popular_render';
 const pg = document.getElementById('pagination');
