@@ -93,6 +93,16 @@ const renderCalendar = number => {
   const dayChange = document.querySelector('.days');
   // function addChangingDayListener() {
 
+
+      let newValueDay = evt.target.textContent;
+      if (evt.target.textContent.length > 10) {
+        return;
+      }
+
+      document.getElementById('input-picker').value =
+        newValueDay.padStart(2, '0') + '/' + (currMonth + 1) + '/' + currYear;
+      console.log(document.getElementById('input-picker').value);
+
   dayChange.addEventListener('click', evt => {
     //evt.preventDefault();
     // evt.target.classList.toggle('active');
@@ -105,6 +115,7 @@ const renderCalendar = number => {
     [...evt.currentTarget.children].forEach(item => {
       item.classList.remove('active');
       //console.log(item.textContent);
+
     });
 
     evt.target.classList.add('active');
