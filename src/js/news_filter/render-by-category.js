@@ -1,7 +1,7 @@
 import { getArticleByCategory } from '../api/index';
 import { checkLokalStorage } from '../markup';
 import { getWeatherRefs } from '../weather';
-
+console.log('строчка 4');
 const refs = {
   listNewsEl: document.querySelector('ul.list-news'),
   weather: document.querySelector('.weather'),
@@ -13,6 +13,7 @@ let windowWidth;
 let wetherPosition;
 
 async function renderByCategory(selectedCategory) {
+  console.log('render by cat');
   // console.log(selectedCategory.replaceAll(' ', '-'));
   if (window.innerWidth < 768) {
     windowWidth = 4;
