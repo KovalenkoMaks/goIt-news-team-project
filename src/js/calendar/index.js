@@ -37,7 +37,7 @@ let date = new Date(),
   }
 
   function hideModals(evt) {
-    if (evt.target.closest('.calendar-input')) {
+    if (evt.target.closest('.calendar-form')) {
       return;
     }
     if (refs.input.classList.contains('isActive')) {
