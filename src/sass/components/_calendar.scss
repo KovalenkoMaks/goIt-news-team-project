@@ -1,3 +1,17 @@
+.calendar-form__text {
+  display: none;
+  @media screen and (min-width: $desktop) {
+    display: inline;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.38;
+    color: var(--text-color);
+    margin-right: -180px;
+    margin-left: 111px;
+  }
+}
 .calendar-form {
   position: relative;
   @media screen and (min-width: $desktop) {
