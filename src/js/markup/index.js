@@ -1,4 +1,5 @@
 async function getPopularMarkup(arr, number) {
+  
   let filtredArr = getFiltredArr(arr, number);
   //   console.log(arr);
   const markup = filtredArr
