@@ -33,7 +33,7 @@ async function test(e) {
     //    return;
     //  }
   }
-  console.log(errorMarkup);
+
   refs.errorMarkup.classList.add('underfined-hidden');
   //   refs.weather.classList.remove('weather-hidden');
   refs.pagination.classList.remove('pagination-hidden');
@@ -80,7 +80,7 @@ function render(data, number) {
       }
       const mediaElem = elem.multimedia;
       let mediaUrl =
-        'http://lamcdn.net/lookatme.ru/post_image-image/sIaRmaFSMfrw8QJIBAa8mA-small.png';
+        'https://img.freepik.com/free-vector/internet-network-warning-404-error-page-or-file-not-found-for-web-page_1150-48326.jpg?w=996&t=st=1676297842~exp=1676298442~hmac=6cad659e6a3076ffcb73bbb246c4f7e5e1bf7cee7fa095d67fcced0a51c2405c';
       if (mediaElem.length !== 0) {
         mediaUrl = `https://static01.nyt.com/${mediaElem[0].url}`;
       }
