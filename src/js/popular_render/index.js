@@ -6,13 +6,13 @@ import { getWeatherRefs } from '../weather';
 
 let windowWidth = 0;
 let wetherPosition = 0;
-// console.log(window.innerWidth);
-// window.addEventListener(
-//   'resize',
-//   debounce(e => {
-//     getPopularRender();
-//   }, 1000)
-// );
+console.log(window.innerWidth);
+window.addEventListener(
+  'resize',
+  debounce(e => {
+    getPopularRender();
+  }, 1000)
+);
 
 async function getPopularRender() {
   if (window.innerWidth < 768) {
