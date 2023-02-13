@@ -47,7 +47,7 @@ async function getPopularMarkup(arr, number) {
                   </div>
                   <div class="item-news__info">
                       <span class="item-news__info-date">
-                          ${elem.updated}
+                          ${dateNews(elem.updated)}
                       </span>
                       <a target="_blank" class="item-news__info-link" href="${
                         elem.url
@@ -85,6 +85,9 @@ function checkLokalStorage(elem, localArr) {
       return true;
     }
   }
+}
+function dateNews(data) {
+  return data.split('').splice(0, 10).join('').replaceAll('-', '/');
 }
 
 export { checkLokalStorage };

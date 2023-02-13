@@ -22,7 +22,11 @@ function linkReadMore(event) {
 }
 
 function addReadMore(readMore) {
-  console.dir(readMore);
+  const evenDateNow = new Date();
+  const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+  const readDateNow = evenDateNow
+    .toLocaleDateString([], options)
+    .replaceAll('.', '/');
   const read = {
     uri: readMore.nextElementSibling.textContent,
     date: readMore.parentNode.firstElementChild.innerText,
@@ -33,13 +37,10 @@ function addReadMore(readMore) {
     link: readMore.parentNode.children[1].href,
     category:
       readMore.parentNode.parentNode.childNodes[1].children[1].innerHTML,
+    dayRead: readDateNow,
   };
-  // console.log(read.uri);
   for (let i = 0; i < readMoreId.length; i += 1) {
-    // console.log(readMoreId[i].uri);
     if (readMoreId[i].uri === read.uri) {
-      // console.log(readMore.parentNode.parentNode);
-      // readMore.parentNode.parentNode.classList.add('opacity');
       return;
     }
   }
