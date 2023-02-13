@@ -121,4 +121,4 @@ function getWetherPosition() {
   // return secondElInList;
 }
 
-export { getWetherPosition, getRender };
+export { getWetherPosition, getRender, getPopularRender };

@@ -1,8 +1,12 @@
-import { deleteItems } from '../markup';
+import { deleteItems, firstItems } from '../markup';
 // import * as refs from '../refs';
 import { checkLokalStorage } from '../markup';
 import { getWeatherRefs } from '../weather';
-import { getWetherPosition, getRender } from '../popular_render';
+import {
+  getWetherPosition,
+  getRender,
+  getPopularRender,
+} from '../popular_render';
 const pg = document.getElementById('pagination');
 const btnNextPg = document.querySelector('button.next-page');
 const btnPrevPg = document.querySelector('button.prev-page');
@@ -14,16 +18,23 @@ let wetherPosition = 0;
 let uptadeDeleteItems;
 setTimeout(() => {
   uptadeDeleteItems = deleteItems.slice(8);
+  firstMarkup = firstItems;
 }, 1000);
 let sliceItems;
 const refs = {
-  pagination: document.querySelector('.page-container'),
+  pagination: document.querySelector('.pagin'),
 };
 // console.log(refs.pagination);
 
 refs.pagination.addEventListener('click', e => {
-  const btn = valuePage.curPage;
-  console.log(btn);
+  let btn = valuePage.curPage;
+
+  if (e.target.classList.contains('next-page')) {
+    btn += 1;
+  }
+  if (e.target.classList.contains('prev-page')) {
+    btn -= 1;
+  }
   sliceItems = null;
   if (window.innerWidth < 768) {
     windowWidth = 4;
@@ -39,13 +50,13 @@ refs.pagination.addEventListener('click', e => {
   }
   switch (btn) {
     case 1:
-      location.reload();
+      getPopularRender();
       break;
     case 2:
       sliceItems = deleteItems.slice(0, 8);
       uptadeDeleteItems = deleteItems.slice(8);
-      const markup = render(sliceItems, windowWidth);
-      newsList.innerHTML = markup;
+      const markup2 = render(sliceItems, windowWidth);
+      newsList.innerHTML = markup2;
       getWetherPosition();
       // getRender(sliceItems);
       break;
@@ -55,6 +66,7 @@ refs.pagination.addEventListener('click', e => {
       getWetherPosition();
       break;
   }
+  window.scrollTo(0, 0);
   //   if (btn === 3) {
 
   //   }

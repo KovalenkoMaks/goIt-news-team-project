@@ -1,3 +1,4 @@
+import * as popular from '../popular_render';
 import { getSearchArticle } from '../api';
 import { checkLokalStorage } from '../markup';
 import swal from 'sweetalert';

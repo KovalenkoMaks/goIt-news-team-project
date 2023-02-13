@@ -64,8 +64,11 @@ async function getPopularMarkup(arr, number) {
   return markup;
 }
 let deleteItems;
+let firstItems;
+
 function getFiltredArr(value, number) {
   deleteItems = value.slice(number);
+  firstItems = value;
   return value.slice(0, number);
 }
 
@@ -93,4 +96,4 @@ function dateNews(data) {
   return data.split('').splice(0, 10).join('').replaceAll('-', '/');
 }
 
-export { checkLokalStorage, deleteItems };
+export { checkLokalStorage, deleteItems, firstItems };
