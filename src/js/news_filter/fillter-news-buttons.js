@@ -40,7 +40,9 @@ async function getCategoryRender() {
         .querySelector('.filter-category__list')
         .addEventListener('click', evt => {
           onClickCategory(evt);
-          changeButtonName();
+          if (selectedCategory !== undefined) {
+            changeButtonName();
+          }
         });
     });
   }
@@ -64,7 +66,9 @@ async function getCategoryRender() {
         .querySelector('.filter-category__list')
         .addEventListener('click', evt => {
           onClickCategory(evt);
-          changeButtonName();
+          if (selectedCategory !== undefined) {
+            changeButtonName();
+          }
         });
     });
   }
@@ -88,7 +92,9 @@ async function getCategoryRender() {
         .querySelector('.filter-category__list')
         .addEventListener('click', evt => {
           onClickCategory(evt);
-          changeButtonName();
+          if (selectedCategory !== undefined) {
+            changeButtonName();
+          }
         });
     });
   }
@@ -102,7 +108,10 @@ function addActiveClass(evt) {
 }
 function onClickCategory(evt) {
   addActiveClass(evt);
-  // localStorage.setItem('selectedCategory', evt.target.textContent);
+  if (evt.target.textContent.length > 20) {
+    console.log(selectedCategory);
+    return;
+  }
   selectedCategory = evt.target.textContent;
   refs.loader.classList.remove('is-hidden');
   renderByCategory(selectedCategory.toLowerCase());
