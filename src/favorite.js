@@ -1,5 +1,5 @@
 import './js/mobile_menu';
-import './js/search';
+// import './js/search';
 import './js/dark_mode';
 
 const undefinedReadeMore = document.querySelector('.underfined');

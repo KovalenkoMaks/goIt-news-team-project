@@ -24,12 +24,13 @@ async function getCategoryList() {
 }
 
 async function getSearchArticle(value) {
-  try {
+  console.log(inputDateValue);
+  if (inputDateValue === null) {
     let date = inputDateValue.replace('/', '').replace('/', '');
     let begin_date = date;
     let end_date = date;
     const articleFetch = await fetch(
-      `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}&begin_date=${begin_date}&end_date=${end_date}`
+      `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}&begin_date=20120101&end_date=20121231`
     );
     const articles = await articleFetch.json();
     let { response } = articles;
@@ -37,9 +38,12 @@ async function getSearchArticle(value) {
     //   console.log(docs);
 
     return docs;
-  } catch (error) {
+  } else {
+    let date = inputDateValue.replace('/', '').replace('/', '');
+    let begin_date = date;
+    let end_date = date;
     const articleFetch = await fetch(
-      `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}&begin_date=20120101&end_date=20121231`
+      `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}&begin_date=${begin_date}&end_date=${end_date}`
     );
     const articles = await articleFetch.json();
     let { response } = articles;
