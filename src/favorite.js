@@ -1,6 +1,7 @@
 import './js/mobile_menu';
 import './js/search';
 import './js/dark_mode';
+
 const undefinedReadeMore = document.querySelector('.underfined');
 const block = document.querySelector('.list-news');
 const newList = document.querySelector('.list-news');
@@ -83,3 +84,4 @@ function createMarkup(arr) {
     })
     .join('');
 }
+document.querySelector('.news-loader__container ').classList.add('is-hidden');
