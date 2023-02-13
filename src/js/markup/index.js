@@ -18,8 +18,11 @@ async function getPopularMarkup(arr, number) {
       }
 
       let mediaElem = elem.media;
-      if (mediaElem.length === 1) {
-        let mediaUrl = mediaElem[0]['media-metadata'][2].url;
+      let mediaUrl =
+        'https://img.freepik.com/free-vector/internet-network-warning-404-error-page-or-file-not-found-for-web-page_1150-48326.jpg?w=996&t=st=1676297842~exp=1676298442~hmac=6cad659e6a3076ffcb73bbb246c4f7e5e1bf7cee7fa095d67fcced0a51c2405c';
+      if (mediaElem.length !== 0) {
+        mediaUrl = mediaElem[0]['media-metadata'][2].url;
+
         return `<li class="list-news__item ${opacity}">
               <article class="item-news__article " id="${elem.id}">
                   <div class="item-news__wrapper-img">
@@ -99,3 +102,4 @@ function dateNews(data) {
 }
 
 export { checkLokalStorage };
+

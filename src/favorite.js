@@ -1,10 +1,11 @@
 import './js/mobile_menu';
 import './js/search';
 import './js/dark_mode';
+
+const undefinedReadeMore = document.querySelector('.underfined');
 const block = document.querySelector('.list-news');
 const newList = document.querySelector('.list-news');
-const undefinedReadeMore = document.querySelector('.underfined');
-
+document.querySelector('.page-container').classList.add('pagination-hidden');
 newList.addEventListener('click', removeToFavorite);
 const dataInLocal = JSON.parse(localStorage.getItem('newsSection'));
 console.log(dataInLocal);
@@ -84,3 +85,4 @@ function createMarkup(arr) {
     .join('');
   return newArr;
 }
+document.querySelector('.news-loader__container ').classList.add('is-hidden');

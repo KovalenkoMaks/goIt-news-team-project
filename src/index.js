@@ -8,4 +8,5 @@ import './js/search';
 import './js/dark_mode';
 import './js/readMore';
 import './js/calendar';
+import './js/pagination';
 // import './js/read_more_date';

@@ -8,6 +8,7 @@ const refs = {
   errorMarkup: document.querySelector('.underfined'),
   pagination: document.querySelector('.pagination'),
   newsList: document.querySelector('.list-news'),
+  loader: document.querySelector('.news-loader__container.container'),
 };
 let windowWidth;
 let wetherPosition;
@@ -36,7 +37,6 @@ async function renderByCategory(selectedCategory) {
       refs.pagination.classList.remove('pagination-hidden');
       refs.errorMarkup.classList.add('underfined-hidden');
     }
-
     const dataNewsArray = await getArticleByCategory(selectedCategory);
     const markup = dataNewsArray
       .map(data => {
@@ -51,21 +51,23 @@ async function renderByCategory(selectedCategory) {
       })
       .join('');
     refs.listNewsEl.innerHTML = markup;
+    refs.loader.classList.add('is-hidden');
 
     getWetherPosition();
   } catch {
     // если не удалось найти по категории
-
+    refs.loader.classList.add('is-hidden');
     refs.newsList.innerHTML = '';
     refs.pagination.classList.add('pagination-hidden');
     //  refs.weather.classList.add('weather-hidden');
     refs.errorMarkup.classList.remove('underfined-hidden');
   }
 }
-
+let media;
 function createMarkup(
-  { section, multimedia, title, first_published_date, abstract, uri, url },
-  opacity
+  { section, multimedia, title, first_published_date, abstract },
+  opacity,
+  uri
 ) {
   if (!section) {
     section = '';
@@ -119,7 +121,7 @@ function createMarkup(
               <span class="item-news__info-date">
                     ${first_published_date.replaceAll('T', ' ').slice(0, 19)}
               </span>
-              <a target="_blank" class="item-news__info-link" href="${url}">Read more</a>
+              <a target="_blank" class="item-news__info-link" href="${'elem.web_url'}">Read more</a>
       <p class='is-hidden'>${uri}</p>
          </div>
     </article>

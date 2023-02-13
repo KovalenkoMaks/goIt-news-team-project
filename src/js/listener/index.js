@@ -9,21 +9,16 @@ function isLocalEmpty() {
     return;
   }
   newLocalStorage = JSON.parse(localStorage.getItem('newsSection'));
-  console.log(newLocalStorage);
 }
 isLocalEmpty();
 
 function btnAddToFavorite(event) {
   const btn = event.target.closest(`.item-news__add-to-favorite`);
   if (!btn) return;
-
   isLocalEmpty();
-
   let uri =
     btn.parentNode.nextElementSibling.nextElementSibling.lastElementChild
       .textContent;
-  console.log(uri);
-
   if (!btn.classList.contains('hidden-span')) {
     btn.classList.add('hidden-span');
     addToFavoriteLocal(btn);
