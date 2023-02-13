@@ -2,6 +2,10 @@ body.darkMode {
   .header {
     border-bottom: 1px solid rgba(244, 244, 244, 0.2);
   }
+
+  .theme__dark {
+    opacity: 1;
+  }
 }
 
 .header {
@@ -120,7 +124,16 @@ body.darkMode {
     border: none;
     background: none;
     outline: none;
+    &:focus {
+      color: var(--text-color)
+    }
 
+    &:autofill,
+    &:autofill:hover,
+    &:autofill:focus,
+    &:autofill:active {
+      transition: background-color 9999s, color 9999s;
+    }
     @media screen and (max-width: $pre_tablet) {
       padding: 0;
       transition: 0.4s;
@@ -130,7 +143,7 @@ body.darkMode {
     @media screen and (min-width: $pre_tablet) {
       padding: 5px 0;
       font-size: 14px;
-      line-height: calc(24/14);
+      line-height: calc(24 / 14);
     }
   }
   @media screen and (max-width: $pre_tablet) {
@@ -148,7 +161,6 @@ body.darkMode {
       }
     }
   }
-
 }
 
 .search-field__btn {
@@ -160,7 +172,6 @@ body.darkMode {
   @media screen and (min-width: $pre_tablet) {
     padding: 8px 19px 8px 14px;
   }
-
 }
 
 .search__icon {
@@ -183,7 +194,7 @@ body.darkMode {
     &.mobile {
       display: flex;
       position: absolute;
-      z-index: 3;
+      z-index: 6;
       bottom: 18;
       opacity: 100%;
       pointer-events: all;

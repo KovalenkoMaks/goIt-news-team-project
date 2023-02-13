@@ -63,7 +63,7 @@
   text-align: left;
   opacity: 1;
 
-  color: var(--text-color);
+  color: #111321;
   & .item-news__remove-to-favorite-btn {
     display: none;
   }
@@ -137,8 +137,6 @@
 @media screen and (min-width: $pre_mobile) {
   .list-news__item {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
   }
 }
 
