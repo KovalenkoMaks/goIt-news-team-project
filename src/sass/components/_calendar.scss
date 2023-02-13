@@ -48,11 +48,12 @@
 }
 .calendar__button-calendar {
   position: absolute;
-  fill: var(--accent-color);
+  fill: #4440f6;
   margin-left: 12px;
 }
 .calendar__button-calendar.switchedColor {
-  color: var(--white-color);
+  z-index: 1;
+  fill: #ffffff;
 }
 .input-form {
   position: relative;
@@ -65,7 +66,7 @@
   margin-left: 12px;
   display: flex;
   position: absolute;
-  z-index: 3;
+  z-index: 1;
   fill: var(--accent-color);
   right: 12px;
 }

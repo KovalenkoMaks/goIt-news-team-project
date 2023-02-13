@@ -20,7 +20,7 @@ let date = new Date(),
     modal: document.querySelector('[data-modal]'),
     input: document.querySelector('.calendar-input'),
     arrow: document.querySelector('.calendar__button-arrow'),
-    calendar: document.querySelector('.calendar__button-calendar'),
+    calendarBtn: document.querySelector('.calendar__button-calendar'),
   };
 
   refs.openModalBtn.addEventListener('click', toggleModal);
@@ -32,7 +32,7 @@ let date = new Date(),
     refs.modal.classList.toggle('is-hidden');
     refs.input.classList.toggle('isActive');
     refs.arrow.classList.toggle('switched');
-    refs.calendar.classList.toggle('switchedColor');
+    refs.calendarBtn.classList.toggle('switchedColor');
     // showCurrentDate();
   }
 
@@ -77,9 +77,9 @@ const renderCalendar = () => {
     let isToday =
       i === date.getDate() &&
       currMonth === new Date().getMonth() &&
-      currYear === new Date().getFullYear()
-        ? 'active'
-        : '';
+      currYear === new Date().getFullYear();
+    //   ? 'active'
+    //   : '';
     liTag += `<li class="${isToday}">${i}</li>`;
   }
   for (let i = lastDayofMonth; i < 6; i++) {
@@ -88,21 +88,33 @@ const renderCalendar = () => {
   }
   currentDate.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
   daysTag.innerHTML = liTag;
-  function addChangingDayListener() {
-    const dayChange = document.querySelector('.days');
-    dayChange.addEventListener('click', evt => {
-      evt.preventDefault();
+  const dayChange = document.querySelector('.days');
+  // function addChangingDayListener() {
+  dayChange.addEventListener('click', evt => {
+    //evt.preventDefault();
+    // evt.target.classList.toggle('active');
 
-      let newValueDay = evt.target.textContent;
-      if (evt.target.textContent.length > 10) {
-        return;
-      }
-      document.getElementById('input-picker').value =
-        newValueDay.padStart(2, '0') + '/' + (currMonth + 1) + '/' + currYear;
-      //console.log(liTag.classList.add('active'));
+    //     function hideButton() {
+    //       if (showButton() && evt.target.contains('active')) {
+    //         // evt.target.classList.remove('active');
+    //       }
+    //     }
+    [...evt.currentTarget.children].forEach(item => {
+      item.classList.remove('active');
     });
-  }
-  addChangingDayListener();
+    evt.target.classList.add('active');
+    let newValueDay = evt.target.textContent;
+    if (evt.target.textContent.length > 10) {
+      return;
+    }
+
+    document.getElementById('input-picker').value =
+      newValueDay.padStart(2, '0') + '/' + (currMonth + 1) + '/' + currYear;
+
+    //console.log(liTag.classList.add('active'));
+  });
+  //}
+  //addChangingDayListener();
 };
 renderCalendar();
 prevNextIcon.forEach(icon => {
