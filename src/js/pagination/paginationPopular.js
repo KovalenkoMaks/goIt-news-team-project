@@ -2,11 +2,7 @@ import { deleteItems, firstItems } from '../markup';
 // import * as refs from '../refs';
 import { checkLokalStorage } from '../markup';
 import { getWeatherRefs } from '../weather';
-import {
-  getWetherPosition,
-  getRender,
-  getPopularRender,
-} from '../popular_render';
+import { getWetherPosition, getPopularRender } from '../popular_render';
 const pg = document.getElementById('pagination');
 const btnNextPg = document.querySelector('button.next-page');
 const btnPrevPg = document.querySelector('button.prev-page');
