@@ -1,26 +1,26 @@
-.underfined {  
+.underfined {
   text-align: center;
   align-content: center;
   justify-content: center;
   margin-bottom: 59px;
 
-  @media screen and (min-width: $tablet) and (max-width: $pre_desktop){
+  @media screen and (min-width: $tablet) and (max-width: $pre_desktop) {
     margin-top: 48px;
     margin-bottom: 101px;
   }
 
-  @media screen and (min-width: $desktop){
-    margin-top: 81px;
-    margin-bottom: 226px;
+  @media screen and (min-width: $desktop) {
+    margin-top: 15px;
+    margin-bottom: 60px;
   }
   &-hidden {
     display: none;
   }
 }
 
-.underfined___title{
+.underfined___title {
   font-family: Manrope;
-  font-weight: 700;  
+  font-weight: 700;
   color: var(--text-color);
   font-size: 20px;
   line-height: 27px;
@@ -28,30 +28,26 @@
     font-size: 40px;
     line-height: 55px;
   }
-    @media screen and (min-width: $desktop) {
+  @media screen and (min-width: $desktop) {
     font-size: 40px;
     line-height: 55px;
-    }
+  }
 }
-
 
 .underfined___picture {
   margin-top: 40px;
-    margin-bottom: 59px;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 248px;
-    height: auto;
-    @media screen and (min-width: $tablet) and (max-width: $pre_desktop) {
-      margin-bottom: 101px;
-      width: 560px;
-    }
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 248px;
+  height: auto;
+  @media screen and (min-width: $tablet) and (max-width: $pre_desktop) {
+    width: 270px;
+  }
 
-    @media screen and (min-width: $desktop) {
-      margin-bottom: 226px; 
-      width: 601px;     
-    }
+  @media screen and (min-width: $desktop) {
+    width: 350px;
+  }
 }
