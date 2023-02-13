@@ -12,7 +12,7 @@ let wetherPosition = 0;
 let uptadeDeleteItems;
 setTimeout(() => {
   uptadeDeleteItems = deleteItems.slice(8);
-  firstMarkup = firstItems;
+  // firstMarkup = firstItems;
 }, 1000);
 let sliceItems;
 const refs = {
