@@ -9,7 +9,6 @@ function isLocalEmpty() {
     return;
   }
   newLocalStorage = JSON.parse(localStorage.getItem('newsSection'));
-  console.log(newLocalStorage);
 }
 isLocalEmpty();
 
