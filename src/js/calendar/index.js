@@ -1,8 +1,8 @@
 const daysTag = document.querySelector('.days'),
   currentDate = document.querySelector('.current-date'),
   prevNextIcon = document.querySelectorAll('.calendar-icons span');
-// getting new date, current year and month
 
+// getting new date, current year and month
 let date = new Date(),
   currDay = date.getDate(),
   currMonth = date.getMonth(),
@@ -61,7 +61,7 @@ const months = [
   'November',
   'December',
 ];
-const renderCalendar = () => {
+const renderCalendar = number => {
   let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(), // getting first day of month
     lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(), // getting last date of month
     lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(), // getting last day of month
@@ -81,6 +81,7 @@ const renderCalendar = () => {
     //   ? 'active'
     //   : '';
     liTag += `<li class="${isToday}">${i}</li>`;
+    //console.log(isToday);
   }
   for (let i = lastDayofMonth; i < 6; i++) {
     // creating li of next month first days
@@ -88,8 +89,10 @@ const renderCalendar = () => {
   }
   currentDate.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
   daysTag.innerHTML = liTag;
+  // console.log(liTag);
   const dayChange = document.querySelector('.days');
   // function addChangingDayListener() {
+
   dayChange.addEventListener('click', evt => {
     //evt.preventDefault();
     // evt.target.classList.toggle('active');
@@ -101,7 +104,9 @@ const renderCalendar = () => {
     //     }
     [...evt.currentTarget.children].forEach(item => {
       item.classList.remove('active');
+      //console.log(item.textContent);
     });
+
     evt.target.classList.add('active');
     let newValueDay = evt.target.textContent;
     if (evt.target.textContent.length > 10) {
@@ -111,12 +116,17 @@ const renderCalendar = () => {
     document.getElementById('input-picker').value =
       newValueDay.padStart(2, '0') + '/' + (currMonth + 1) + '/' + currYear;
 
+    localStorage.setItem('VALUE', JSON.stringify(newValueDay));
+
     //console.log(liTag.classList.add('active'));
   });
   //}
   //addChangingDayListener();
 };
+
 renderCalendar();
+let findUl = document.querySelector('.days');
+
 prevNextIcon.forEach(icon => {
   // getting prev and next icons
   icon.addEventListener('click', () => {
@@ -133,5 +143,22 @@ prevNextIcon.forEach(icon => {
       date = new Date(); // pass the current date as date value
     }
     renderCalendar(); // calling renderCalendar function
+    let test = JSON.parse(localStorage.getItem('VALUE'));
+    let reachUl = daysTag.childNodes;
+    //console.log(reachUl);
+    reachUl.forEach(elem => {
+      if (elem.textContent === test) {
+        console.log(elem.textContent);
+        elem.classList.add('active');
+      }
+    });
   });
 });
+
+// function saveDay(evt) {
+//   evt.preventDefault();
+
+// }
+// function updateOutput() {
+//    = localStorage.getItem(LOCALSTORAGE_KEY) || '';
+// }
