@@ -1,43 +1,57 @@
-.underfined {
-  font-family: Manrope;
-  font-weight: 700;
+.underfined {  
+  text-align: center;
   align-content: center;
   justify-content: center;
+  margin-bottom: 59px;
+
+  @media screen and (min-width: $tablet) and (max-width: $pre_desktop){
+    margin-top: 48px;
+    margin-bottom: 101px;
+  }
+
+  @media screen and (min-width: $desktop){
+    margin-top: 81px;
+    margin-bottom: 226px;
+  }
   &-hidden {
     display: none;
   }
 }
 
-.underfined__title {
-  // width: 100%;
-  // height: 100%;
+.underfined___title{
+  font-family: Manrope;
+  font-weight: 700;  
   color: var(--text-color);
   font-size: 20px;
   line-height: 27px;
-  text-align: center;
   @media screen and (min-width: $tablet) and (max-width: $pre_desktop) {
     font-size: 40px;
     line-height: 55px;
   }
+    @media screen and (min-width: $desktop) {
+    font-size: 40px;
+    line-height: 55px;
+    }
+}
 
-  @media screen and (min-width: $desktop) {
-    margin-bottom: 40px;
-  }
 
-  .underfined__pictures {
+.underfined___picture {
+  margin-top: 40px;
     margin-bottom: 59px;
-    margin-left: 36px;
-    margin-right: 36px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 248px;
+    height: auto;
     @media screen and (min-width: $tablet) and (max-width: $pre_desktop) {
       margin-bottom: 101px;
-      margin-left: 104px;
-      margin-right: 104px;
+      width: 560px;
     }
 
     @media screen and (min-width: $desktop) {
-      margin-bottom: 226px;
-      margin-left: 104px;
-      margin-right: 104px;
+      margin-bottom: 226px; 
+      width: 601px;     
     }
-  }
 }
