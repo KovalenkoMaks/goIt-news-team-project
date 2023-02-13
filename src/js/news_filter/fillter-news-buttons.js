@@ -7,6 +7,7 @@ const refs = {
   otherList: document.querySelector('.filter-category__others-container'),
   othersBtEl: document.querySelector('.filter-category__others-button > span'),
   listButtons: document.querySelector('.filter-category__list-bt'),
+  loader: document.querySelector('.news-loader__container.container'),
 };
 
 let selectedCategory;
@@ -20,6 +21,7 @@ getCategoryRender();
 refs.otherList.addEventListener('click', onClickOther);
 
 async function getCategoryRender() {
+  // mobile
   if (window.innerWidth < 768) {
     currentNumberCategories = 13;
     refs.othersBtEl.textContent = 'Categories';
@@ -30,12 +32,19 @@ async function getCategoryRender() {
         currentNumberCategories,
         outsideCategories
       );
-      refs.listButtons.addEventListener('click', onClickCategory);
+      refs.listButtons.addEventListener('click', evt => {
+        onClickCategory(evt);
+        refs.othersBtEl.textContent = 'Categories';
+      });
       document
         .querySelector('.filter-category__list')
-        .addEventListener('click', onClickCategory);
+        .addEventListener('click', evt => {
+          onClickCategory(evt);
+          changeButtonName();
+        });
     });
   }
+  // tablet
   if (window.innerWidth >= 768 && window.innerWidth < 1280) {
     currentNumberCategories = 17;
     outsideCategories = 4;
@@ -47,12 +56,19 @@ async function getCategoryRender() {
         currentNumberCategories,
         outsideCategories
       );
-      refs.listButtons.addEventListener('click', onClickCategory);
+      refs.listButtons.addEventListener('click', evt => {
+        onClickCategory(evt);
+        refs.othersBtEl.textContent = 'Others';
+      });
       document
         .querySelector('.filter-category__list')
-        .addEventListener('click', onClickCategory);
+        .addEventListener('click', evt => {
+          onClickCategory(evt);
+          changeButtonName();
+        });
     });
   }
+  // desktop
   if (window.innerWidth >= 1280) {
     currentNumberCategories = 19;
     outsideCategories = 6;
@@ -64,10 +80,16 @@ async function getCategoryRender() {
         currentNumberCategories,
         outsideCategories
       );
-      refs.listButtons.addEventListener('click', onClickCategory);
+      refs.listButtons.addEventListener('click', evt => {
+        onClickCategory(evt);
+        refs.othersBtEl.textContent = 'Others';
+      });
       document
         .querySelector('.filter-category__list')
-        .addEventListener('click', onClickCategory);
+        .addEventListener('click', evt => {
+          onClickCategory(evt);
+          changeButtonName();
+        });
     });
   }
 }
@@ -81,8 +103,9 @@ function addActiveClass(evt) {
 function onClickCategory(evt) {
   addActiveClass(evt);
   // localStorage.setItem('selectedCategory', evt.target.textContent);
-  selectedCategory = evt.target.textContent.toLowerCase();
-  renderByCategory(selectedCategory);
+  selectedCategory = evt.target.textContent;
+  refs.loader.classList.remove('is-hidden');
+  renderByCategory(selectedCategory.toLowerCase());
   document.querySelector('.page-container').classList.add('pagination-hidden');
 }
 function renderMarkupCategory(
@@ -130,4 +153,8 @@ function createMarkupOtherCategory(category, listEl) {
 }
 function onClickOther(evt) {
   evt.currentTarget.classList.toggle('is-open');
+}
+
+function changeButtonName() {
+  refs.othersBtEl.textContent = selectedCategory;
 }

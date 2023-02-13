@@ -8,6 +8,7 @@ const refs = {
   errorMarkup: document.querySelector('.underfined'),
   pagination: document.querySelector('.pagination'),
   newsList: document.querySelector('.list-news'),
+  loader: document.querySelector('.news-loader__container.container'),
 };
 let windowWidth;
 let wetherPosition;
@@ -36,10 +37,7 @@ async function renderByCategory(selectedCategory) {
       refs.pagination.classList.remove('pagination-hidden');
       refs.errorMarkup.classList.add('underfined-hidden');
     }
-
-    const dataNewsArray = await getArticleByCategory(
-      selectedCategory.replace(' ', '_')
-    );
+    const dataNewsArray = await getArticleByCategory(selectedCategory);
     const markup = dataNewsArray
       .map(data => {
         let opacity = '';
@@ -53,11 +51,12 @@ async function renderByCategory(selectedCategory) {
       })
       .join('');
     refs.listNewsEl.innerHTML = markup;
+    refs.loader.classList.add('is-hidden');
 
     getWetherPosition();
   } catch {
     // если не удалось найти по категории
-
+    refs.loader.classList.add('is-hidden');
     refs.newsList.innerHTML = '';
     refs.pagination.classList.add('pagination-hidden');
     //  refs.weather.classList.add('weather-hidden');
