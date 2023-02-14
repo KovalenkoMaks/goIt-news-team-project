@@ -3,15 +3,18 @@
   background-color: var(--accent-color);
   padding: 32px 36px;
   color: white;
+  border: 0px solid;
+  border-radius: 4px;
+  height: 100%;
   &-hidden {
     display: none;
   }
-  @media screen and(min-width: $pre_tablet) {
+  @media screen and(min-width: $tablet) {
     width: 353px;
-    height: 675px;
+    // height: 685px;
     padding: 40px 32px 60px 32px;
   }
-  @media screen and(min-width: $pre_desktop) {
+  @media screen and(min-width: $desktop) {
     width: 395px;
     padding: 40px 53px;
   }

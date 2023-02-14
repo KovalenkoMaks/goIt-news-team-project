@@ -1,6 +1,6 @@
 import { getSearchArticle, sumPage } from '../api';
 import { checkLokalStorage } from '../markup';
-import swal from 'sweetalert';
+import { swal } from 'sweetalert';
 import { getWeatherRefs } from '../weather';
 const refs = {
   form: document.querySelector('#form-field'),
