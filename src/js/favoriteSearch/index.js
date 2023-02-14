@@ -1,3 +1,4 @@
+import { createMarkup } from '../../favorite';
 const inputEl = document.querySelector('#search-field__input'),
   formEl = document.querySelector('#form-field');
 
@@ -10,6 +11,7 @@ formEl.addEventListener('submit', event => {
   let hits = checkArr(arr, value);
   //   console.log(checkArr(arr, value));
   console.log(hits);
+  createMarkup();
 });
 
 function getLocalarr() {
