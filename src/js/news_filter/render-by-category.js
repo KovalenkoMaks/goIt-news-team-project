@@ -16,7 +16,6 @@ let wetherPosition;
 let dataForPag;
 
 async function renderByCategory(selectedCategory) {
-  // console.log(selectedCategory.replaceAll(' ', '-'));
   if (window.innerWidth < 768) {
     windowWidth = 4;
     wetherPosition = -1;
@@ -62,26 +61,9 @@ async function renderByCategory(selectedCategory) {
     refs.loader.classList.add('is-hidden');
     refs.newsList.innerHTML = '';
     refs.pagination.classList.add('pagination-hidden');
-    //  refs.weather.classList.add('weather-hidden');
     refs.errorMarkup.classList.remove('underfined-hidden');
   }
 }
-
-// function renderforPagination(data) {
-//   return data
-//     .map(data => {
-//       let opacity = '';
-//       let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
-//       let check = checkLokalStorage(data, localArr);
-//       if (check === true) {
-//         opacity = 'opacity';
-//       }
-
-//       return createMarkup(data, opacity);
-//     })
-//     .join('');
-// }
-
 let media;
 function createMarkup(
   { section, multimedia, title, first_published_date, abstract, url, uri },
@@ -95,8 +77,8 @@ function createMarkup(
     'https://img.freepik.com/free-vector/internet-network-warning-404-error-page-or-file-not-found-for-web-page_1150-48326.jpg?w=996&t=st=1676297842~exp=1676298442~hmac=6cad659e6a3076ffcb73bbb246c4f7e5e1bf7cee7fa095d67fcced0a51c2405c';
   if (mediaElem !== null && mediaElem.length >= 2) {
     mediaUrl = multimedia[2].url;
-    }
-  
+  }
+
   if (!title) {
     title = '';
   }
@@ -231,16 +213,12 @@ function getWetherPosition() {
     wetherPlaceDesk.before(secondElInList);
   }
 
-  // console.log(secondElInList);
   getWeatherRefs();
-  // return secondElInList;
 }
 
 const pg = document.getElementById('pagination-cat');
 const btnNextPg = document.querySelector('button.next-page-cat');
 const btnPrevPg = document.querySelector('button.prev-page-cat');
-// const btnFirstPg = document.querySelector('button.first-page');
-// const btnLastPg = document.querySelector('button.last-page');
 
 let firstRender;
 let sliceItemsAfterFirstRender;
@@ -299,11 +277,6 @@ async function onPagClick(e) {
 
       getWetherPosition();
 
-      // const markup = renderforPagination(firstRender);
-      // refs.listNewsEl.innerHTML = markup;
-      // refs.loader.classList.add('is-hidden');
-
-      // getWetherPosition();
       break;
     case 2:
       window.scrollTo(0, 0);
@@ -322,11 +295,7 @@ async function onPagClick(e) {
       refs.listNewsEl.innerHTML = markup2;
 
       getWetherPosition();
-      // const markup2 = renderforPagination(secondRender);
-      // refs.listNewsEl.innerHTML = markup2;
-      // refs.loader.classList.add('is-hidden');
 
-      // getWetherPosition();
       break;
     case 3:
       window.scrollTo(0, 0);
@@ -363,11 +332,7 @@ async function onPagClick(e) {
       refs.listNewsEl.innerHTML = markup4;
 
       getWetherPosition();
-      // const markup4 = renderforPagination(lastRender);
-      // refs.listNewsEl.innerHTML = markup4;
-      // refs.loader.classList.add('is-hidden');
 
-      // getWetherPosition();
       break;
   }
 }

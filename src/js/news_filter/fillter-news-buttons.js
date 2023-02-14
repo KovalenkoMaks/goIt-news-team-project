@@ -1,5 +1,4 @@
 import { getCategoryList } from '../api/index';
-import debounce from 'lodash.debounce';
 import { renderByCategory } from './render-by-category';
 
 const refs = {
@@ -73,7 +72,6 @@ async function getCategoryRender() {
       refs.listNews.addEventListener('click', onClickListNews);
     });
   }
-  // tablet
   if (window.innerWidth >= 768 && window.innerWidth < 1280) {
     currentNumberCategories = 17;
     outsideCategories = 4;
@@ -149,9 +147,6 @@ function onClickCategory(evt) {
   document
     .querySelector('.page-container-cat')
     .classList.remove('pagination-cat-hidden');
-  //   document
-  //     .querySelector('.paginator_search')
-  //     .classList.add('pagination-search-hidden');
 }
 function renderMarkupCategory(
   categoryList,
