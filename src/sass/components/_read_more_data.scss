@@ -31,23 +31,3 @@
     transform: rotate(180deg);
   }
 }
-.list-news__item {
-  padding-bottom: 40px;
-}
-
-@media screen and (min-width: $pre_tablet) {
-  .date-list {
-    padding-top: 50px;
-  }
-  .list-news__item {
-    padding-bottom: 50px;
-  }
-}
-@media screen and (min-width: $pre_desktop) {
-  .date-list {
-    padding-top: 60px;
-  }
-  .list-news__item {
-    padding-bottom: 60px;
-  }
-}
