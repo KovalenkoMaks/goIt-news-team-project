@@ -1,5 +1,5 @@
 import './js/mobile_menu';
-import './js/search';
+// import './js/search';
 import './js/dark_mode';
 
 const undefinedReadeMore = document.querySelector('.underfined');
@@ -17,7 +17,7 @@ document
 
 newList.addEventListener('click', removeToFavorite);
 const dataInLocal = JSON.parse(localStorage.getItem('newsSection'));
-console.log(dataInLocal);
+
 if (dataInLocal === null) {
   undefinedReadeMore.classList.remove('underfined-hidden');
 }
@@ -27,17 +27,19 @@ function removeToFavorite(e) {
   if (!dataInLocal) {
     return;
   }
+  console.log(btn.parentNode.parentNode.parentNode.parentNode);
   let uri =
     btn.parentNode.parentNode.nextElementSibling.nextElementSibling
       .lastElementChild.textContent;
-  console.log(uri);
+
   for (let i = 0; i < dataInLocal.length; i += 1) {
     if (dataInLocal[i].uri === uri) {
       dataInLocal.splice(i, 1);
     }
   }
   localStorage.setItem(`newsSection`, JSON.stringify(dataInLocal));
-  location.reload();
+  btn.parentNode.parentNode.parentNode.parentNode.remove();
+  // location.reload();
 }
 
 function getLocalData() {
@@ -105,3 +107,5 @@ function createMarkup(arr) {
   return newArr;
 }
 document.querySelector('.news-loader__container ').classList.add('is-hidden');
+
+export { createMarkup, block };
