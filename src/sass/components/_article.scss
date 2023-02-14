@@ -29,7 +29,7 @@
 .item-news__category {
   position: absolute;
   display: flex;
-  cursor: url('https://api.iconify.design/clarity/cursor-hand-click-line.svg?width=22&height=22'), pointer;
+  cursor: url(../images/cursor-hand.svg), pointer;
   min-width: 96px;
   height: auto;
   padding: 4px 14px;
