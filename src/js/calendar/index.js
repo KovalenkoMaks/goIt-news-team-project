@@ -42,17 +42,13 @@ let date = new Date(),
       return;
     }
     if (refs.input.classList.contains('isActive')) {
-<<<<<<< HEAD
       refs.modal.classList.add('is-hidden-wrapper');
-=======
-      refs.modal.classList.add('is-hidden');
       refs.input.classList.remove('isActive');
       refs.arrow.classList.remove('switched');
       refs.calendarBtn.classList.remove('switchedColor');
       document.getElementById('input-picker').value = '';
       localStorage.removeItem('VALUE');
       localStorage.removeItem('date');
->>>>>>> main
     }
   }
 })();
