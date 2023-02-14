@@ -479,4 +479,5 @@ function getFiltredArr(array, windowWidth) {
   firstItems = array;
   return array.slice(0, windowWidth);
 }
+console.log('test');
 export { renderByCategory };
