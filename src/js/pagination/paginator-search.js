@@ -3,7 +3,8 @@ const btnNextPg = document.querySelector('button.next-page-search');
 const btnPrevPg = document.querySelector('button.prev-page-search');
 // const btnFirstPg = document.querySelector('button.first-page');
 // const btnLastPg = document.querySelector('button.last-page');
-
+// let page = 1;
+// let sumPages;
 const valuePage = {
   curPage: 1,
   numLinksTwoSide: 1,

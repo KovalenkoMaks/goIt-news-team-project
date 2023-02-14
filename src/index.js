@@ -10,4 +10,4 @@ import './js/readMore';
 import './js/calendar';
 import './js/pagination';
 // import './js/read_more_date';
-import './js/pagination/paginator-search';
+// import './js/pagination/paginator-search';
