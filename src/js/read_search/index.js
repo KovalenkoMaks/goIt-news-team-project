@@ -10,7 +10,7 @@ const localData = JSON.parse(localStorage.getItem('readMoreLocal'));
 
 readFormEl.addEventListener('submit', form);
 
-const newArrForMarkupSearch = [];
+let newArrForMarkupSearch = [];
 
 function form(event) {
   event.preventDefault();
@@ -19,6 +19,7 @@ function form(event) {
     dateListEl.classList.remove('is-hidden');
     document.querySelector('.underfined').classList.add('underfined-hidden');
     readListSearchEl.classList.add('is-hidden');
+    newArrForMarkupSearch = [];
     return;
   }
 
@@ -39,13 +40,12 @@ function form(event) {
     dateListEl.classList.add('is-hidden');
     readListSearchEl.classList.add('is-hidden');
     document.querySelector('.underfined').classList.remove('underfined-hidden');
+    newArrForMarkupSearch = [];
     return;
   }
   document.querySelector('.underfined').classList.add('underfined-hidden');
   dateListEl.classList.add('is-hidden');
   readListSearchEl.classList.remove('is-hidden');
-
-  readListSearchEl.innerHTML = '';
 
   const markupBlockReadSearch = getMarkupLoadMore(newArrForMarkupSearch);
 
@@ -53,6 +53,6 @@ function form(event) {
 }
 
 function createMarkupLoadMore(markupBlockDate) {
-  readListSearchEl.innerHTML = '';
   readListSearchEl.innerHTML = markupBlockDate;
+  newArrForMarkupSearch = [];
 }
