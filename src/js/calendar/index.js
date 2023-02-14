@@ -41,7 +41,7 @@ let date = new Date(),
       return;
     }
     if (refs.input.classList.contains('isActive')) {
-      toggleModal();
+      refs.modal.classList.add('is-hidden');
     }
   }
 })();
@@ -121,10 +121,18 @@ const renderCalendar = number => {
       newValueDay.padStart(2, '0');
 
     localStorage.setItem('VALUE', JSON.stringify(newValueDay));
-    document.querySelector('[data-modal]').classList.add('is-hidden');
+
     let inputDateValue = document.querySelector('.calendar-input').value;
     console.log(inputDateValue);
     localStorage.setItem('date', JSON.stringify(inputDateValue));
+    document.querySelector('[data-modal]').classList.add('is-hidden');
+    document.querySelector('.calendar-input').classList.remove('isActive');
+    document
+      .querySelector('.calendar__button-arrow')
+      .classList.remove('switched');
+    document
+      .querySelector('.calendar__button-calendar')
+      .classList.remove('switchedColor');
   });
   //}
 };

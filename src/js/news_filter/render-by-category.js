@@ -1,7 +1,7 @@
 import { getArticleByCategory } from '../api/index';
 import { checkLokalStorage } from '../markup';
 import { getWeatherRefs } from '../weather';
-import {textCardFormat, dateNews} from '../markup';
+import { textCardFormat, dateNews } from '../markup';
 
 const refs = {
   listNewsEl: document.querySelector('ul.list-news'),
@@ -82,7 +82,7 @@ function createMarkup(
     title = '';
   }
   if (!abstract) {
-    abstract = '';
+    abstract = `${' '}<br>${' '}<br>`;
   }
   function textCardFormat(element) {
     let textFormat = abstract;
@@ -126,7 +126,11 @@ function createMarkup(
          </div>
          <div class="item-news__info">
               <span class="item-news__info-date">
-              ${first_published_date.split('').splice(0, 10).join('').replaceAll('-', '/')}
+              ${first_published_date
+                .split('')
+                .splice(0, 10)
+                .join('')
+                .replaceAll('-', '/')}
               </span>
               <a target="_blank" class="item-news__info-link" href="${url}">Read more</a>
       <p class='is-hidden'>${uri}</p>
