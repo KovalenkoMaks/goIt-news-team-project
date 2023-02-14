@@ -38,7 +38,7 @@ async function renderByCategory(selectedCategory) {
   }
   try {
     const dataNewsArray = await getArticleByCategory(selectedCategory);
-    const markup = dataNewsArray
+    const markup = getFiltredArr(dataNewsArray, windowWidth)
       .map(data => {
         let opacity = '';
         let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
@@ -216,4 +216,9 @@ function getWetherPosition() {
   // return secondElInList;
 }
 
+function getFiltredArr(array, windowWidth) {
+  deleteItems = array.slice(windowWidth);
+  firstItems = array;
+  return array.slice(0, windowWidth);
+}
 export { renderByCategory };
