@@ -24,7 +24,7 @@ let date = new Date(),
   };
 
   refs.openModalBtn.addEventListener('click', toggleModal);
-  refs.closeModalBtn.addEventListener('click', hideModals);
+  document.addEventListener('click', hideModals);
   //   function cleanInput() {
   //     refs.input.classList.remove('isActive');
   //   }
@@ -37,11 +37,18 @@ let date = new Date(),
   }
 
   function hideModals(evt) {
+    let dataValue = document.getElementById('input-picker').value;
     if (evt.target.closest('.calendar-form')) {
       return;
     }
     if (refs.input.classList.contains('isActive')) {
-      toggleModal();
+      refs.modal.classList.add('is-hidden');
+      refs.input.classList.remove('isActive');
+      refs.arrow.classList.remove('switched');
+      refs.calendarBtn.classList.remove('switchedColor');
+      document.getElementById('input-picker').value = '';
+      localStorage.removeItem('VALUE');
+      localStorage.removeItem('date');
     }
   }
 })();
@@ -71,6 +78,7 @@ const renderCalendar = number => {
     // creating li of previous month last days
     liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
   }
+
   for (let i = 1; i <= lastDateofMonth; i++) {
     // creating li of all days of current month
     // adding active class to li if the current day, month, and year matched
@@ -121,10 +129,18 @@ const renderCalendar = number => {
       newValueDay.padStart(2, '0');
 
     localStorage.setItem('VALUE', JSON.stringify(newValueDay));
-    document.querySelector('[data-modal]').classList.add('is-hidden');
+
     let inputDateValue = document.querySelector('.calendar-input').value;
     console.log(inputDateValue);
     localStorage.setItem('date', JSON.stringify(inputDateValue));
+    document.querySelector('[data-modal]').classList.add('is-hidden');
+    document.querySelector('.calendar-input').classList.remove('isActive');
+    document
+      .querySelector('.calendar__button-arrow')
+      .classList.remove('switched');
+    document
+      .querySelector('.calendar__button-calendar')
+      .classList.remove('switchedColor');
   });
   //}
 };
@@ -160,3 +176,5 @@ prevNextIcon.forEach(icon => {
     });
   });
 });
+
+localStorage.removeItem('VALUE');

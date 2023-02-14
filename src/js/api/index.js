@@ -21,8 +21,8 @@ async function getCategoryList() {
 
   return results;
 }
-
-async function getSearchArticle(value) {
+let sumPage;
+async function getSearchArticle(value, page) {
   let dateForUrl = '';
   try {
     let date = JSON.parse(localStorage.getItem('date'))
@@ -34,48 +34,35 @@ async function getSearchArticle(value) {
     // dateForUrl = '';
   }
   const articleFetch = await fetch(
-    `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}${dateForUrl}`
+    `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}&page=${page}${dateForUrl}`
   );
   const articles = await articleFetch.json();
+
   let { response } = articles;
+  if (response.meta.hits > 1000) {
+    sumPage = 1000;
+  } else {
+    sumPage = response.meta.hits;
+  }
+  //   console.log(response.meta.hits);
   let { docs } = response;
   //   console.log(docs);
 
   return docs;
 }
-//https://api.nytimes.com/svc/news/v3/content/all/admin.json?api-key=eQ8t8FWqeAGnKDTtIFrHmgZCflFrUTcV&limit=8&begin_date=20230201&end_date=20230201
 async function getArticleByCategory(value) {
-  try {
-    let date = inputDateValue.replace('/', '').replace('/', '');
-    console.log(date);
-    let begin_date = date;
-    let end_date = date;
-    const articleFetch = await fetch(
-      `${BASE_URL}/news/v3/content/all/${value}.json?${KEY}&limit=8&begin_date=${begin_date}&end_date=${end_date}`
-    );
-    const articles = await articleFetch.json();
-    let { results } = articles;
-    // console.log(results);
-
-    return results;
-  } catch (error) {
-    const articleFetch = await fetch(
-      `${BASE_URL}/news/v3/content/all/${value}.json?${KEY}&limit=8`
-    );
-    const articles = await articleFetch.json();
-    let { results } = articles;
-    // console.log(results);
-
-    return results;
-  }
-
-  // console.log(value);
+  const articleFetch = await fetch(
+    `${BASE_URL}/news/v3/content/all/${value}.json?${KEY}&limit=26`
+  );
+  const articles = await articleFetch.json();
+  let { results } = articles;
+  return results;
 }
-// getArticleByCategory('automobiles');
 
 export {
   getPopularArticle,
   getCategoryList,
   getSearchArticle,
   getArticleByCategory,
+  sumPage,
 };
