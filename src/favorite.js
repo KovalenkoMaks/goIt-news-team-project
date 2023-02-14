@@ -32,6 +32,7 @@ function removeToFavorite(e) {
 }
 
 function getLocalData() {
+  if (localStorage.getItem('newsSection') === null) return;
   if (JSON.parse(localStorage.getItem('newsSection')).length === 0) {
     console.log('error');
     undefinedReadeMore.classList.remove('underfined-hidden');

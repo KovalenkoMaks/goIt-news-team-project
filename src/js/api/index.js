@@ -1,4 +1,4 @@
-import { inputDateValue } from '../calendar';
+// import { inputDateValue } from '../calendar';
 const KEY = 'api-key=eQ8t8FWqeAGnKDTtIFrHmgZCflFrUTcV';
 const BASE_URL = 'https://api.nytimes.com/svc';
 const MOST_POPULAR_NEWS = `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?${KEY}`;
@@ -23,36 +23,34 @@ async function getCategoryList() {
   return results;
 }
 
-async function getSearchArticle(value) {
-  console.log(inputDateValue);
-  if (inputDateValue === null) {
-    let date = inputDateValue.replace('/', '').replace('/', '');
-    let begin_date = date;
-    let end_date = date;
-    const articleFetch = await fetch(
-      `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}&begin_date=20120101&end_date=20121231`
-    );
-    const articles = await articleFetch.json();
-    let { response } = articles;
-    let { docs } = response;
-    //   console.log(docs);
+// async function getSearchArticle(value) {
+//   console.log(inputDateValue);
+//   try {
+//     let date = inputDateValue.replace('/', '').replace('/', '');
+//     let begin_date = date;
+//     let end_date = date;
 
-    return docs;
-  } else {
-    let date = inputDateValue.replace('/', '').replace('/', '');
-    let begin_date = date;
-    let end_date = date;
-    const articleFetch = await fetch(
-      `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}&begin_date=${begin_date}&end_date=${end_date}`
-    );
-    const articles = await articleFetch.json();
-    let { response } = articles;
-    let { docs } = response;
-    //   console.log(docs);
+//     const articleFetch = await fetch(
+//       `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}&begin_date=${begin_date}&end_date=${end_date}`
+//     );
+//     const articles = await articleFetch.json();
+//     let { response } = articles;
+//     let { docs } = response;
+//     //   console.log(docs);
 
-    return docs;
-  }
-}
+//     return docs;
+//   } catch (error) {
+//     const articleFetch = await fetch(
+//       `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}`
+//     );
+//     const articles = await articleFetch.json();
+//     let { response } = articles;
+//     let { docs } = response;
+//     //   console.log(docs);
+
+//     return docs;
+//   }
+// }
 
 async function getArticleByCategory(value) {
   // console.log(value);
