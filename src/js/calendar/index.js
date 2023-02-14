@@ -124,6 +124,7 @@ const renderCalendar = number => {
     document.querySelector('[data-modal]').classList.add('is-hidden');
     let inputDateValue = document.querySelector('.calendar-input').value;
     console.log(inputDateValue);
+    localStorage.setItem('date', JSON.stringify(inputDateValue));
   });
   //}
 };
@@ -159,5 +160,3 @@ prevNextIcon.forEach(icon => {
     });
   });
 });
-
-export { inputDateValue };

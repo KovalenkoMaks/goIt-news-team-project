@@ -1,4 +1,3 @@
-import { inputDateValue } from '../calendar';
 const KEY = 'api-key=eQ8t8FWqeAGnKDTtIFrHmgZCflFrUTcV';
 const BASE_URL = 'https://api.nytimes.com/svc';
 const MOST_POPULAR_NEWS = `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?${KEY}`;
@@ -24,33 +23,25 @@ async function getCategoryList() {
 }
 
 async function getSearchArticle(value) {
+  let dateForUrl = '';
   try {
-    //  console.log(inputDateValue);
-    let date = inputDateValue.replace('/', '').replace('/', '');
+    let date = JSON.parse(localStorage.getItem('date'))
+      .replace('/', '')
+      .replace('/', '');
     console.log(date);
-    let begin_date = date;
-    let end_date = date;
-
-    const articleFetch = await fetch(
-      `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}&begin_date=${begin_date}&end_date=${end_date}`
-    );
-    const articles = await articleFetch.json();
-    let { response } = articles;
-    let { docs } = response;
-    //   console.log(docs);
-
-    return docs;
+    dateForUrl = ` &begin_date=${date}&end_date=${date}`;
   } catch (error) {
-    const articleFetch = await fetch(
-      `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}`
-    );
-    const articles = await articleFetch.json();
-    let { response } = articles;
-    let { docs } = response;
-    //   console.log(docs);
-
-    return docs;
+    // dateForUrl = '';
   }
+  const articleFetch = await fetch(
+    `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}${dateForUrl}`
+  );
+  const articles = await articleFetch.json();
+  let { response } = articles;
+  let { docs } = response;
+  //   console.log(docs);
+
+  return docs;
 }
 //https://api.nytimes.com/svc/news/v3/content/all/admin.json?api-key=eQ8t8FWqeAGnKDTtIFrHmgZCflFrUTcV&limit=8&begin_date=20230201&end_date=20230201
 async function getArticleByCategory(value) {
