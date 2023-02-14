@@ -9,6 +9,16 @@
   border-radius: 5px;
   padding: 10px 15px;
 }
+
+.pagin-search {
+  display: flex;
+  justify-content: center;
+  height: 28px;
+  @media screen and (min-width: $tablet) {
+    height: 31px;
+  }
+}
+
 .page-container-search a {
   display: flex;
   align-items: center;
@@ -121,4 +131,7 @@
 
 .pagination-search-hidden {
   display: none;
+}
+.pg-item-dot {
+  // стили для точек
 }

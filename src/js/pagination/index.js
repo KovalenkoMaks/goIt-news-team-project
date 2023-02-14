@@ -13,7 +13,7 @@ let uptadeDeleteItems;
 setTimeout(() => {
   uptadeDeleteItems = deleteItems.slice(8);
   // firstMarkup = firstItems;
-}, 1000);
+}, 1500);
 let sliceItems;
 const refs = {
   pagination: document.querySelector('.pagin'),

@@ -10,10 +10,16 @@ const refs = {
   pagination: document.querySelector('.pagination'),
   newsList: document.querySelector('.list-news'),
   loader: document.querySelector('.news-loader__container.container'),
-  
 };
 let windowWidth;
 let wetherPosition;
+
+let firstRender;
+let sliceItemsAfterFirstRender;
+let secondRender;
+let sliceItemsAfterSecondRender;
+let thirdRender;
+let lastRender;
 
 async function renderByCategory(selectedCategory) {
   // console.log(selectedCategory.replaceAll(' ', '-'));
@@ -38,8 +44,34 @@ async function renderByCategory(selectedCategory) {
     refs.pagination.classList.remove('pagination-hidden');
     refs.errorMarkup.classList.add('underfined-hidden');
   }
+
   const dataNewsArray = await getArticleByCategory(selectedCategory);
-  const markup = dataNewsArray
+  firstRender = await dataNewsArray.slice(0, 8);
+  sliceItemsAfterFirstRender = await dataNewsArray.slice(8);
+  secondRender = await sliceItemsAfterFirstRender.slice(0, 8);
+  sliceItemsAfterSecondRender = await sliceItemsAfterFirstRender.slice(8);
+  thirdRender = await sliceItemsAfterSecondRender.slice(0, 8);
+  lastRender = await sliceItemsAfterSecondRender.slice(8);
+
+  const markup = renderforPagination(firstRender);
+  refs.listNewsEl.innerHTML = markup;
+  refs.loader.classList.add('is-hidden');
+
+  getWetherPosition();
+
+  try {
+  } catch {
+    // если не удалось найти по категории
+    refs.loader.classList.add('is-hidden');
+    refs.newsList.innerHTML = '';
+    refs.pagination.classList.add('pagination-hidden');
+    //  refs.weather.classList.add('weather-hidden');
+    refs.errorMarkup.classList.remove('underfined-hidden');
+  }
+}
+
+function renderforPagination(data) {
+  return data
     .map(data => {
       let opacity = '';
       let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
@@ -51,20 +83,8 @@ async function renderByCategory(selectedCategory) {
       return createMarkup(data, opacity);
     })
     .join('');
-  refs.listNewsEl.innerHTML = markup;
-  refs.loader.classList.add('is-hidden');
-
-  getWetherPosition();
-  try {
-  } catch {
-    // если не удалось найти по категории
-    refs.loader.classList.add('is-hidden');
-    refs.newsList.innerHTML = '';
-    refs.pagination.classList.add('pagination-hidden');
-    //  refs.weather.classList.add('weather-hidden');
-    refs.errorMarkup.classList.remove('underfined-hidden');
-  }
 }
+
 let media;
 function createMarkup(
   { section, multimedia, title, first_published_date, abstract, url, uri },
@@ -218,4 +238,173 @@ function getWetherPosition() {
   // return secondElInList;
 }
 
+const pg = document.getElementById('pagination-cat');
+const btnNextPg = document.querySelector('button.next-page-cat');
+const btnPrevPg = document.querySelector('button.prev-page-cat');
+// const btnFirstPg = document.querySelector('button.first-page');
+// const btnLastPg = document.querySelector('button.last-page');
+
+document.querySelector('.pagin-cat').addEventListener('click', e => {
+  let btn = valuePage.curPage;
+  if (e.target.classList.contains('next-page')) {
+    btn += 1;
+  }
+  if (e.target.classList.contains('prev-page')) {
+    btn -= 1;
+  }
+  switch (btn) {
+    case 1:
+      const markup = renderforPagination(firstRender);
+      refs.listNewsEl.innerHTML = markup;
+      refs.loader.classList.add('is-hidden');
+
+      getWetherPosition();
+      break;
+    case 2:
+      const markup2 = renderforPagination(secondRender);
+      refs.listNewsEl.innerHTML = markup2;
+      refs.loader.classList.add('is-hidden');
+
+      getWetherPosition();
+      break;
+    case 3:
+      const markup3 = renderforPagination(thirdRender);
+      refs.listNewsEl.innerHTML = markup3;
+      refs.loader.classList.add('is-hidden');
+
+      getWetherPosition();
+      break;
+    case 4:
+      const markup4 = renderforPagination(lastRender);
+      refs.listNewsEl.innerHTML = markup4;
+      refs.loader.classList.add('is-hidden');
+
+      getWetherPosition();
+      break;
+  }
+  window.scrollTo(0, 0);
+});
+
+const valuePage = {
+  curPage: 1,
+  numLinksTwoSide: 1,
+  totalPages: 4,
+};
+
+pagination();
+
+pg.addEventListener('click', e => {
+  const ele = e.target;
+
+  if (ele.dataset.page) {
+    const pageNumber = parseInt(e.target.dataset.page, 10);
+
+    valuePage.curPage = pageNumber;
+    pagination(valuePage);
+    console.log(valuePage);
+    handleButtonLeft();
+    handleButtonRight();
+  }
+});
+
+// DYNAMIC PAGINATION
+function pagination() {
+  const { totalPages, curPage, numLinksTwoSide: delta } = valuePage;
+
+  const range = delta + 4; // use for handle visible number of links left side
+
+  let render = '';
+  let renderTwoSide = '';
+  let dot = `<li class="pg-item-cat"><a class="pg-link-cat">...</a></li>`;
+  let countTruncate = 0; // use for ellipsis - truncate left side or right side
+
+  // use for truncate two side
+  const numberTruncateLeft = curPage - delta;
+  const numberTruncateRight = curPage + delta;
+
+  let active = '';
+  for (let pos = 1; pos <= totalPages; pos++) {
+    active = pos === curPage ? 'active' : '';
+
+    // truncate
+    if (totalPages >= 2 * range - 1) {
+      if (numberTruncateLeft > 3 && numberTruncateRight < totalPages - 3 + 1) {
+        // truncate 2 side
+        if (pos >= numberTruncateLeft && pos <= numberTruncateRight) {
+          renderTwoSide += renderPage(pos, active);
+        }
+      } else {
+        // truncate left side or right side
+        if (
+          (curPage < range && pos <= range) ||
+          (curPage > totalPages - range && pos >= totalPages - range + 1) ||
+          pos === totalPages ||
+          pos === 1
+        ) {
+          render += renderPage(pos, active);
+        } else {
+          countTruncate++;
+          if (countTruncate === 1) render += dot;
+        }
+      }
+    } else {
+      // not truncate
+      render += renderPage(pos, active);
+    }
+  }
+
+  if (renderTwoSide) {
+    renderTwoSide =
+      renderPage(1) + dot + renderTwoSide + dot + renderPage(totalPages);
+    pg.innerHTML = renderTwoSide;
+  } else {
+    pg.innerHTML = render;
+  }
+}
+
+function renderPage(index, active = '') {
+  return ` <li class="pg-item-cat ${active}" data-page="${index}">
+        <a class="pg-link-cat" href="#">${index}</a>
+    </li>`;
+}
+
+document
+  .querySelector('.page-container-cat')
+  .addEventListener('click', function (e) {
+    handleButton(e.target);
+  });
+
+function handleButton(element) {
+  if (element.classList.contains('prev-page-cat')) {
+    valuePage.curPage--;
+    handleButtonLeft();
+    btnNextPg.disabled = false;
+    //  btnLastPg.disabled = false;
+  } else if (element.classList.contains('next-page-cat')) {
+    valuePage.curPage++;
+    handleButtonRight();
+    btnPrevPg.disabled = false;
+    //  btnFirstPg.disabled = false;
+  }
+  pagination();
+}
+function handleButtonLeft() {
+  if (valuePage.curPage === 1) {
+    btnPrevPg.disabled = true;
+    //  btnFirstPg.disabled = true;
+  } else {
+    btnPrevPg.disabled = false;
+    //  btnFirstPg.disabled = false;
+  }
+}
+function handleButtonRight() {
+  if (valuePage.curPage === valuePage.totalPages) {
+    console.log(valuePage.curPage);
+    btnNextPg.disabled = true;
+    //  btnLastPg.disabled = true;
+  } else {
+    btnNextPg.disabled = false;
+    //  btnLastPg.disabled = false;
+  }
+}
 export { renderByCategory };
