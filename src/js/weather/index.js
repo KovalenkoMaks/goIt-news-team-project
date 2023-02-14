@@ -80,10 +80,11 @@ async function getGeoposition() {
     await navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
         fetchWeatherByGeo(latitude, longitude).then(data => {
-          const { feels_like } = data.main;
+          console.log(data.main);
+          const { temp } = data.main;
           const weather = data.weather[0];
           const { icon } = data.weather[0];
-          refs.degs.textContent = `${Math.floor(feels_like)}°`;
+          refs.degs.textContent = `${Math.floor(temp)}°`;
           refs.weather.textContent = weather.main;
           refs.city.textContent = data.name;
 
