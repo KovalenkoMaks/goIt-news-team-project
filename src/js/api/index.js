@@ -23,15 +23,25 @@ async function getCategoryList() {
 }
 let sumPage;
 async function getSearchArticle(value, page) {
+  let dateForUrl = '';
+  try {
+    let date = JSON.parse(localStorage.getItem('date'))
+      .replace('/', '')
+      .replace('/', '');
+    console.log(date);
+    dateForUrl = ` &begin_date=${date}&end_date=${date}`;
+  } catch (error) {
+    // dateForUrl = '';
+  }
   const articleFetch = await fetch(
-    // https://api.nytimes.com/svc/news/v3/content/all/books.json?api-key=eQ8t8FWqeAGnKDTtIFrHmgZCflFrUTcV&limit=8&offset=40
-    // https://api.nytimes.com/svc/news/v3/content/all/admin.json?api-key=SVYGfSzYyEfqvl2Rz9D9zXBCipJV7rQX&limit=10
-    // ` ${BASE_URL}news/v3/content/all/${value}.json?${KEY}&limit=8`
-    //  https://api.nytimes.com/svc/search/v2/articlesearch.json?q=car&api-key=eQ8t8FWqeAGnKDTtIFrHmgZCflFrUTcV&page=1
-    `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}&page=${page}`
+    `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}&${page}&${dateForUrl}`
   );
   const articles = await articleFetch.json();
-
+  if (response.meta.hits > 1000) {
+    sumPage = 1000;
+  } else {
+    sumPage = response.meta.hits;
+  }
   let { response } = articles;
   if (response.meta.hits > 1000) {
     sumPage = 1000;
@@ -44,17 +54,33 @@ async function getSearchArticle(value, page) {
 
   return docs;
 }
-
+//https://api.nytimes.com/svc/news/v3/content/all/admin.json?api-key=eQ8t8FWqeAGnKDTtIFrHmgZCflFrUTcV&limit=8&begin_date=20230201&end_date=20230201
 async function getArticleByCategory(value) {
-  // console.log(value);
-  const articleFetch = await fetch(
-    `${BASE_URL}/news/v3/content/all/${value}.json?${KEY}&limit=8`
-  );
-  const articles = await articleFetch.json();
-  let { results } = articles;
-  // console.log(results);
+  try {
+    let date = inputDateValue.replace('/', '').replace('/', '');
+    console.log(date);
+    let begin_date = date;
+    let end_date = date;
+    const articleFetch = await fetch(
+      `${BASE_URL}/news/v3/content/all/${value}.json?${KEY}&limit=8&begin_date=${begin_date}&end_date=${end_date}`
+    );
+    const articles = await articleFetch.json();
+    let { results } = articles;
+    // console.log(results);
 
-  return results;
+    return results;
+  } catch (error) {
+    const articleFetch = await fetch(
+      `${BASE_URL}/news/v3/content/all/${value}.json?${KEY}&limit=8`
+    );
+    const articles = await articleFetch.json();
+    let { results } = articles;
+    // console.log(results);
+
+    return results;
+  }
+
+  // console.log(value);
 }
 // getArticleByCategory('automobiles');
 

@@ -1,6 +1,7 @@
 import { getArticleByCategory } from '../api/index';
 import { checkLokalStorage } from '../markup';
 import { getWeatherRefs } from '../weather';
+import {textCardFormat, dateNews} from '../markup';
 
 const refs = {
   listNewsEl: document.querySelector('ul.list-news'),
@@ -32,28 +33,28 @@ async function renderByCategory(selectedCategory) {
     return;
   }
 
+  if (refs.pagination.classList.contains('pagination-hidden')) {
+    refs.pagination.classList.remove('pagination-hidden');
+    refs.errorMarkup.classList.add('underfined-hidden');
+  }
+  const dataNewsArray = await getArticleByCategory(selectedCategory);
+  const markup = dataNewsArray
+    .map(data => {
+      let opacity = '';
+      let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
+      let check = checkLokalStorage(data, localArr);
+      if (check === true) {
+        opacity = 'opacity';
+      }
+
+      return createMarkup(data, opacity);
+    })
+    .join('');
+  refs.listNewsEl.innerHTML = markup;
+  refs.loader.classList.add('is-hidden');
+
+  getWetherPosition();
   try {
-    if (refs.pagination.classList.contains('pagination-hidden')) {
-      refs.pagination.classList.remove('pagination-hidden');
-      refs.errorMarkup.classList.add('underfined-hidden');
-    }
-    const dataNewsArray = await getArticleByCategory(selectedCategory);
-    const markup = dataNewsArray
-      .map(data => {
-        let opacity = '';
-        let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
-        let check = checkLokalStorage(data, localArr);
-        if (check === true) {
-          opacity = 'opacity';
-        }
-
-        return createMarkup(data, opacity);
-      })
-      .join('');
-    refs.listNewsEl.innerHTML = markup;
-    refs.loader.classList.add('is-hidden');
-
-    getWetherPosition();
   } catch {
     // если не удалось найти по категории
     refs.loader.classList.add('is-hidden');
@@ -65,9 +66,8 @@ async function renderByCategory(selectedCategory) {
 }
 let media;
 function createMarkup(
-  { section, multimedia, title, first_published_date, abstract },
-  opacity,
-  uri
+  { section, multimedia, title, first_published_date, abstract, url, uri },
+  opacity
 ) {
   if (!section) {
     section = '';
@@ -83,6 +83,13 @@ function createMarkup(
   }
   if (!abstract) {
     abstract = '';
+  }
+  function textCardFormat(element) {
+    let textFormat = abstract;
+    if (textFormat.length > 80) {
+      return (textFormat = abstract.slice(0, 80) + '...');
+    }
+    return textFormat;
   }
   return `<li class="list-news__item ${opacity}">
     <article class="item-news__article">
@@ -115,13 +122,13 @@ function createMarkup(
               ${title}
          </h2>
          <p class="item-news__description">
-              ${abstract}</p>
+              ${textCardFormat(abstract)}</p>
          </div>
          <div class="item-news__info">
               <span class="item-news__info-date">
-                    ${first_published_date.replaceAll('T', ' ').slice(0, 19)}
+              ${first_published_date.split('').splice(0, 10).join('').replaceAll('-', '/')}
               </span>
-              <a target="_blank" class="item-news__info-link" href="${'elem.web_url'}">Read more</a>
+              <a target="_blank" class="item-news__info-link" href="${url}">Read more</a>
       <p class='is-hidden'>${uri}</p>
          </div>
     </article>
@@ -205,4 +212,5 @@ function getWetherPosition() {
   getWeatherRefs();
   // return secondElInList;
 }
+
 export { renderByCategory };

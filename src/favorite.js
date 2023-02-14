@@ -5,7 +5,13 @@ import './js/dark_mode';
 const undefinedReadeMore = document.querySelector('.underfined');
 const block = document.querySelector('.list-news');
 const newList = document.querySelector('.list-news');
+
+document
+  .querySelector('.news-loader__container.container')
+  .classList.add('is-hidden');
+
 document.querySelector('.page-container').classList.add('pagination-hidden');
+
 newList.addEventListener('click', removeToFavorite);
 const dataInLocal = JSON.parse(localStorage.getItem('newsSection'));
 console.log(dataInLocal);
@@ -32,6 +38,7 @@ function removeToFavorite(e) {
 }
 
 function getLocalData() {
+  if (localStorage.getItem('newsSection') === null) return;
   if (JSON.parse(localStorage.getItem('newsSection')).length === 0) {
     console.log('error');
     undefinedReadeMore.classList.remove('underfined-hidden');
@@ -45,7 +52,7 @@ function getLocalData() {
 getLocalData();
 
 function createMarkup(arr) {
-  return arr
+  const newArr = arr
     .map(elem => {
       return `<li class="list-news__item">
 	  <article class="item-news__article" id="${elem.id}">
@@ -83,5 +90,6 @@ function createMarkup(arr) {
  </li>`;
     })
     .join('');
+  return newArr;
 }
 document.querySelector('.news-loader__container ').classList.add('is-hidden');
