@@ -24,7 +24,7 @@ let date = new Date(),
   };
 
   refs.openModalBtn.addEventListener('click', toggleModal);
-  refs.closeModalBtn.addEventListener('click', hideModals);
+  document.addEventListener('click', hideModals);
   //   function cleanInput() {
   //     refs.input.classList.remove('isActive');
   //   }
@@ -37,11 +37,22 @@ let date = new Date(),
   }
 
   function hideModals(evt) {
+    let dataValue = document.getElementById('input-picker').value;
     if (evt.target.closest('.calendar-form')) {
       return;
     }
     if (refs.input.classList.contains('isActive')) {
+<<<<<<< HEAD
       refs.modal.classList.add('is-hidden-wrapper');
+=======
+      refs.modal.classList.add('is-hidden');
+      refs.input.classList.remove('isActive');
+      refs.arrow.classList.remove('switched');
+      refs.calendarBtn.classList.remove('switchedColor');
+      document.getElementById('input-picker').value = '';
+      localStorage.removeItem('VALUE');
+      localStorage.removeItem('date');
+>>>>>>> main
     }
   }
 })();
@@ -71,6 +82,7 @@ const renderCalendar = number => {
     // creating li of previous month last days
     liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
   }
+
   for (let i = 1; i <= lastDateofMonth; i++) {
     // creating li of all days of current month
     // adding active class to li if the current day, month, and year matched
@@ -168,3 +180,5 @@ prevNextIcon.forEach(icon => {
     });
   });
 });
+
+localStorage.removeItem('VALUE');
