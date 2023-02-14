@@ -94,4 +94,4 @@ function createMarkup(arr) {
 }
 document.querySelector('.news-loader__container ').classList.add('is-hidden');
 
-export { createMarkup };
+export { createMarkup, block };
