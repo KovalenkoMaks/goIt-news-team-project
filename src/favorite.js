@@ -11,6 +11,9 @@ document
   .classList.add('is-hidden');
 
 document.querySelector('.page-container').classList.add('pagination-hidden');
+document
+  .querySelector('.page-container-cat')
+  .classList.add('pagination-cat-hidden');
 
 newList.addEventListener('click', removeToFavorite);
 const dataInLocal = JSON.parse(localStorage.getItem('newsSection'));
