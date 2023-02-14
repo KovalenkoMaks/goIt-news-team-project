@@ -14,7 +14,7 @@ const refs = {
   paginator: document.querySelector('.pagination_search'),
   paginator_search: document.querySelector('.page-container-search'),
 };
-let page = 1;
+let page = 0;
 refs.form.addEventListener('submit', test);
 let windowWidth = 0;
 let wetherPosition = 0;
@@ -250,7 +250,7 @@ async function onClickPAgination(e) {
   ) {
     return;
   }
-  let btn = valuePage.curPage;
+  let btn = +valuePage.curPage - 1;
   if (e.target.classList.contains('next-page-search')) {
     btn += 1;
   }
@@ -273,25 +273,25 @@ async function onClickPAgination(e) {
   load.classList.remove('is-hidden');
   refs.newsList.innerHTML = '';
   window.scrollTo(0, 0);
-  const data = await fetchByPagination(value, btn);
+  const data = await getSearchArticle(value, btn);
   load.classList.add('is-hidden');
   const markup = render(data, windowWidth);
   refs.newsList.innerHTML = markup;
   getWetherPosition();
 }
 
-async function fetchByPagination(value, page) {
-  const articleFetch = await fetch(
-    `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${value}&api-key=eQ8t8FWqeAGnKDTtIFrHmgZCflFrUTcV&page=${page}`
-  );
-  const articles = await articleFetch.json();
-  let { response } = articles;
-  //   console.log(response.meta.hits);
-  let { docs } = response;
-  //   console.log(docs);
+// async function fetchByPagination(value, page) {
+//   const articleFetch = await fetch(
+//     `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${value}&api-key=eQ8t8FWqeAGnKDTtIFrHmgZCflFrUTcV&page=${page}`
+//   );
+//   const articles = await articleFetch.json();
+//   let { response } = articles;
+//   //   console.log(response.meta.hits);
+//   let { docs } = response;
+//   //   console.log(docs);
 
-  return docs;
-}
+//   return docs;
+// }
 
 pg.addEventListener('click', e => {
   const ele = e.target;
