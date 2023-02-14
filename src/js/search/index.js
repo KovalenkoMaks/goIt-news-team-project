@@ -95,13 +95,17 @@ function render(data, number) {
       if (mediaElem.length !== 0) {
         mediaUrl = `https://static01.nyt.com/${mediaElem[0].url}`;
       }
+      let category = elem.section_name;
+      if (!elem.section_name) {
+        category = 'Others';
+      }
       return `<li class="list-news__item ${opacity}">
     <article class="item-news__article">
        <div class="item-news__wrapper-img">
           <img class="item-news__img"
             src="${mediaUrl}"
             alt="">
-				  <p class="item-news__category">${elem.section_name}</p>
+				  <p class="item-news__category">${category}</p>
 				  <button type="button" class="item-news__add-to-favorite">
                       <span class="item-news__add-to-favorite-btn">Add to favorite
                          <svg class="item-news__block-icon active-news-icon"
