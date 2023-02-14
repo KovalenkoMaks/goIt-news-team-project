@@ -2,31 +2,54 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  margin-top: 2rem;
-  background-color: #fff;
-  box-shadow: 0 0 10px #d3d3d3;
-  border-radius: 5px;
-  padding: 10px 15px;
+  justify-content: center;
+  margin-bottom: 60px;
+  margin-top: 40px;
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19px;
+  text-align: left;
+  background-color: var(--bg-color);
+    @media screen and (min-width: $tablet) and (max-width: $pre_desktop) {
+      height: 31px;
+      margin-bottom: 100px;
+      margin-top: 48px;
+    }
+    @media screen and (min-width: $desktop) {
+      margin-bottom: 150px;
+      margin-top: 60px;
+    }
 }
 
 .pagin {
   display: flex;
   justify-content: center;
   height: 28px;
+  width: 288px;
   @media screen and (min-width: $tablet) {
     height: 31px;
+    width: 415px;
   }
+   
 }
 .page-container a {
-  display: flex;
-  align-items: center;
-  padding: 6px 12px;
-  cursor: pointer;
-  font-size: 18px;
-  color: var(--color-dark);
-  pointer-events: none;
+  padding: 4px 12px;
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
 }
+.pg-item {
+  :hover,
+  :focus {
+      color: var(--white-color);
+      background-color: var(--accent-color);
+    }
+      border: 1px solid var(--accent-color);
+      border-radius: 2px;
+}
+
 .page-container button {
   display: flex;
   justify-content: center;
@@ -34,43 +57,69 @@
   background-color: transparent;
   border: none;
 }
+button.prev-page,
+button.next-page {
+  width: 72px;
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+  border: 1px solid var(--accent-color);
+  border-radius: 2px;
+}
+button.prev-page{
+  margin-right: 6px;
+}
+button.next-page{
+  margin-left: 6px;
+}
 .page-container button:disabled a {
-  color: #aaadc7;
+  color: var(--text-color);
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
 }
 
 #pagination {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
 }
 #pagination li {
   list-style: none;
   cursor: pointer;
-  border-radius: 5px;
   overflow: hidden;
-  margin: 0 3px;
+  margin: 0 4px;
 }
 #pagination li.active {
-  background-color: #39f;
+  background-color: var(--accent-color);
 }
 #pagination li.active a {
-  color: #fff;
+  color: var(--white-color);
 }
 #pagination li a {
   text-decoration: none;
-  font-weight: 600;
-  padding: 8px 13px;
+  padding: 4px auto;
   display: inline-block;
-  line-height: 1;
-  color: #a9a9a9;
-  font-size: 20px;
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
   pointer-events: none;
+  color: var(--text-color);
 }
 #pagination li:hover {
-  background-color: #39f;
+  background-color: var(--accent-color);
 }
 #pagination li:hover a {
-  color: #fff;
+  color: var(--white-color);
+  background-color: var(--accent-color);
 }
 
 .settings {
@@ -82,14 +131,18 @@
   margin-bottom: 1rem;
 }
 .settings .form-input:not(:last-child) {
-  margin-right: 3rem;
+  margin-right: 10px;
 }
 .settings .form-input > label {
   margin-bottom: 10px;
 }
 .settings .form-input label {
-  font-size: 18px;
-  font-weight: 600;
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
   display: block;
 }
 .settings .form-input > input {
@@ -99,7 +152,6 @@
   font-size: 18px;
   outline: none;
   padding: 10px 17px;
-  border-radius: 5px;
   border: 1px solid #b6b6b6;
 }
 .settings .wrapper-form-check {
@@ -123,9 +175,17 @@
 }
 
 .s_prew {
-  font-size: 24px;
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
 }
 
 .pagination-hidden {
   display: none;
+}
+a.fas {
+  height: 28px;
 }
