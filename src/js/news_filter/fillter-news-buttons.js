@@ -17,12 +17,28 @@ let selectedCategoryEl;
 
 let currentNumberCategories = 0;
 let outsideCategories = 0;
+let windowWidth = 0;
+let wetherPosition = 0;
 
 getCategoryRender();
 
 refs.otherList.addEventListener('click', onClickOther);
 
 async function getCategoryRender() {
+  // проверка ширины дисплея
+  if (window.innerWidth < 768) {
+    windowWidth = 4;
+    wetherPosition = -1;
+  }
+  if (window.innerWidth > 768 && window.innerWidth < 1280) {
+    windowWidth = 7;
+    wetherPosition = 0;
+  }
+  if (window.innerWidth >= 1280) {
+    windowWidth = 8;
+    wetherPosition = 1;
+  }
+
   // mobile
   if (window.innerWidth < 768) {
     currentNumberCategories = 13;
@@ -148,12 +164,14 @@ function renderMarkupCategory(
   );
   refs.categoryContainerEl.append(listEl);
 }
+
 function changeCategoryName(categoryName, index) {
   const itemToChange = document.querySelector(
     `.filter-category__item-bt:nth-child(${index + 1})`
   );
   itemToChange.textContent = categoryName;
 }
+
 function createMarkupOtherCategory(category, listEl) {
   const itemEl = document.createElement('li');
   itemEl.classList.add('filter-category__item');
@@ -170,6 +188,7 @@ function createMarkupOtherCategory(category, listEl) {
   //     <button class="filter-category__button">{ Category name}</button>
   // </li>
 }
+
 function onClickOther(evt) {
   evt.currentTarget.classList.toggle('is-open');
 }

@@ -50,7 +50,6 @@ async function getSearchArticle(value, page) {
 
   return docs;
 }
-//https://api.nytimes.com/svc/news/v3/content/all/admin.json?api-key=eQ8t8FWqeAGnKDTtIFrHmgZCflFrUTcV&limit=8&begin_date=20230201&end_date=20230201
 async function getArticleByCategory(value) {
   newValue = encodeURIComponent(value);
   const articleFetch = await fetch(
@@ -60,7 +59,6 @@ async function getArticleByCategory(value) {
   let { results } = articles;
   return results;
 }
-// getArticleByCategory('automobiles');
 
 export {
   getPopularArticle,
