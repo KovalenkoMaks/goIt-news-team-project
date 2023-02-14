@@ -52,13 +52,14 @@ async function getSearchArticle(value, page) {
 }
 //https://api.nytimes.com/svc/news/v3/content/all/admin.json?api-key=eQ8t8FWqeAGnKDTtIFrHmgZCflFrUTcV&limit=8&begin_date=20230201&end_date=20230201
 async function getArticleByCategory(value) {
+  console.log('kyky');
   try {
     let date = inputDateValue.replace('/', '').replace('/', '');
     console.log(date);
     let begin_date = date;
     let end_date = date;
     const articleFetch = await fetch(
-      `${BASE_URL}/news/v3/content/all/${value}.json?${KEY}&limit=8&begin_date=${begin_date}&end_date=${end_date}`
+      `${BASE_URL}/news/v3/content/all/${value}.json?${KEY}&limit=26`
     );
     const articles = await articleFetch.json();
     let { results } = articles;
@@ -67,7 +68,7 @@ async function getArticleByCategory(value) {
     return results;
   } catch (error) {
     const articleFetch = await fetch(
-      `${BASE_URL}/news/v3/content/all/${value}.json?${KEY}&limit=8`
+      `${BASE_URL}/news/v3/content/all/${value}.json?${KEY}&limit=26`
     );
     const articles = await articleFetch.json();
     let { results } = articles;

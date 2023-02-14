@@ -13,6 +13,10 @@
 .pagin {
   display: flex;
   justify-content: center;
+  height: 28px;
+  @media screen and (min-width: $tablet) {
+    height: 31px;
+  }
 }
 .page-container a {
   display: flex;
