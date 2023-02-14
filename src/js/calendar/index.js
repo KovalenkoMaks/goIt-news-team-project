@@ -112,17 +112,24 @@ const renderCalendar = number => {
     if (evt.target.textContent.length > 10) {
       return;
     }
-
+    let month = (currMonth + 1).toString();
     document.getElementById('input-picker').value =
-      newValueDay.padStart(2, '0') + '/' + (currMonth + 1) + '/' + currYear;
+      currYear +
+      '/' +
+      month.padStart(2, '0') +
+      '/' +
+      newValueDay.padStart(2, '0');
 
     localStorage.setItem('VALUE', JSON.stringify(newValueDay));
+    inputDateValue = document.querySelector('.calendar-input').value;
+    console.log(inputDateValue);
   });
   //}
 };
 
 renderCalendar();
 let findUl = document.querySelector('.days');
+inputDateValue = document.querySelector('.calendar-input').value;
 
 prevNextIcon.forEach(icon => {
   // getting prev and next icons
@@ -145,9 +152,11 @@ prevNextIcon.forEach(icon => {
     //console.log(reachUl);
     reachUl.forEach(elem => {
       if (elem.textContent === test) {
-        console.log(elem.textContent);
+        // console.log(elem.textContent);
         elem.classList.add('active');
       }
     });
   });
 });
+
+export { inputDateValue };
