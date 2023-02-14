@@ -2,12 +2,13 @@ import { getCategoryList } from '../api/index';
 import debounce from 'lodash.debounce';
 import { renderByCategory } from './render-by-category';
 
-
 const refs = {
   categoryContainerEl: document.querySelector('.filter-category__container'),
   otherList: document.querySelector('.filter-category__others-container'),
   othersBtEl: document.querySelector('.filter-category__others-button > span'),
   listButtons: document.querySelector('.filter-category__list-bt'),
+  loader: document.querySelector('.news-loader__container.container'),
+  listNews: document.querySelector('ul.list-news'),
 };
 
 let selectedCategory;
@@ -21,6 +22,7 @@ getCategoryRender();
 refs.otherList.addEventListener('click', onClickOther);
 
 async function getCategoryRender() {
+  // mobile
   if (window.innerWidth < 768) {
     currentNumberCategories = 13;
     refs.othersBtEl.textContent = 'Categories';
@@ -31,12 +33,22 @@ async function getCategoryRender() {
         currentNumberCategories,
         outsideCategories
       );
-      refs.listButtons.addEventListener('click', onClickCategory);
+      refs.listButtons.addEventListener('click', evt => {
+        onClickCategory(evt);
+        refs.othersBtEl.textContent = 'Categories';
+      });
       document
         .querySelector('.filter-category__list')
-        .addEventListener('click', onClickCategory);
+        .addEventListener('click', evt => {
+          onClickCategory(evt);
+          if (selectedCategory !== undefined) {
+            changeButtonName();
+          }
+        });
+        refs.listNews.addEventListener('click', onClickListNews)
     });
   }
+  // tablet
   if (window.innerWidth >= 768 && window.innerWidth < 1280) {
     currentNumberCategories = 17;
     outsideCategories = 4;
@@ -48,12 +60,22 @@ async function getCategoryRender() {
         currentNumberCategories,
         outsideCategories
       );
-      refs.listButtons.addEventListener('click', onClickCategory);
+      refs.listButtons.addEventListener('click', evt => {
+        onClickCategory(evt);
+        refs.othersBtEl.textContent = 'Others';
+      });
       document
         .querySelector('.filter-category__list')
-        .addEventListener('click', onClickCategory);
+        .addEventListener('click', evt => {
+          onClickCategory(evt);
+          if (selectedCategory !== undefined) {
+            changeButtonName();
+          }
+        });
+        refs.listNews.addEventListener('click', onClickListNews)
     });
   }
+  // desktop
   if (window.innerWidth >= 1280) {
     currentNumberCategories = 19;
     outsideCategories = 6;
@@ -65,10 +87,19 @@ async function getCategoryRender() {
         currentNumberCategories,
         outsideCategories
       );
-      refs.listButtons.addEventListener('click', onClickCategory);
+      refs.listButtons.addEventListener('click', evt => {
+        onClickCategory(evt);
+        refs.othersBtEl.textContent = 'Others';
+      });
       document
         .querySelector('.filter-category__list')
-        .addEventListener('click', onClickCategory);
+        .addEventListener('click', evt => {
+          onClickCategory(evt);
+          if (selectedCategory !== undefined) {
+            changeButtonName();
+          }
+      });
+      refs.listNews.addEventListener('click', onClickListNews)
     });
   }
 }
@@ -81,9 +112,14 @@ function addActiveClass(evt) {
 }
 function onClickCategory(evt) {
   addActiveClass(evt);
-  // localStorage.setItem('selectedCategory', evt.target.textContent);
-  selectedCategory = evt.target.textContent.toLowerCase();
-  renderByCategory(selectedCategory);
+  if (evt.target.textContent.length > 20) {
+    console.log(selectedCategory);
+    return;
+  }
+  selectedCategory = evt.target.textContent;
+  refs.loader.classList.remove('is-hidden');
+  renderByCategory(selectedCategory.toLowerCase());
+  document.querySelector('.page-container').classList.add('pagination-hidden');
 }
 function renderMarkupCategory(
   categoryList,
@@ -128,6 +164,19 @@ function createMarkupOtherCategory(category, listEl) {
   //     <button class="filter-category__button">{ Category name}</button>
   // </li>
 }
-function onClickOther (evt) {
+function onClickOther(evt) {
   evt.currentTarget.classList.toggle('is-open');
+}
+
+function changeButtonName() {
+  refs.othersBtEl.textContent = selectedCategory;
+}
+function onClickListNews(evt) {
+  const isCategory = evt.target.classList.contains('item-news__category');
+  if (!isCategory) {
+    return;
+  }
+  selectedCategory = evt.target.textContent;
+  refs.loader.classList.remove('is-hidden');
+  renderByCategory(selectedCategory.toLowerCase());
 }

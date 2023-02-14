@@ -1,3 +1,4 @@
+import { inputDateValue } from '../calendar';
 const KEY = 'api-key=eQ8t8FWqeAGnKDTtIFrHmgZCflFrUTcV';
 const BASE_URL = 'https://api.nytimes.com/svc';
 const MOST_POPULAR_NEWS = `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?${KEY}`;
@@ -23,26 +24,61 @@ async function getCategoryList() {
 }
 
 async function getSearchArticle(value) {
-  const articleFetch = await fetch(
-    `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}`
-  );
-  const articles = await articleFetch.json();
-  let { response } = articles;
-  let { docs } = response;
-  //   console.log(docs);
+  try {
+    //  console.log(inputDateValue);
+    let date = inputDateValue.replace('/', '').replace('/', '');
+    console.log(date);
+    let begin_date = date;
+    let end_date = date;
 
-  return docs;
+    const articleFetch = await fetch(
+      `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}&begin_date=${begin_date}&end_date=${end_date}`
+    );
+    const articles = await articleFetch.json();
+    let { response } = articles;
+    let { docs } = response;
+    //   console.log(docs);
+
+    return docs;
+  } catch (error) {
+    const articleFetch = await fetch(
+      `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}`
+    );
+    const articles = await articleFetch.json();
+    let { response } = articles;
+    let { docs } = response;
+    //   console.log(docs);
+
+    return docs;
+  }
 }
-
+//https://api.nytimes.com/svc/news/v3/content/all/admin.json?api-key=eQ8t8FWqeAGnKDTtIFrHmgZCflFrUTcV&limit=8&begin_date=20230201&end_date=20230201
 async function getArticleByCategory(value) {
-  const articleFetch = await fetch(
-    `${BASE_URL}/news/v3/content/inyt/${value}.json?${KEY}`
-  );
-  const articles = await articleFetch.json();
-  let { results } = articles;
-  console.log(results);
+  try {
+    let date = inputDateValue.replace('/', '').replace('/', '');
+    console.log(date);
+    let begin_date = date;
+    let end_date = date;
+    const articleFetch = await fetch(
+      `${BASE_URL}/news/v3/content/all/${value}.json?${KEY}&limit=8&begin_date=${begin_date}&end_date=${end_date}`
+    );
+    const articles = await articleFetch.json();
+    let { results } = articles;
+    // console.log(results);
 
-  return results;
+    return results;
+  } catch (error) {
+    const articleFetch = await fetch(
+      `${BASE_URL}/news/v3/content/all/${value}.json?${KEY}&limit=8`
+    );
+    const articles = await articleFetch.json();
+    let { results } = articles;
+    // console.log(results);
+
+    return results;
+  }
+
+  // console.log(value);
 }
 // getArticleByCategory('automobiles');
 

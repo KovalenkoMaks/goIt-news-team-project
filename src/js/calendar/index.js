@@ -1,8 +1,8 @@
 const daysTag = document.querySelector('.days'),
   currentDate = document.querySelector('.current-date'),
   prevNextIcon = document.querySelectorAll('.calendar-icons span');
-// getting new date, current year and month
 
+// getting new date, current year and month
 let date = new Date(),
   currDay = date.getDate(),
   currMonth = date.getMonth(),
@@ -16,15 +16,15 @@ let date = new Date(),
 (() => {
   const refs = {
     openModalBtn: document.querySelector('[data-modal-open]'),
-    closeModalBtn: document.querySelector('[data-modal-close]'),
+    closeModalBtn: document.querySelector('body'),
     modal: document.querySelector('[data-modal]'),
     input: document.querySelector('.calendar-input'),
     arrow: document.querySelector('.calendar__button-arrow'),
-    calendar: document.querySelector('.calendar__button-calendar'),
+    calendarBtn: document.querySelector('.calendar__button-calendar'),
   };
 
   refs.openModalBtn.addEventListener('click', toggleModal);
-  refs.closeModalBtn.addEventListener('click', toggleModal);
+  refs.closeModalBtn.addEventListener('click', hideModals);
   //   function cleanInput() {
   //     refs.input.classList.remove('isActive');
   //   }
@@ -32,8 +32,17 @@ let date = new Date(),
     refs.modal.classList.toggle('is-hidden');
     refs.input.classList.toggle('isActive');
     refs.arrow.classList.toggle('switched');
-    refs.calendar.classList.toggle('switchedColor');
+    refs.calendarBtn.classList.toggle('switchedColor');
     // showCurrentDate();
+  }
+
+  function hideModals(evt) {
+    if (evt.target.closest('.calendar-form')) {
+      return;
+    }
+    if (refs.input.classList.contains('isActive')) {
+      toggleModal();
+    }
   }
 })();
 
@@ -52,7 +61,7 @@ const months = [
   'November',
   'December',
 ];
-const renderCalendar = () => {
+const renderCalendar = number => {
   let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(), // getting first day of month
     lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(), // getting last date of month
     lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(), // getting last day of month
@@ -68,10 +77,11 @@ const renderCalendar = () => {
     let isToday =
       i === date.getDate() &&
       currMonth === new Date().getMonth() &&
-      currYear === new Date().getFullYear()
-        ? 'active'
-        : '';
+      currYear === new Date().getFullYear();
+    //   ? 'active'
+    //   : '';
     liTag += `<li class="${isToday}">${i}</li>`;
+    //console.log(isToday);
   }
   for (let i = lastDayofMonth; i < 6; i++) {
     // creating li of next month first days
@@ -79,24 +89,49 @@ const renderCalendar = () => {
   }
   currentDate.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
   daysTag.innerHTML = liTag;
-  function addChangingDayListener() {
-    const dayChange = document.querySelector('.days');
-    dayChange.addEventListener('click', evt => {
-      evt.preventDefault();
+  // console.log(liTag);
+  const dayChange = document.querySelector('.days');
+  // function addChangingDayListener() {
 
-      let newValueDay = evt.target.textContent;
-      if (evt.target.textContent.length > 10) {
-        return;
-      }
-      console.log(newValueDay);
-      document.getElementById('input-picker').value =
-        newValueDay.padStart(2, '0') + '/' + (currMonth + 1) + '/' + currYear;
-      console.dir(document.getElementById('input-picker').value);
+  dayChange.addEventListener('click', evt => {
+    //evt.preventDefault();
+    // evt.target.classList.toggle('active');
+
+    //     function hideButton() {
+    //       if (showButton() && evt.target.contains('active')) {
+    //         // evt.target.classList.remove('active');
+    //       }
+    //     }
+    [...evt.currentTarget.children].forEach(item => {
+      item.classList.remove('active');
+      //console.log(item.textContent);
     });
-  }
-  addChangingDayListener();
+
+    evt.target.classList.add('active');
+    let newValueDay = evt.target.textContent;
+    if (evt.target.textContent.length > 10) {
+      return;
+    }
+    let month = (currMonth + 1).toString();
+    document.getElementById('input-picker').value =
+      currYear +
+      '/' +
+      month.padStart(2, '0') +
+      '/' +
+      newValueDay.padStart(2, '0');
+
+    localStorage.setItem('VALUE', JSON.stringify(newValueDay));
+    document.querySelector('[data-modal]').classList.add('is-hidden');
+    let inputDateValue = document.querySelector('.calendar-input').value;
+    console.log(inputDateValue);
+  });
+  //}
 };
+
 renderCalendar();
+let findUl = document.querySelector('.days');
+// inputDateValue = document.querySelector('.calendar-input').value;
+
 prevNextIcon.forEach(icon => {
   // getting prev and next icons
   icon.addEventListener('click', () => {
@@ -113,5 +148,16 @@ prevNextIcon.forEach(icon => {
       date = new Date(); // pass the current date as date value
     }
     renderCalendar(); // calling renderCalendar function
+    let test = JSON.parse(localStorage.getItem('VALUE'));
+    let reachUl = daysTag.childNodes;
+    //console.log(reachUl);
+    reachUl.forEach(elem => {
+      if (elem.textContent === test) {
+        // console.log(elem.textContent);
+        elem.classList.add('active');
+      }
+    });
   });
 });
+
+export { inputDateValue };
