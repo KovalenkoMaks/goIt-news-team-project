@@ -45,7 +45,7 @@ function getLocalData() {
 getLocalData();
 
 function createMarkup(arr) {
-  return arr
+  const newArr = arr
     .map(elem => {
       return `<li class="list-news__item">
 	  <article class="item-news__article" id="${elem.id}">
@@ -83,5 +83,6 @@ function createMarkup(arr) {
  </li>`;
     })
     .join('');
+  return newArr;
 }
 document.querySelector('.news-loader__container ').classList.add('is-hidden');
