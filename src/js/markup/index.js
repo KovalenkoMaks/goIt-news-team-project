@@ -23,7 +23,7 @@ async function getPopularMarkup(arr, number) {
       if (mediaElem.length !== 0) {
         mediaUrl = mediaElem[0]['media-metadata'][2].url;
       }
-      console.log(mediaUrl);
+      // console.log(mediaUrl);
       return `<li class="list-news__item ${opacity}">
               <article class="item-news__article " id="${elem.id}">
                   <div class="item-news__wrapper-img">

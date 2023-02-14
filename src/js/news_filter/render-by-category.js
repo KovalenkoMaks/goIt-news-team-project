@@ -1,7 +1,6 @@
 import { getArticleByCategory } from '../api/index';
 import { checkLokalStorage } from '../markup';
 import { getWeatherRefs } from '../weather';
-import { textCardFormat, dateNews } from '../markup';
 
 const refs = {
   listNewsEl: document.querySelector('ul.list-news'),
@@ -44,22 +43,24 @@ async function renderByCategory(selectedCategory) {
     refs.pagination.classList.remove('pagination-hidden');
     refs.errorMarkup.classList.add('underfined-hidden');
   }
-
-  const dataNewsArray = await getArticleByCategory(selectedCategory);
-  firstRender = await dataNewsArray.slice(0, 8);
-  sliceItemsAfterFirstRender = await dataNewsArray.slice(8);
-  secondRender = await sliceItemsAfterFirstRender.slice(0, 8);
-  sliceItemsAfterSecondRender = await sliceItemsAfterFirstRender.slice(8);
-  thirdRender = await sliceItemsAfterSecondRender.slice(0, 8);
-  lastRender = await sliceItemsAfterSecondRender.slice(8);
-
-  const markup = renderforPagination(firstRender);
-  refs.listNewsEl.innerHTML = markup;
-  refs.loader.classList.add('is-hidden');
-
-  getWetherPosition();
-
   try {
+    const dataNewsArray = await getArticleByCategory(selectedCategory);
+    const markup = getFiltredArr(dataNewsArray, windowWidth)
+      .map(data => {
+        let opacity = '';
+        let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
+        let check = checkLokalStorage(data, localArr);
+        if (check === true) {
+          opacity = 'opacity';
+        }
+
+        return createMarkup(data, opacity);
+      })
+      .join('');
+    refs.listNewsEl.innerHTML = markup;
+    refs.loader.classList.add('is-hidden');
+
+    getWetherPosition();
   } catch {
     // если не удалось найти по категории
     refs.loader.classList.add('is-hidden');
@@ -106,9 +107,9 @@ function createMarkup(
     abstract = `${' '}<br>${' '}<br>`;
   }
   function textCardFormat(element) {
-    let textFormat = abstract;
+    let textFormat = element;
     if (textFormat.length > 80) {
-      return (textFormat = abstract.slice(0, 80) + '...');
+      textFormat = element.slice(0, 80) + '...';
     }
     return textFormat;
   }
@@ -406,5 +407,10 @@ function handleButtonRight() {
     btnNextPg.disabled = false;
     //  btnLastPg.disabled = false;
   }
+}
+function getFiltredArr(array, windowWidth) {
+  deleteItems = array.slice(windowWidth);
+  firstItems = array;
+  return array.slice(0, windowWidth);
 }
 export { renderByCategory };

@@ -33,7 +33,7 @@ async function getPopularRender() {
     wetherPosition = 1;
   }
   const popularArticle = await api.getPopularArticle();
-  console.log(popularArticle);
+  // console.log(popularArticle);
   let markupArr = await markup.getPopularMarkup(popularArticle, windowWidth);
   refs.loader.classList.add('is-hidden');
   getRender(markupArr);
