@@ -50,9 +50,7 @@ async function getSearchArticle(value, page) {
 
   return docs;
 }
-//https://api.nytimes.com/svc/news/v3/content/all/admin.json?api-key=eQ8t8FWqeAGnKDTtIFrHmgZCflFrUTcV&limit=8&begin_date=20230201&end_date=20230201
 async function getArticleByCategory(value) {
-  console.log('kyky');
   try {
     let date = inputDateValue.replace('/', '').replace('/', '');
     console.log(date);
