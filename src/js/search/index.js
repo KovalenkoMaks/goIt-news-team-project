@@ -11,6 +11,8 @@ const refs = {
   errorMarkup: document.querySelector('.underfined'),
   pagination: document.querySelector('.pagination'),
   loader: document.querySelector('.news-loader__container.container'),
+  paginator: document.querySelector('.pagination_search'),
+  paginator_search: document.querySelector('.page-container-search'),
 };
 
 refs.form.addEventListener('submit', test);
@@ -68,6 +70,7 @@ async function test(e) {
   refs.newsList.innerHTML = markup;
   getWetherPosition();
   document.querySelector('.page-container').classList.add('pagination-hidden');
+  refs.paginator_search.classList.remove('pagination-search-hidden');
 }
 
 function render(data, number) {
