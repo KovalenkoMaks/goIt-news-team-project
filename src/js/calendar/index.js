@@ -125,7 +125,7 @@ const renderCalendar = number => {
     let inputDateValue = document.querySelector('.calendar-input').value;
     console.log(inputDateValue);
     localStorage.setItem('date', JSON.stringify(inputDateValue));
-    document.querySelector('[data-modal]').classList.add('is-hidden');
+    document.querySelector('[data-modal]').classList.add('is-hidden-wrapper');
     document.querySelector('.calendar-input').classList.remove('isActive');
     document
       .querySelector('.calendar__button-arrow')
