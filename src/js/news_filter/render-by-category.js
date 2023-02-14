@@ -1,7 +1,6 @@
 import { getArticleByCategory } from '../api/index';
 import { checkLokalStorage } from '../markup';
 import { getWeatherRefs } from '../weather';
-import { textCardFormat, dateNews } from '../markup';
 
 const refs = {
   listNewsEl: document.querySelector('ul.list-news'),
@@ -37,24 +36,24 @@ async function renderByCategory(selectedCategory) {
     refs.pagination.classList.remove('pagination-hidden');
     refs.errorMarkup.classList.add('underfined-hidden');
   }
-  const dataNewsArray = await getArticleByCategory(selectedCategory);
-  const markup = dataNewsArray
-    .map(data => {
-      let opacity = '';
-      let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
-      let check = checkLokalStorage(data, localArr);
-      if (check === true) {
-        opacity = 'opacity';
-      }
-
-      return createMarkup(data, opacity);
-    })
-    .join('');
-  refs.listNewsEl.innerHTML = markup;
-  refs.loader.classList.add('is-hidden');
-
-  getWetherPosition();
   try {
+    const dataNewsArray = await getArticleByCategory(selectedCategory);
+    const markup = dataNewsArray
+      .map(data => {
+        let opacity = '';
+        let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
+        let check = checkLokalStorage(data, localArr);
+        if (check === true) {
+          opacity = 'opacity';
+        }
+  
+        return createMarkup(data, opacity);
+      })
+      .join('');
+    refs.listNewsEl.innerHTML = markup;
+    refs.loader.classList.add('is-hidden');
+  
+    getWetherPosition();
   } catch {
     // если не удалось найти по категории
     refs.loader.classList.add('is-hidden');
