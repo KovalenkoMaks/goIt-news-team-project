@@ -8,6 +8,7 @@ const refs = {
   othersBtEl: document.querySelector('.filter-category__others-button > span'),
   listButtons: document.querySelector('.filter-category__list-bt'),
   loader: document.querySelector('.news-loader__container.container'),
+  listNews: document.querySelector('ul.list-news'),
 };
 
 let selectedCategory;
@@ -44,6 +45,7 @@ async function getCategoryRender() {
             changeButtonName();
           }
         });
+        refs.listNews.addEventListener('click', onClickListNews)
     });
   }
   // tablet
@@ -70,6 +72,7 @@ async function getCategoryRender() {
             changeButtonName();
           }
         });
+        refs.listNews.addEventListener('click', onClickListNews)
     });
   }
   // desktop
@@ -95,7 +98,8 @@ async function getCategoryRender() {
           if (selectedCategory !== undefined) {
             changeButtonName();
           }
-        });
+      });
+      refs.listNews.addEventListener('click', onClickListNews)
     });
   }
 }
@@ -166,4 +170,13 @@ function onClickOther(evt) {
 
 function changeButtonName() {
   refs.othersBtEl.textContent = selectedCategory;
+}
+function onClickListNews(evt) {
+  const isCategory = evt.target.classList.contains('item-news__category');
+  if (!isCategory) {
+    return;
+  }
+  selectedCategory = evt.target.textContent;
+  refs.loader.classList.remove('is-hidden');
+  renderByCategory(selectedCategory.toLowerCase());
 }
