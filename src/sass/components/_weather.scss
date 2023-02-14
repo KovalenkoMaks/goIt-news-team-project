@@ -5,13 +5,13 @@
   color: white;
   border: 0px solid;
   border-radius: 4px;
-  // height: 469px;
+  height: 100%;
   &-hidden {
     display: none;
   }
   @media screen and(min-width: $tablet) {
     width: 353px;
-    height: 685px;
+    // height: 685px;
     padding: 40px 32px 60px 32px;
   }
   @media screen and(min-width: $desktop) {
