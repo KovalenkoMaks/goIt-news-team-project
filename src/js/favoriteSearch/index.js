@@ -8,7 +8,8 @@ formEl.addEventListener('submit', event => {
   let arr = getLocalarr();
   if (arr === null) return;
   let hits = checkArr(arr, value);
-  //   console.log(hits);
+  //   console.log(checkArr(arr, value));
+  console.log(hits);
 });
 
 function getLocalarr() {
@@ -20,11 +21,11 @@ function checkArr(arr, value) {
   return arr.reduce((hits, elem) => {
     // console.log(elem.description);
     if (elem.title.includes(value) || elem.description.includes(value)) {
-      console.log(elem);
-      //   hits.push(elem);
+      //   console.log(elem);
+      hits.push(elem);
     }
     // console.log(hits);
-    // return hits;
+    return hits;
   }, []);
 }
 // import { getMarkupLoadMore } from '../read_more_date';
