@@ -45,11 +45,14 @@ function form(event) {
   dateListEl.classList.add('is-hidden');
   readListSearchEl.classList.remove('is-hidden');
 
+  readListSearchEl.innerHTML = '';
+
   const markupBlockReadSearch = getMarkupLoadMore(newArrForMarkupSearch);
 
   createMarkupLoadMore(markupBlockReadSearch);
 }
 
 function createMarkupLoadMore(markupBlockDate) {
+  readListSearchEl.innerHTML = '';
   readListSearchEl.innerHTML = markupBlockDate;
 }
