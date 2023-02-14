@@ -121,7 +121,7 @@ const renderCalendar = number => {
       newValueDay.padStart(2, '0');
 
     localStorage.setItem('VALUE', JSON.stringify(newValueDay));
-    inputDateValue = document.querySelector('.calendar-input').value;
+    let inputDateValue = document.querySelector('.calendar-input').value;
     console.log(inputDateValue);
   });
   //}
@@ -129,7 +129,7 @@ const renderCalendar = number => {
 
 renderCalendar();
 let findUl = document.querySelector('.days');
-inputDateValue = document.querySelector('.calendar-input').value;
+// inputDateValue = document.querySelector('.calendar-input').value;
 
 prevNextIcon.forEach(icon => {
   // getting prev and next icons
