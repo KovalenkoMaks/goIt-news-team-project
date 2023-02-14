@@ -95,6 +95,9 @@ function render(data, number) {
       if (mediaElem.length !== 0) {
         mediaUrl = `https://static01.nyt.com/${mediaElem[0].url}`;
       }
+      if (!elem.snippet) {
+        elem.snippet = `${' '}<br>${' '}<br>`;
+      }
       return `<li class="list-news__item ${opacity}">
     <article class="item-news__article">
        <div class="item-news__wrapper-img">
@@ -126,13 +129,15 @@ function render(data, number) {
 				  ${elem.headline.main}
 			 </h2>
 			 <p class="item-news__description">
-				  ${elem.snippet}</p>
+				  ${textCardFormat(elem.snippet)}</p>
 			 </div>
 			 <div class="item-news__info">
 				  <span class="item-news__info-date">
-						${elem.pub_date}
+						${elem.pub_date.split('').splice(0, 10).join('').replaceAll('-', '/')}
 				  </span>
-				  <a target="_blank" class="item-news__info-link" href="${elem.web_url}">Read more</a>
+				  <a target="_blank" class="item-news__info-link" href="${
+            elem.web_url
+          }">Read more</a>
           <p class='is-hidden'>${elem.uri}</p>
 			 </div>
 		</article>
@@ -406,4 +411,11 @@ function handleButtonRight() {
     btnNextPg.disabled = false;
     //  btnLastPg.disabled = false;
   }
+}
+function textCardFormat(element) {
+  let textFormat = element;
+  if (textFormat.length > 80) {
+    return (textFormat = element.slice(0, 80) + '...');
+  }
+  return textFormat;
 }
