@@ -12,7 +12,8 @@ function arrLocal() {
   }
   return local;
 }
-const sortDateReadMore = (array, callback) => {
+
+function sortDateReadMore(array = [], callback) {
   const groupByDate = {};
   for (const objectEl of array) {
     const key = callback(objectEl);
@@ -23,7 +24,8 @@ const sortDateReadMore = (array, callback) => {
     }
   }
   return groupByDate;
-};
+}
+
 const sortDate = sortDateReadMore(arrLocal(), objectEl => objectEl.dayRead);
 markupDateRead(sortDate);
 function markupDateRead(date) {
@@ -47,7 +49,7 @@ const item = document.querySelector('.list-news');
 const iconDate = document.querySelector('.date-list__btn-icon');
 dateListEl.addEventListener('click', event => {
   const btn = event.target.closest(`.date-list__btn`);
-  console.log(btn.parentNode);
+
   if (!btn) return;
   btn.nextElementSibling.classList.toggle('is-hidden');
   iconDate.classList.toggle('turn');
