@@ -1,5 +1,5 @@
 import './js/mobile_menu';
-import './js/search';
+// import './js/search';
 import './js/dark_mode';
 import { getMarkupLoadMore } from './js/read_more_date';
 const dateListEl = document.querySelector('.date-list');
