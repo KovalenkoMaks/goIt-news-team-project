@@ -10,6 +10,7 @@ let valuePage;
 let refs;
 let dataSource;
 let render;
+let getWetherPosition;
 
 const paginationSearch = document.querySelector('.pagin-search');
 const load = document.querySelector('.news-loader__container.container');
@@ -81,11 +82,18 @@ pg.addEventListener('click', e => {
 });
 
 // DYNAMIC PAGINATION
-function initPagination(pageObj, refsObj, dataSourceFunc, renderFunc) {
+function initPagination(
+  pageObj,
+  refsObj,
+  dataSourceFunc,
+  renderFunc,
+  getWetherPositionFunc
+) {
   valuePage = pageObj;
   refs = refsObj;
   dataSource = dataSourceFunc;
   render = renderFunc;
+  getWetherPosition = getWetherPositionFunc;
 }
 
 function pagination() {

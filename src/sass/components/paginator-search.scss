@@ -41,6 +41,16 @@
   font-size: 14px;
   font-weight: 500;
   color: var(--text-color);
+  .pg-link-dot {
+    padding: 1px 1px;
+  }
+}
+.page-container-search a.pg-link-dot {
+  padding: 0px 0px;
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
 }
 .pg-item-search {
   :hover,
@@ -195,7 +205,6 @@ a.fas {
   height: 28px;
 }
 .pg-item-dot {
-  width: 22px;
   margin-left: 0px;
   padding-left: 0px;
   padding-right: 0px;

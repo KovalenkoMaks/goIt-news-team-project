@@ -41,7 +41,7 @@ async function test(e) {
   }
   valuePage.totalPages = sumPage / 10;
 
-  initPagination(valuePage, refs, getSearchArticle, render);
+  initPagination(valuePage, refs, getSearchArticle, render, getWetherPosition);
   pagination();
   //   for (const obj of data) {
   //     const mediaElem = obj.multimedia;
