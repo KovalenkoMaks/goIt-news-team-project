@@ -35,6 +35,7 @@
 
     .filter-category__others-container.is-open &__container {
         transform: scale(1);
+        pointer-events: auto;
     }
 
     .filter-category__others-container.is-open &__others-button {
@@ -140,6 +141,7 @@
         z-index: 2;
         transition-duration: 250ms;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
     }
 
     &__list {

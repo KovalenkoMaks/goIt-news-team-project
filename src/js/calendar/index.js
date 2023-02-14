@@ -29,7 +29,7 @@ let date = new Date(),
   //     refs.input.classList.remove('isActive');
   //   }
   function toggleModal() {
-    refs.modal.classList.toggle('is-hidden');
+    refs.modal.classList.toggle('is-hidden-wrapper');
     refs.input.classList.toggle('isActive');
     refs.arrow.classList.toggle('switched');
     refs.calendarBtn.classList.toggle('switchedColor');
@@ -42,7 +42,7 @@ let date = new Date(),
       return;
     }
     if (refs.input.classList.contains('isActive')) {
-      refs.modal.classList.add('is-hidden');
+      refs.modal.classList.add('is-hidden-wrapper');
       refs.input.classList.remove('isActive');
       refs.arrow.classList.remove('switched');
       refs.calendarBtn.classList.remove('switchedColor');
@@ -133,7 +133,7 @@ const renderCalendar = number => {
     let inputDateValue = document.querySelector('.calendar-input').value;
     console.log(inputDateValue);
     localStorage.setItem('date', JSON.stringify(inputDateValue));
-    document.querySelector('[data-modal]').classList.add('is-hidden');
+    document.querySelector('[data-modal]').classList.add('is-hidden-wrapper');
     document.querySelector('.calendar-input').classList.remove('isActive');
     document
       .querySelector('.calendar__button-arrow')
