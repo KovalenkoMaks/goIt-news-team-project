@@ -8,6 +8,7 @@ const refs = {
   othersBtEl: document.querySelector('.filter-category__others-button > span'),
   listButtons: document.querySelector('.filter-category__list-bt'),
   loader: document.querySelector('.news-loader__container.container'),
+  pagination: document.querySelector('.pagination_search'),
   listNews: document.querySelector('ul.list-news'),
 };
 
@@ -36,6 +37,7 @@ async function getCategoryRender() {
       refs.listButtons.addEventListener('click', evt => {
         onClickCategory(evt);
         refs.othersBtEl.textContent = 'Categories';
+        refs.pagination.classList.add('.pagination-search-hidden');
       });
       document
         .querySelector('.filter-category__list')
@@ -45,7 +47,7 @@ async function getCategoryRender() {
             changeButtonName();
           }
         });
-        refs.listNews.addEventListener('click', onClickListNews)
+      refs.listNews.addEventListener('click', onClickListNews);
     });
   }
   // tablet
@@ -72,7 +74,7 @@ async function getCategoryRender() {
             changeButtonName();
           }
         });
-        refs.listNews.addEventListener('click', onClickListNews)
+      refs.listNews.addEventListener('click', onClickListNews);
     });
   }
   // desktop
@@ -98,8 +100,8 @@ async function getCategoryRender() {
           if (selectedCategory !== undefined) {
             changeButtonName();
           }
-      });
-      refs.listNews.addEventListener('click', onClickListNews)
+        });
+      refs.listNews.addEventListener('click', onClickListNews);
     });
   }
 }
@@ -119,7 +121,11 @@ function onClickCategory(evt) {
   selectedCategory = evt.target.textContent;
   refs.loader.classList.remove('is-hidden');
   renderByCategory(selectedCategory.toLowerCase());
+  refs.pagination.classList.add('pagination-search-hidden');
   document.querySelector('.page-container').classList.add('pagination-hidden');
+  //   document
+  //     .querySelector('.paginator_search')
+  //     .classList.add('pagination-search-hidden');
 }
 function renderMarkupCategory(
   categoryList,
