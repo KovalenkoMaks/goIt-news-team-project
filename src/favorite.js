@@ -6,7 +6,9 @@ const undefinedReadeMore = document.querySelector('.underfined');
 const block = document.querySelector('.list-news');
 const newList = document.querySelector('.list-news');
 
-document.querySelector('.news-loader__container.container').classList.add('is-hidden');
+document
+  .querySelector('.news-loader__container.container')
+  .classList.add('is-hidden');
 
 document.querySelector('.page-container').classList.add('pagination-hidden');
 
