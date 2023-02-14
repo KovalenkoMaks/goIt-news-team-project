@@ -51,33 +51,13 @@ async function getSearchArticle(value, page) {
   return docs;
 }
 async function getArticleByCategory(value) {
-  try {
-    let date = inputDateValue.replace('/', '').replace('/', '');
-    console.log(date);
-    let begin_date = date;
-    let end_date = date;
-    const articleFetch = await fetch(
-      `${BASE_URL}/news/v3/content/all/${value}.json?${KEY}&limit=26`
-    );
-    const articles = await articleFetch.json();
-    let { results } = articles;
-    // console.log(results);
-
-    return results;
-  } catch (error) {
-    const articleFetch = await fetch(
-      `${BASE_URL}/news/v3/content/all/${value}.json?${KEY}&limit=26`
-    );
-    const articles = await articleFetch.json();
-    let { results } = articles;
-    // console.log(results);
-
-    return results;
-  }
-
-  // console.log(value);
+  const articleFetch = await fetch(
+    `${BASE_URL}/news/v3/content/all/${value}.json?${KEY}&limit=26`
+  );
+  const articles = await articleFetch.json();
+  let { results } = articles;
+  return results;
 }
-// getArticleByCategory('automobiles');
 
 export {
   getPopularArticle,
