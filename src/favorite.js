@@ -24,17 +24,19 @@ function removeToFavorite(e) {
   if (!dataInLocal) {
     return;
   }
+  console.log(btn.parentNode.parentNode.parentNode.parentNode);
   let uri =
     btn.parentNode.parentNode.nextElementSibling.nextElementSibling
       .lastElementChild.textContent;
-  console.log(uri);
+
   for (let i = 0; i < dataInLocal.length; i += 1) {
     if (dataInLocal[i].uri === uri) {
       dataInLocal.splice(i, 1);
     }
   }
   localStorage.setItem(`newsSection`, JSON.stringify(dataInLocal));
-  location.reload();
+  btn.parentNode.parentNode.parentNode.parentNode.remove();
+  // location.reload();
 }
 
 function getLocalData() {
