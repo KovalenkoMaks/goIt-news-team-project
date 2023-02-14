@@ -29,7 +29,7 @@ let date = new Date(),
   //     refs.input.classList.remove('isActive');
   //   }
   function toggleModal() {
-    refs.modal.classList.toggle('is-hidden');
+    refs.modal.classList.toggle('is-hidden-wrapper');
     refs.input.classList.toggle('isActive');
     refs.arrow.classList.toggle('switched');
     refs.calendarBtn.classList.toggle('switchedColor');
@@ -41,7 +41,7 @@ let date = new Date(),
       return;
     }
     if (refs.input.classList.contains('isActive')) {
-      refs.modal.classList.add('is-hidden');
+      refs.modal.classList.add('is-hidden-wrapper');
     }
   }
 })();
