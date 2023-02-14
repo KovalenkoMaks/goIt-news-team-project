@@ -1,5 +1,5 @@
 import './js/mobile_menu';
-import './js/search';
+// import './js/search';
 import './js/dark_mode';
 
 const undefinedReadeMore = document.querySelector('.underfined');
@@ -14,7 +14,7 @@ document.querySelector('.page-container').classList.add('pagination-hidden');
 
 newList.addEventListener('click', removeToFavorite);
 const dataInLocal = JSON.parse(localStorage.getItem('newsSection'));
-console.log(dataInLocal);
+
 if (dataInLocal === null) {
   undefinedReadeMore.classList.remove('underfined-hidden');
 }
