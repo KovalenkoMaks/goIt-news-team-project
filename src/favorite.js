@@ -1,12 +1,14 @@
 import './js/mobile_menu';
-import './js/search';
+// import './js/search';
 import './js/dark_mode';
 
 const undefinedReadeMore = document.querySelector('.underfined');
 const block = document.querySelector('.list-news');
 const newList = document.querySelector('.list-news');
 
-document.querySelector('.news-loader__container.container').classList.add('is-hidden');
+document
+  .querySelector('.news-loader__container.container')
+  .classList.add('is-hidden');
 
 document.querySelector('.page-container').classList.add('pagination-hidden');
 
@@ -36,6 +38,7 @@ function removeToFavorite(e) {
 }
 
 function getLocalData() {
+  if (localStorage.getItem('newsSection') === null) return;
   if (JSON.parse(localStorage.getItem('newsSection')).length === 0) {
     console.log('error');
     undefinedReadeMore.classList.remove('underfined-hidden');

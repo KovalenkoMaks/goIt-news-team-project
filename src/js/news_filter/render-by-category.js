@@ -65,9 +65,8 @@ async function renderByCategory(selectedCategory) {
 }
 let media;
 function createMarkup(
-  { section, multimedia, title, first_published_date, abstract },
-  opacity,
-  uri
+  { section, multimedia, title, first_published_date, abstract, url, uri },
+  opacity
 ) {
   if (!section) {
     section = '';
@@ -121,7 +120,7 @@ function createMarkup(
               <span class="item-news__info-date">
                     ${first_published_date.replaceAll('T', ' ').slice(0, 19)}
               </span>
-              <a target="_blank" class="item-news__info-link" href="${'elem.web_url'}">Read more</a>
+              <a target="_blank" class="item-news__info-link" href="${url}">Read more</a>
       <p class='is-hidden'>${uri}</p>
          </div>
     </article>
