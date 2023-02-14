@@ -1,0 +1,1 @@
+const arrLocal = JSON.parse;
