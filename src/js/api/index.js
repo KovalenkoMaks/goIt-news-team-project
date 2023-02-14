@@ -34,14 +34,10 @@ async function getSearchArticle(value, page) {
     // dateForUrl = '';
   }
   const articleFetch = await fetch(
-    `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}&${page}&${dateForUrl}`
+    `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}&page=${page}${dateForUrl}`
   );
   const articles = await articleFetch.json();
-  if (response.meta.hits > 1000) {
-    sumPage = 1000;
-  } else {
-    sumPage = response.meta.hits;
-  }
+
   let { response } = articles;
   if (response.meta.hits > 1000) {
     sumPage = 1000;
