@@ -2,76 +2,127 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  margin-top: 2rem;
-  background-color: #fff;
-  box-shadow: 0 0 10px #d3d3d3;
-  border-radius: 5px;
-  padding: 10px 15px;
+  justify-content: center;
+  margin-bottom: 60px;
+  margin-top: 40px;
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19px;
+  text-align: left;
+  background-color: var(--bg-color);
+  
+    @media screen and (min-width: $tablet) and (max-width: $pre_desktop) {
+      height: 31px;
+      margin-bottom: 100px;
+      margin-top: 48px;
+    }
+  
+    @media screen and (min-width: $desktop) {
+      margin-bottom: 150px;
+      margin-top: 60px;
+    }
 }
-
 .pagin-search {
   display: flex;
   justify-content: center;
   height: 28px;
+  width: 288px;
+
   @media screen and (min-width: $tablet) {
     height: 31px;
+    width: 470px;
   }
 }
 
 .page-container-search a {
-  display: flex;
-  align-items: center;
-  padding: 6px 12px;
-  cursor: pointer;
-  font-size: 18px;
-  color: var(--color-dark);
-  pointer-events: none;
+  padding: 4px 12px;
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+.pg-item-search {
+  :hover,
+  :focus {
+    color: var(--white-color);
+    background-color: var(--accent-color);
+  }
+  border: 1px solid var(--accent-color);
+  border-radius: 2px;
 }
 .page-container-search button {
   display: flex;
-  justify-content: center;
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
+    justify-content: center;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
 }
-.page-containe-searchr button:disabled a {
-  color: #aaadc7;
+button.next-page-search,
+button.prev-page-search {
+  width: 72px;
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+  border: 1px solid var(--accent-color);
+  border-radius: 2px;
+}
+button.prev-page-search {
+  margin-right: 6px;
+}
+
+button.next-page-search {
+  margin-left: 6px;
+}
+.page-containe-search button:disabled a {
+    color: var(--text-color);
+      font-family: Manrope;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 19px;
+      letter-spacing: 0em;
+      text-align: left;
 }
 
 #pagination-search {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
 }
 #pagination-search li {
   list-style: none;
   cursor: pointer;
-  border-radius: 5px;
   overflow: hidden;
-  margin: 0 3px;
+  margin: 0 4px;
 }
 #pagination-search li.active {
-  background-color: #39f;
+  background-color: var(--accent-color);
 }
 #pagination-search li.active a {
-  color: #fff;
+  color: var(--white-color);
 }
 #pagination-search li a {
   text-decoration: none;
-  font-weight: 600;
-  padding: 8px 13px;
-  display: inline-block;
-  line-height: 1;
-  color: #a9a9a9;
-  font-size: 20px;
-  pointer-events: none;
+    padding: 4px auto;
+    display: inline-block;
+    font-family: Manrope;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    pointer-events: none;
+    color: var(--text-color);
 }
 #pagination-search li:hover {
-  background-color: #39f;
+  background-color: var(--accent-color);
 }
 #pagination-search li:hover a {
-  color: #fff;
+  color: var(--white-color);
+    background-color: var(--accent-color);
 }
 
 .settings-search {
@@ -89,9 +140,13 @@
   margin-bottom: 10px;
 }
 .settings-search .form-input label {
-  font-size: 18px;
-  font-weight: 600;
-  display: block;
+  font-family: Manrope;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    display: block;
 }
 .settings-search .form-input > input {
   width: 100%;
@@ -100,7 +155,6 @@
   font-size: 18px;
   outline: none;
   padding: 10px 17px;
-  border-radius: 5px;
   border: 1px solid #b6b6b6;
 }
 .settings-search .wrapper-form-check {
@@ -124,7 +178,12 @@
 }
 
 .s_prew-search {
-  font-size: 24px;
+  font-family: Manrope;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
 }
 
 /*# sourceMappingURL=style.css.map */
@@ -132,6 +191,13 @@
 .pagination-search-hidden {
   display: none;
 }
+a.fas {
+  height: 28px;
+}
 .pg-item-dot {
-  // стили для точек
+  width: 22px;
+  margin-left: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border: 0px solid var(--accent-color);
 }

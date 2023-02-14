@@ -1,3 +1,4 @@
+// ================================================  PAGINATION
 const pg = document.getElementById('pagination-search');
 const btnNextPg = document.querySelector('button.next-page-search');
 const btnPrevPg = document.querySelector('button.prev-page-search');
@@ -5,13 +6,65 @@ const btnPrevPg = document.querySelector('button.prev-page-search');
 // const btnLastPg = document.querySelector('button.last-page');
 // let page = 1;
 // let sumPages;
-const valuePage = {
-  curPage: 1,
-  numLinksTwoSide: 1,
-  totalPages: 100,
-};
+let valuePage;
+let refs;
+let dataSource;
+let render;
 
-pagination();
+const paginationSearch = document.querySelector('.pagin-search');
+const load = document.querySelector('.news-loader__container.container');
+paginationSearch.addEventListener('click', onClickPAgination);
+
+async function onClickPAgination(e) {
+  if (
+    !e.target.classList.contains('pg-item-search') &&
+    !e.target.classList.contains('next-page-search') &&
+    !e.target.classList.contains('prev-page-search')
+  ) {
+    return;
+  }
+  let btn = +valuePage.curPage - 1;
+  if (e.target.classList.contains('next-page-search')) {
+    btn += 1;
+  }
+  if (e.target.classList.contains('prev-page-search')) {
+    btn -= 1;
+  }
+  if (window.innerWidth < 768) {
+    windowWidth = 4;
+    wetherPosition = -1;
+  }
+  if (window.innerWidth > 768 && window.innerWidth < 1280) {
+    windowWidth = 7;
+    wetherPosition = 0;
+  }
+  if (window.innerWidth >= 1280) {
+    windowWidth = 8;
+    wetherPosition = 1;
+  }
+  const value = refs.input.value;
+  load.classList.remove('is-hidden');
+  refs.newsList.innerHTML = '';
+  window.scrollTo(0, 0);
+  const data = await dataSource(value, btn);
+  load.classList.add('is-hidden');
+  const markup = render(data, windowWidth);
+  refs.newsList.innerHTML = markup;
+  getWetherPosition();
+}
+
+// async function fetchByPagination(value, page) {
+//   const articleFetch = await fetch(
+//     `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${value}&api-key=eQ8t8FWqeAGnKDTtIFrHmgZCflFrUTcV&page=${page}`
+//   );
+//   const articles = await articleFetch.json();
+//   let { response } = articles;
+//   //   console.log(response.meta.hits);
+//   let { docs } = response;
+//   //   console.log(docs);
+
+//   return docs;
+// }
 
 pg.addEventListener('click', e => {
   const ele = e.target;
@@ -28,6 +81,13 @@ pg.addEventListener('click', e => {
 });
 
 // DYNAMIC PAGINATION
+function initPagination(pageObj, refsObj, dataSourceFunc, renderFunc) {
+  valuePage = pageObj;
+  refs = refsObj;
+  dataSource = dataSourceFunc;
+  render = renderFunc;
+}
+
 function pagination() {
   const { totalPages, curPage, numLinksTwoSide: delta } = valuePage;
 
@@ -35,7 +95,7 @@ function pagination() {
 
   let render = '';
   let renderTwoSide = '';
-  let dot = `<li class="pg-item"><a class="pg-link-search">...</a></li>`;
+  let dot = `<li class="pg-item-dot"><a class="pg-link-search">...</a></li>`;
   let countTruncate = 0; // use for ellipsis - truncate left side or right side
 
   // use for truncate two side
@@ -127,3 +187,12 @@ function handleButtonRight() {
     //  btnLastPg.disabled = false;
   }
 }
+function textCardFormat(element) {
+  let textFormat = element;
+  if (textFormat.length > 80) {
+    textFormat = element.slice(0, 80) + '...';
+  }
+  return textFormat;
+}
+
+export { initPagination, pagination, textCardFormat };
