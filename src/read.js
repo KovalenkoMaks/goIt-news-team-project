@@ -2,7 +2,7 @@ import './js/mobile_menu';
 // import './js/search';
 import './js/dark_mode';
 import { getMarkupLoadMore } from './js/read_more_date';
-const dateListEl = document.querySelector('.date-list');
+export const dateListEl = document.querySelector('.date-list');
 const undefinedReadeMore = document.querySelector('.underfined');
 function arrLocal() {
   const local = JSON.parse(localStorage.getItem('readMoreLocal'));

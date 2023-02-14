@@ -1,0 +1,142 @@
+.page-container-search {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 2rem;
+  background-color: #fff;
+  box-shadow: 0 0 10px #d3d3d3;
+  border-radius: 5px;
+  padding: 10px 15px;
+}
+
+.page-container-search a {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--color-dark);
+  pointer-events: none;
+}
+
+.page-container-search button {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.page-containe-searchr button:disabled a {
+  color: #aaadc7;
+}
+
+#pagination-search {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#pagination-search li {
+  list-style: none;
+  cursor: pointer;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0 3px;
+}
+
+#pagination-search li.active {
+  background-color: #39f;
+}
+
+#pagination-search li.active a {
+  color: #fff;
+}
+
+#pagination-search li a {
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 13px;
+  display: inline-block;
+  line-height: 1;
+  color: #a9a9a9;
+  font-size: 20px;
+  pointer-events: none;
+}
+
+#pagination-search li:hover {
+  background-color: #39f;
+}
+
+#pagination-search li:hover a {
+  color: #fff;
+}
+
+.settings-search {
+  padding-top: 3rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+.settings-search .form-input {
+  margin-bottom: 1rem;
+}
+
+.settings-search .form-input:not(:last-child) {
+  margin-right: 3rem;
+}
+
+.settings-search .form-input > label {
+  margin-bottom: 10px;
+}
+
+.settings-search .form-input label {
+  font-size: 18px;
+  font-weight: 600;
+  display: block;
+}
+
+.settings-search .form-input > input {
+  width: 100%;
+}
+
+.settings-search .form-input input {
+  font-size: 18px;
+  outline: none;
+  padding: 10px 17px;
+  border-radius: 5px;
+  border: 1px solid #b6b6b6;
+}
+
+.settings-search .wrapper-form-check {
+  display: flex;
+}
+
+.settings-search .wrapper-form-check .form-check {
+  display: flex;
+  line-height: 1;
+  align-items: center;
+}
+
+.settings-search .wrapper-form-check .form-check:not(:last-child) {
+  margin-right: 10px;
+}
+
+.settings-search .wrapper-form-check label {
+  margin-left: 10px;
+}
+
+@media (max-width: 992px) {
+  .settings-search {
+    flex-direction: column;
+  }
+}
+.s_prew-search {
+  font-size: 24px;
+}
+
+
+.pagination-search-hidden {
+  display: none;
+}/*# sourceMappingURL=paginator-search.css.map */
