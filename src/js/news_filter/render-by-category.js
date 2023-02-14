@@ -13,12 +13,7 @@ const refs = {
 let windowWidth;
 let wetherPosition;
 
-let firstRender;
-let sliceItemsAfterFirstRender;
-let secondRender;
-let sliceItemsAfterSecondRender;
-let thirdRender;
-let lastRender;
+let dataForPag;
 
 async function renderByCategory(selectedCategory) {
   // console.log(selectedCategory.replaceAll(' ', '-'));
@@ -45,6 +40,7 @@ async function renderByCategory(selectedCategory) {
   }
   try {
     const dataNewsArray = await getArticleByCategory(selectedCategory);
+    dataForPag = dataNewsArray;
     const markup = getFiltredArr(dataNewsArray, windowWidth)
       .map(data => {
         let opacity = '';
@@ -71,20 +67,20 @@ async function renderByCategory(selectedCategory) {
   }
 }
 
-function renderforPagination(data) {
-  return data
-    .map(data => {
-      let opacity = '';
-      let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
-      let check = checkLokalStorage(data, localArr);
-      if (check === true) {
-        opacity = 'opacity';
-      }
+// function renderforPagination(data) {
+//   return data
+//     .map(data => {
+//       let opacity = '';
+//       let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
+//       let check = checkLokalStorage(data, localArr);
+//       if (check === true) {
+//         opacity = 'opacity';
+//       }
 
-      return createMarkup(data, opacity);
-    })
-    .join('');
-}
+//       return createMarkup(data, opacity);
+//     })
+//     .join('');
+// }
 
 let media;
 function createMarkup(
@@ -245,7 +241,16 @@ const btnPrevPg = document.querySelector('button.prev-page-cat');
 // const btnFirstPg = document.querySelector('button.first-page');
 // const btnLastPg = document.querySelector('button.last-page');
 
-document.querySelector('.pagin-cat').addEventListener('click', e => {
+let firstRender;
+let sliceItemsAfterFirstRender;
+let secondRender;
+let sliceItemsAfterSecondRender;
+let thirdRender;
+let lastRender;
+
+document.querySelector('.pagin-cat').addEventListener('click', onPagClick);
+
+async function onPagClick(e) {
   let btn = valuePage.curPage;
   if (e.target.classList.contains('next-page')) {
     btn += 1;
@@ -253,38 +258,133 @@ document.querySelector('.pagin-cat').addEventListener('click', e => {
   if (e.target.classList.contains('prev-page')) {
     btn -= 1;
   }
+  if (window.innerWidth < 768) {
+    windowWidth = 4;
+    wetherPosition = -1;
+  }
+  if (window.innerWidth >= 768 && window.innerWidth < 1280) {
+    windowWidth = 7;
+    wetherPosition = 0;
+  }
+  if (window.innerWidth >= 1280) {
+    windowWidth = 8;
+    wetherPosition = 1;
+  }
+
+  const dataNewsArray = await dataForPag;
+  firstRender = await dataNewsArray.slice(0, 8);
+  sliceItemsAfterFirstRender = await dataNewsArray.slice(8);
+  secondRender = await sliceItemsAfterFirstRender.slice(0, 8);
+  sliceItemsAfterSecondRender = await sliceItemsAfterFirstRender.slice(8);
+  thirdRender = await sliceItemsAfterSecondRender.slice(0, 8);
+  lastRender = await sliceItemsAfterSecondRender.slice(8);
+
   switch (btn) {
     case 1:
-      const markup = renderforPagination(firstRender);
+      window.scrollTo(0, 0);
+      const markup = getFiltredArr(firstRender, windowWidth)
+        .map(data => {
+          let opacity = '';
+          let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
+          let check = checkLokalStorage(data, localArr);
+          if (check === true) {
+            opacity = 'opacity';
+          }
+
+          return createMarkup(data, opacity);
+        })
+        .join('');
       refs.listNewsEl.innerHTML = markup;
-      refs.loader.classList.add('is-hidden');
 
       getWetherPosition();
+
+      // const markup = renderforPagination(firstRender);
+      // refs.listNewsEl.innerHTML = markup;
+      // refs.loader.classList.add('is-hidden');
+
+      // getWetherPosition();
       break;
     case 2:
-      const markup2 = renderforPagination(secondRender);
+      window.scrollTo(0, 0);
+      const markup2 = getFiltredArr(secondRender, windowWidth)
+        .map(data => {
+          let opacity = '';
+          let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
+          let check = checkLokalStorage(data, localArr);
+          if (check === true) {
+            opacity = 'opacity';
+          }
+
+          return createMarkup(data, opacity);
+        })
+        .join('');
       refs.listNewsEl.innerHTML = markup2;
-      refs.loader.classList.add('is-hidden');
 
       getWetherPosition();
+      // const markup2 = renderforPagination(secondRender);
+      // refs.listNewsEl.innerHTML = markup2;
+      // refs.loader.classList.add('is-hidden');
+
+      // getWetherPosition();
       break;
     case 3:
-      const markup3 = renderforPagination(thirdRender);
+      window.scrollTo(0, 0);
+      const markup3 = getFiltredArr(thirdRender, windowWidth)
+        .map(data => {
+          let opacity = '';
+          let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
+          let check = checkLokalStorage(data, localArr);
+          if (check === true) {
+            opacity = 'opacity';
+          }
+
+          return createMarkup(data, opacity);
+        })
+        .join('');
       refs.listNewsEl.innerHTML = markup3;
-      refs.loader.classList.add('is-hidden');
 
       getWetherPosition();
       break;
     case 4:
-      const markup4 = renderforPagination(lastRender);
+      window.scrollTo(0, 0);
+      const markup4 = getFiltredArr(lastRender, windowWidth)
+        .map(data => {
+          let opacity = '';
+          let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
+          let check = checkLokalStorage(data, localArr);
+          if (check === true) {
+            opacity = 'opacity';
+          }
+
+          return createMarkup(data, opacity);
+        })
+        .join('');
       refs.listNewsEl.innerHTML = markup4;
-      refs.loader.classList.add('is-hidden');
 
       getWetherPosition();
+      // const markup4 = renderforPagination(lastRender);
+      // refs.listNewsEl.innerHTML = markup4;
+      // refs.loader.classList.add('is-hidden');
+
+      // getWetherPosition();
       break;
   }
-  window.scrollTo(0, 0);
-});
+}
+
+function renderforPagination(data) {
+  return data
+    .map(data => {
+      let opacity = '';
+      let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
+      let check = checkLokalStorage(data, localArr);
+      if (check === true) {
+        opacity = 'opacity';
+      }
+
+      return createMarkup(data, opacity);
+    })
+    .join('');
+}
 
 const valuePage = {
   curPage: 1,
