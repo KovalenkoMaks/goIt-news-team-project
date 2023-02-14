@@ -1,3 +1,17 @@
+.calendar-form__text {
+  display: none;
+  @media screen and (min-width: $desktop) {
+    display: inline;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.38;
+    color: var(--text-color);
+    margin-right: -180px;
+    margin-left: 111px;
+  }
+}
 .calendar-form {
   position: relative;
   @media screen and (min-width: $desktop) {
@@ -34,11 +48,12 @@
 }
 .calendar__button-calendar {
   position: absolute;
-  fill: var(--accent-color);
+  fill: #4440f6;
   margin-left: 12px;
 }
 .calendar__button-calendar.switchedColor {
-  color: var(--white-color);
+  z-index: 1;
+  fill: #ffffff;
 }
 .input-form {
   position: relative;
@@ -51,7 +66,7 @@
   margin-left: 12px;
   display: flex;
   position: absolute;
-  z-index: 3;
+  z-index: 1;
   fill: var(--accent-color);
   right: 12px;
 }
@@ -76,7 +91,7 @@
   margin-left: 0;
   padding: 16px 16px 20px 16px;
   width: 250px;
-  height: 250px;
+  height: 240px;
   right: 0px;
   background: var(--white-color);
   box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.1);

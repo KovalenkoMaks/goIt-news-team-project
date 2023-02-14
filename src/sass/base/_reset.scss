@@ -22,6 +22,7 @@ ol {
 a {
   text-decoration: none;
   color: inherit;
+  cursor: url(../images/cursor-hand.svg), pointer;
 }
 
 img {
@@ -38,7 +39,7 @@ button {
   padding: 0;
   margin: 0;
   font-family: inherit;
-  cursor: pointer;
+  cursor: url(../images/cursor-hand.svg), pointer;
   background-color: inherit;
   box-shadow: none;
 }

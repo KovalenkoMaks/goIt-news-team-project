@@ -1,72 +1,101 @@
 import { getArticleByCategory } from '../api/index';
 import { checkLokalStorage } from '../markup';
 import { getWeatherRefs } from '../weather';
+import {textCardFormat, dateNews} from '../markup';
 
 const refs = {
-    listNewsEl: document.querySelector('ul.list-news'),
-    weather: document.querySelector('.weather'),
-    errorMarkup: document.querySelector('.underfined'),
-    pagination: document.querySelector('.pagination'),
-    newsList: document.querySelector('.list-news'),
-}
+  listNewsEl: document.querySelector('ul.list-news'),
+  weather: document.querySelector('.weather'),
+  errorMarkup: document.querySelector('.underfined'),
+  pagination: document.querySelector('.pagination'),
+  newsList: document.querySelector('.list-news'),
+  loader: document.querySelector('.news-loader__container.container'),
+};
 let windowWidth;
 let wetherPosition;
 
 async function renderByCategory(selectedCategory) {
-    // console.log(selectedCategory.replaceAll(' ', '-'));
-    if (window.innerWidth < 768) {
-        windowWidth = 4;
-        wetherPosition = -1;
+  // console.log(selectedCategory.replaceAll(' ', '-'));
+  if (window.innerWidth < 768) {
+    windowWidth = 4;
+    wetherPosition = -1;
+  }
+  if (window.innerWidth >= 768 && window.innerWidth < 1280) {
+    windowWidth = 7;
+    wetherPosition = 0;
+  }
+  if (window.innerWidth >= 1280) {
+    windowWidth = 8;
+    wetherPosition = 1;
+  }
+
+  if (!selectedCategory) {
+    return;
+  }
+
+  if (refs.pagination.classList.contains('pagination-hidden')) {
+    refs.pagination.classList.remove('pagination-hidden');
+    refs.errorMarkup.classList.add('underfined-hidden');
+  }
+  const dataNewsArray = await getArticleByCategory(selectedCategory);
+  const markup = dataNewsArray
+    .map(data => {
+      let opacity = '';
+      let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
+      let check = checkLokalStorage(data, localArr);
+      if (check === true) {
+        opacity = 'opacity';
       }
-    if (window.innerWidth >= 768 && window.innerWidth < 1280) {
-        windowWidth = 7;
-        wetherPosition = 0;
-      }
-    if (window.innerWidth >= 1280) {
-        windowWidth = 8;
-        wetherPosition = 1;
-      }
 
-    if (!selectedCategory) {
-        return
-    }
-    
-    try {
+      return createMarkup(data, opacity);
+    })
+    .join('');
+  refs.listNewsEl.innerHTML = markup;
+  refs.loader.classList.add('is-hidden');
 
-        if (refs.pagination.classList.contains('pagination-hidden')) {
-            refs.pagination.classList.remove('pagination-hidden');
-            refs.errorMarkup.classList.add('underfined-hidden');
-        }
-
-        const dataNewsArray = await getArticleByCategory(selectedCategory.replace(' ', '_'));
-        const markup = dataNewsArray.map(data => {
-            let opacity = '';
-            let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
-            let check = checkLokalStorage(data, localArr);
-            if (check === true) {
-                opacity = 'opacity';
-            }
-            // console.log(data);
-            return createMarkup(data, opacity);
-        }).join('');
-        refs.listNewsEl.innerHTML = markup;
-
-        getWetherPosition();
-    } catch {
-        // если не удалось найти по категории
-
-        refs.newsList.innerHTML = '';
-        refs.pagination.classList.add('pagination-hidden');
-        //  refs.weather.classList.add('weather-hidden');
-        refs.errorMarkup.classList.remove('underfined-hidden');
-    }
+  getWetherPosition();
+  try {
+  } catch {
+    // если не удалось найти по категории
+    refs.loader.classList.add('is-hidden');
+    refs.newsList.innerHTML = '';
+    refs.pagination.classList.add('pagination-hidden');
+    //  refs.weather.classList.add('weather-hidden');
+    refs.errorMarkup.classList.remove('underfined-hidden');
+  }
 }
-function createMarkup({section, multimedia, title, first_published_date, abstract}, opacity) {
-    return `<li class="list-news__item ${opacity}">
+let media;
+function createMarkup(
+  { section, multimedia, title, first_published_date, abstract, url, uri },
+  opacity
+) {
+  if (!section) {
+    section = '';
+  }
+  const mediaElem = multimedia;
+  let mediaUrl =
+    'https://img.freepik.com/free-vector/internet-network-warning-404-error-page-or-file-not-found-for-web-page_1150-48326.jpg?w=996&t=st=1676297842~exp=1676298442~hmac=6cad659e6a3076ffcb73bbb246c4f7e5e1bf7cee7fa095d67fcced0a51c2405c';
+  if (mediaElem !== null) {
+    mediaUrl = multimedia[2].url;
+  }
+  if (!title) {
+    title = '';
+  }
+  if (!abstract) {
+    abstract = '';
+  }
+  function textCardFormat(element) {
+    let textFormat = abstract;
+    if (textFormat.length > 80) {
+      return (textFormat = abstract.slice(0, 80) + '...');
+    }
+    return textFormat;
+  }
+  return `<li class="list-news__item ${opacity}">
     <article class="item-news__article">
          <div class="item-news__wrapper-img">
               <img class="item-news__img"
-                    src="${multimedia[2].url}"
+                    src="${mediaUrl}"
                     alt="">
               <p class="item-news__category">${section}</p>
               <button type="button" class="item-news__add-to-favorite">
@@ -93,28 +122,28 @@ function createMarkup({section, multimedia, title, first_published_date, abstrac
               ${title}
          </h2>
          <p class="item-news__description">
-              ${abstract}</p>
+              ${textCardFormat(abstract)}</p>
          </div>
          <div class="item-news__info">
               <span class="item-news__info-date">
-                    ${first_published_date.replaceAll('T', ' ').slice(0, 19)}
+              ${first_published_date.split('').splice(0, 10).join('').replaceAll('-', '/')}
               </span>
-              <a target="_blank" class="item-news__info-link" href="${'elem.web_url'}">Read more</a>
-      <p class='is-hidden'>${'elem.uri'}</p>
+              <a target="_blank" class="item-news__info-link" href="${url}">Read more</a>
+      <p class='is-hidden'>${uri}</p>
          </div>
     </article>
-</li>`
-};
+</li>`;
+}
 function getWetherPosition() {
-    let wetherPlaceDesk = '';
-    let secondElInList = '';
-  
-    if (wetherPosition >= 0) {
-      wetherPlaceDesk =
-        document.querySelector('.list-news').children[wetherPosition];
-      secondElInList = document.createElement('li');
-      secondElInList.classList.add('list-news__item');
-      secondElInList.innerHTML = `<div class="weather">
+  let wetherPlaceDesk = '';
+  let secondElInList = '';
+
+  if (wetherPosition >= 0) {
+    wetherPlaceDesk =
+      document.querySelector('.list-news').children[wetherPosition];
+    secondElInList = document.createElement('li');
+    secondElInList.classList.add('list-news__item');
+    secondElInList.innerHTML = `<div class="weather">
       <div class="weather__info">
         <span class="weather__deg"></span>
         <div class="weather__geo">
@@ -142,13 +171,13 @@ function getWetherPosition() {
         >weather for week</a
       >
    </div>`;
-      wetherPlaceDesk.after(secondElInList);
-    } else {
-      wetherPlaceDesk = document.querySelector('.list-news').children[0];
-      //  console.log(wetherPlaceDesk);
-      secondElInList = document.createElement('li');
-      secondElInList.classList.add('list-news__item');
-      secondElInList.innerHTML = `<div class="weather">
+    wetherPlaceDesk.after(secondElInList);
+  } else {
+    wetherPlaceDesk = document.querySelector('.list-news').children[0];
+    //  console.log(wetherPlaceDesk);
+    secondElInList = document.createElement('li');
+    secondElInList.classList.add('list-news__item');
+    secondElInList.innerHTML = `<div class="weather">
       <div class="weather__info">
         <span class="weather__deg"></span>
         <div class="weather__geo">
@@ -176,11 +205,12 @@ function getWetherPosition() {
         >weather for week</a
       >
    </div>`;
-      wetherPlaceDesk.before(secondElInList);
-    }
-  
-    // console.log(secondElInList);
-    getWeatherRefs();
-    // return secondElInList;
+    wetherPlaceDesk.before(secondElInList);
   }
-export {renderByCategory};
+
+  // console.log(secondElInList);
+  getWeatherRefs();
+  // return secondElInList;
+}
+
+export { renderByCategory };

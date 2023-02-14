@@ -1,12 +1,23 @@
 import './js/mobile_menu';
 import './js/search';
 import './js/dark_mode';
+
+const undefinedReadeMore = document.querySelector('.underfined');
 const block = document.querySelector('.list-news');
 const newList = document.querySelector('.list-news');
+
+document
+  .querySelector('.news-loader__container.container')
+  .classList.add('is-hidden');
+
+document.querySelector('.page-container').classList.add('pagination-hidden');
 
 newList.addEventListener('click', removeToFavorite);
 const dataInLocal = JSON.parse(localStorage.getItem('newsSection'));
 console.log(dataInLocal);
+if (dataInLocal === null) {
+  undefinedReadeMore.classList.remove('underfined-hidden');
+}
 function removeToFavorite(e) {
   const btn = e.target.closest(`.item-news__remove-to-favorite-btn`);
   if (!btn) return;
@@ -27,8 +38,10 @@ function removeToFavorite(e) {
 }
 
 function getLocalData() {
+  if (localStorage.getItem('newsSection') === null) return;
   if (JSON.parse(localStorage.getItem('newsSection')).length === 0) {
     console.log('error');
+    undefinedReadeMore.classList.remove('underfined-hidden');
     return;
   }
   const data = JSON.parse(localStorage.getItem('newsSection'));
@@ -39,7 +52,7 @@ function getLocalData() {
 getLocalData();
 
 function createMarkup(arr) {
-  return arr
+  const newArr = arr
     .map(elem => {
       return `<li class="list-news__item">
 	  <article class="item-news__article" id="${elem.id}">
@@ -77,4 +90,6 @@ function createMarkup(arr) {
  </li>`;
     })
     .join('');
+  return newArr;
 }
+document.querySelector('.news-loader__container ').classList.add('is-hidden');
