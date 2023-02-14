@@ -85,9 +85,9 @@ function createMarkup(
     abstract = `${' '}<br>${' '}<br>`;
   }
   function textCardFormat(element) {
-    let textFormat = abstract;
+    let textFormat = element;
     if (textFormat.length > 80) {
-      return (textFormat = abstract.slice(0, 80) + '...');
+      textFormat = element.slice(0, 80) + '...';
     }
     return textFormat;
   }
