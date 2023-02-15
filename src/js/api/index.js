@@ -28,7 +28,7 @@ async function getSearchArticle(value, page) {
     let date = JSON.parse(localStorage.getItem('date'))
       .replace('/', '')
       .replace('/', '');
-    console.log(date);
+    // console.log(date);
     dateForUrl = ` &begin_date=${date}&end_date=${date}`;
   } catch (error) {
     // dateForUrl = '';

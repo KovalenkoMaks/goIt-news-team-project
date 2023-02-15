@@ -6,7 +6,7 @@ import { getWeatherRefs } from '../weather';
 
 let windowWidth = 0;
 let wetherPosition = 0;
-console.log(window.innerWidth);
+// console.log(window.innerWidth);
 window.addEventListener(
   'resize',
   debounce(e => {

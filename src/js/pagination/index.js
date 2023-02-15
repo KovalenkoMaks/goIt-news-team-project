@@ -55,7 +55,7 @@ refs.pagination.addEventListener('click', e => {
     case 2:
       sliceItems = deleteItems.slice(0, 8);
       uptadeDeleteItems = deleteItems.slice(8);
-      console.log(sliceItems);
+      // console.log(sliceItems);
       const markup2 = render(sliceItems, windowWidth);
       // console.log(markup2);
       newsList.innerHTML = markup2;
@@ -79,8 +79,8 @@ refs.pagination.addEventListener('click', e => {
 });
 
 function render(data, number) {
-  console.log(data);
-  console.log(number);
+  // console.log(data);
+  // console.log(number);
   let filtredArr = getFiltredArr(data, number);
   //   console.log(filtredArr);
   return filtredArr

@@ -35,7 +35,7 @@ async function test(e) {
   const value = refs.input.value;
   refs.loader.classList.remove('is-hidden');
   const data = await getSearchArticle(value, page);
-  console.log(data);
+  // console.log(data);
   if (data.length === 0) {
     refs.paginator_search.classList.add('pagination-search-hidden');
   }

@@ -27,7 +27,7 @@ function removeToFavorite(e) {
   if (!dataInLocal) {
     return;
   }
-  console.log(btn.parentNode.parentNode.parentNode.parentNode);
+  // console.log(btn.parentNode.parentNode.parentNode.parentNode);
   let uri =
     btn.parentNode.parentNode.nextElementSibling.nextElementSibling
       .lastElementChild.textContent;
