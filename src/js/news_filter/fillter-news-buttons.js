@@ -114,7 +114,7 @@ async function getCategoryRender() {
       );
       refs.listButtons.addEventListener('click', evt => {
         onClickCategory(evt);
-        console.log('xaxa');
+
         refs.othersBtEl.textContent = 'Others';
       });
 
@@ -122,7 +122,6 @@ async function getCategoryRender() {
         .querySelector('.filter-category__list')
         .addEventListener('click', evt => {
           onClickCategory(evt);
-          console.log('xyxy');
 
           if (selectedCategory !== undefined) {
             changeButtonName();
@@ -142,7 +141,6 @@ function addActiveClass(evt) {
 function onClickCategory(evt) {
   addActiveClass(evt);
   if (evt.target.textContent.length > 20) {
-    console.log(selectedCategory);
     return;
   }
   selectedCategory = evt.target.textContent;

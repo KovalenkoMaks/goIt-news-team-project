@@ -16,8 +16,6 @@ let wetherPosition;
 let dataForPag;
 
 async function renderByCategory(selectedCategory) {
-  // console.log('tyt');
-  // console.log(selectedCategory.replaceAll(' ', '-'));
   if (window.innerWidth < 768) {
     windowWidth = 4;
     wetherPosition = -1;
@@ -40,10 +38,8 @@ async function renderByCategory(selectedCategory) {
   //   refs.errorMarkup.classList.add('underfined-hidden');
   // }
   try {
-    console.log('try1');
-    // console.log(selectedCategory);
     const dataNewsArray = await getArticleByCategory(selectedCategory);
-    // console.log(dataNewsArray);
+
     dataForPag = dataNewsArray;
     const markup = getFiltredArr(dataNewsArray, windowWidth)
       .map(data => {
@@ -53,11 +49,11 @@ async function renderByCategory(selectedCategory) {
         if (check === true) {
           opacity = 'opacity';
         }
-        // console.log('before createMarkup');
+
         return createMarkup(data, opacity);
       })
       .join('');
-    // console.log(markup);
+
     refs.listNewsEl.innerHTML = markup;
     refs.loader.classList.add('is-hidden');
 
@@ -202,7 +198,7 @@ function getWetherPosition() {
     wetherPlaceDesk.after(secondElInList);
   } else {
     wetherPlaceDesk = document.querySelector('.list-news').children[0];
-    //  console.log(wetherPlaceDesk);
+
     secondElInList = document.createElement('li');
     secondElInList.classList.add('list-news__item');
     secondElInList.innerHTML = `<div class="weather">
@@ -236,7 +232,6 @@ function getWetherPosition() {
     wetherPlaceDesk.before(secondElInList);
   }
 
-  // console.log(secondElInList);
   getWeatherRefs();
   // return secondElInList;
 }
@@ -408,7 +403,7 @@ pg.addEventListener('click', e => {
 
     valuePage.curPage = pageNumber;
     pagination(valuePage);
-    console.log(valuePage);
+
     handleButtonLeft();
     handleButtonRight();
   }
@@ -506,7 +501,6 @@ function handleButtonLeft() {
 }
 function handleButtonRight() {
   if (valuePage.curPage === valuePage.totalPages) {
-    console.log(valuePage.curPage);
     btnNextPg.disabled = true;
     //  btnLastPg.disabled = true;
   } else {
