@@ -53,7 +53,7 @@ async function renderByCategory(selectedCategory) {
         if (check === true) {
           opacity = 'opacity';
         }
-
+        console.log('before createMarkup');
         return createMarkup(data, opacity);
       })
       .join('');
