@@ -21,13 +21,19 @@ const refs = {
 // console.log(refs.pagination);
 
 refs.pagination.addEventListener('click', e => {
-  let btn = valuePage.curPage;
+  // let btn = valuePage.curPage;
 
-  if (e.target.classList.contains('next-page')) {
-    btn += 1;
+  if (
+    e.target.classList.contains('next-page') ||
+    e.target.classList.contains('btn-next')
+  ) {
+    valuePage.curPage += 1;
   }
-  if (e.target.classList.contains('prev-page')) {
-    btn -= 1;
+  if (
+    e.target.classList.contains('prev-page') ||
+    e.target.classList.contains('btn-prev')
+  ) {
+    valuePage.curPage -= 1;
   }
   sliceItems = null;
   if (window.innerWidth < 768) {
@@ -42,7 +48,7 @@ refs.pagination.addEventListener('click', e => {
     windowWidth = 8;
     wetherPosition = 1;
   }
-  switch (btn) {
+  switch (valuePage.curPage) {
     case 1:
       getPopularRender();
       break;
