@@ -61,7 +61,7 @@ async function getArticleByCategory(value) {
   const articles = await articleFetch.json();
   let { results } = articles;
   console.log(`result ${articles}`);
-  console.log(`articles.result ${JSON.parse(articles.results)}`);
+  console.log(`articles.result///`, JSON.parse(articles.results));
   return results;
 }
 
