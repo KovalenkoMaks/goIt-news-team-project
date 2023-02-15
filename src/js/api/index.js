@@ -51,7 +51,9 @@ async function getSearchArticle(value, page) {
   return docs;
 }
 async function getArticleByCategory(value) {
-  newValue = encodeURIComponent(value);
+  console.log(`перед транслит: ${value}`);
+  let newValue = encodeURIComponent(value);
+  console.log(`after транслит: ${newValue}`);
   const articleFetch = await fetch(
     `${BASE_URL}/news/v3/content/all/${newValue}.json?${KEY}&limit=26`
   );
