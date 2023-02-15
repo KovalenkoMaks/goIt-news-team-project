@@ -12,6 +12,12 @@ const refs = {
   listNews: document.querySelector('ul.list-news'),
 };
 
+refs.listButtons.addEventListener('click', () => {
+  document
+    .querySelector('.page-container-cat')
+    .classList.add('pagination-cat-hidden');
+});
+
 let selectedCategory;
 let selectedCategoryEl;
 
@@ -52,6 +58,7 @@ async function getCategoryRender() {
       );
       refs.listButtons.addEventListener('click', evt => {
         onClickCategory(evt);
+
         refs.othersBtEl.textContent = 'Categories';
         refs.pagination.classList.add('.pagination-search-hidden');
       });
@@ -107,12 +114,15 @@ async function getCategoryRender() {
       );
       refs.listButtons.addEventListener('click', evt => {
         onClickCategory(evt);
+
         refs.othersBtEl.textContent = 'Others';
       });
+
       document
         .querySelector('.filter-category__list')
         .addEventListener('click', evt => {
           onClickCategory(evt);
+
           if (selectedCategory !== undefined) {
             changeButtonName();
           }
@@ -131,7 +141,6 @@ function addActiveClass(evt) {
 function onClickCategory(evt) {
   addActiveClass(evt);
   if (evt.target.textContent.length > 20) {
-    console.log(selectedCategory);
     return;
   }
   selectedCategory = evt.target.textContent;
@@ -139,6 +148,9 @@ function onClickCategory(evt) {
   renderByCategory(selectedCategory.toLowerCase());
   refs.pagination.classList.add('pagination-search-hidden');
   document.querySelector('.page-container').classList.add('pagination-hidden');
+  document
+    .querySelector('.page-container-cat')
+    .classList.remove('pagination-cat-hidden');
   //   document
   //     .querySelector('.paginator_search')
   //     .classList.add('pagination-search-hidden');
@@ -204,4 +216,9 @@ function onClickListNews(evt) {
   selectedCategory = evt.target.textContent;
   refs.loader.classList.remove('is-hidden');
   renderByCategory(selectedCategory.toLowerCase());
+  document
+    .querySelector('.page-container-cat')
+    .classList.remove('pagination-cat-hidden');
 }
+
+// ===========================================================================

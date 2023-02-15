@@ -14,6 +14,10 @@ window.addEventListener(
   }, 1000)
 );
 
+document
+  .querySelector('.page-container-cat')
+  .classList.add('pagination-cat-hidden');
+
 async function getPopularRender() {
   if (window.innerWidth < 768) {
     windowWidth = 4;

@@ -70,20 +70,16 @@ async function renderWeater() {
     `https://openweathermap.org/img/wn/${icon}@4x.png`
   );
 }
-// setTimeout(() => {
-//   renderWeater();
-//   getGeoposition();
-// }, 2000);
 
 async function getGeoposition() {
   if (navigator.geolocation) {
     await navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
         fetchWeatherByGeo(latitude, longitude).then(data => {
-          const { feels_like } = data.main;
+          const { temp } = data.main;
           const weather = data.weather[0];
           const { icon } = data.weather[0];
-          refs.degs.textContent = `${Math.floor(feels_like)}°`;
+          refs.degs.textContent = `${Math.floor(temp)}°`;
           refs.weather.textContent = weather.main;
           refs.city.textContent = data.name;
 

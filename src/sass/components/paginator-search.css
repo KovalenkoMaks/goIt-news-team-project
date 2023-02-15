@@ -10,15 +10,6 @@
   padding: 10px 15px;
 }
 
-.pagin-search {
-  display: flex;
-  justify-content: center;
-  height: 28px;
-  @media screen and (min-width: $tablet) {
-    height: 31px;
-  }
-}
-
 .page-container-search a {
   display: flex;
   align-items: center;
@@ -28,6 +19,7 @@
   color: var(--color-dark);
   pointer-events: none;
 }
+
 .page-container-search button {
   display: flex;
   justify-content: center;
@@ -35,6 +27,7 @@
   background-color: transparent;
   border: none;
 }
+
 .page-containe-searchr button:disabled a {
   color: #aaadc7;
 }
@@ -44,6 +37,7 @@
   align-items: center;
   flex-wrap: wrap;
 }
+
 #pagination-search li {
   list-style: none;
   cursor: pointer;
@@ -51,12 +45,15 @@
   overflow: hidden;
   margin: 0 3px;
 }
+
 #pagination-search li.active {
   background-color: #39f;
 }
+
 #pagination-search li.active a {
   color: #fff;
 }
+
 #pagination-search li a {
   text-decoration: none;
   font-weight: 600;
@@ -67,9 +64,11 @@
   font-size: 20px;
   pointer-events: none;
 }
+
 #pagination-search li:hover {
   background-color: #39f;
 }
+
 #pagination-search li:hover a {
   color: #fff;
 }
@@ -79,23 +78,29 @@
   display: flex;
   align-items: flex-start;
 }
+
 .settings-search .form-input {
   margin-bottom: 1rem;
 }
+
 .settings-search .form-input:not(:last-child) {
   margin-right: 3rem;
 }
+
 .settings-search .form-input > label {
   margin-bottom: 10px;
 }
+
 .settings-search .form-input label {
   font-size: 18px;
   font-weight: 600;
   display: block;
 }
+
 .settings-search .form-input > input {
   width: 100%;
 }
+
 .settings-search .form-input input {
   font-size: 18px;
   outline: none;
@@ -103,35 +108,35 @@
   border-radius: 5px;
   border: 1px solid #b6b6b6;
 }
+
 .settings-search .wrapper-form-check {
   display: flex;
 }
+
 .settings-search .wrapper-form-check .form-check {
   display: flex;
   line-height: 1;
   align-items: center;
 }
+
 .settings-search .wrapper-form-check .form-check:not(:last-child) {
   margin-right: 10px;
 }
+
 .settings-search .wrapper-form-check label {
   margin-left: 10px;
 }
+
 @media (max-width: 992px) {
   .settings-search {
     flex-direction: column;
   }
 }
-
 .s_prew-search {
   font-size: 24px;
 }
 
-/*# sourceMappingURL=style.css.map */
 
 .pagination-search-hidden {
   display: none;
-}
-.pg-item-dot {
-  // стили для точек
-}
+}/*# sourceMappingURL=paginator-search.css.map */

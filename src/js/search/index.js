@@ -46,7 +46,9 @@ async function test(e) {
   //   refs.weather.classList.remove('weather-hidden');
   refs.loader.classList.add('is-hidden');
   refs.pagination.classList.remove('pagination-hidden');
-
+  document
+    .querySelector('.page-container-cat')
+    .classList.add('pagination-cat-hidden');
   if (window.innerWidth < 768) {
     windowWidth = 4;
     wetherPosition = -1;
