@@ -45,16 +45,38 @@ function markupDateRead(date) {
     .join('');
   createMarkupLoadMore(markupBlockDate);
 }
-const item = document.querySelector('.list-news');
-const iconDate = document.querySelector('.date-list__btn-icon');
+
 dateListEl.addEventListener('click', event => {
   const btn = event.target.closest(`.date-list__btn`);
-
   if (!btn) return;
+  const iconDate = btn.querySelector('.date-list__btn-icon');
+
+  if (!btn.nextElementSibling.classList.contains('is-hidden')) {
+    btn.nextElementSibling.classList.add('is-hidden');
+    iconDate.classList.remove('turn');
+    return;
+  }
+
+  function isHiddenItem(arr) {
+    arr.filter(list => {
+      list.classList.contains('is-hidden');
+    });
+  }
+
+  if (!isHiddenItem(Array.from(document.querySelectorAll('.list-news')))) {
+    const item = document.querySelectorAll('.list-news');
+    item.forEach(elem => {
+      elem.classList.add('is-hidden');
+      iconDate.classList.toggle('turn');
+    });
+  }
+
   btn.nextElementSibling.classList.toggle('is-hidden');
   iconDate.classList.toggle('turn');
+
   return;
 });
+
 function createMarkupLoadMore(markupBlockDate) {
   dateListEl.innerHTML = markupBlockDate;
 }

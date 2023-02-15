@@ -1,12 +1,13 @@
-.date-list,
-.date-list-search {
-  padding-top: 40px;
+.date-list {
+  padding-top: 20px;
   padding-bottom: 40px;
 }
 .date-list-search {
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 .date-list__btn {
   display: flex;
@@ -14,6 +15,7 @@
   width: 100%;
   padding-bottom: 12px;
   border-bottom: 1px solid #929292;
+  margin-top: 30px;
   margin-bottom: 20px;
 
   font-family: 'Poppins';
@@ -24,7 +26,7 @@
 
   letter-spacing: 0.02em;
 
-  color: #111321;
+  color: var(--text-color);
 }
 .date-list__btn-block {
   display: flex;
