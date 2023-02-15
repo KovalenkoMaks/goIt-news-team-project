@@ -39,6 +39,7 @@ async function renderByCategory(selectedCategory) {
     refs.errorMarkup.classList.add('underfined-hidden');
   }
   try {
+    console.log('try');
     const dataNewsArray = await getArticleByCategory(selectedCategory);
     dataForPag = dataNewsArray;
     const markup = getFiltredArr(dataNewsArray, windowWidth)
@@ -58,6 +59,7 @@ async function renderByCategory(selectedCategory) {
 
     getWetherPosition();
   } catch {
+    console.log('catch');
     // если не удалось найти по категории
     refs.loader.classList.add('is-hidden');
     refs.newsList.innerHTML = '';
