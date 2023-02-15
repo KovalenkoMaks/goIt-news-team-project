@@ -62,10 +62,10 @@ async function getArticleByCategory(value) {
 
     let { results } = articles;
 
-    console.log(results);
+    // console.log(results);
     return results;
   } catch (error) {
-    console.log('pizdec');
+    // console.log('pizdec');
   }
 }
 

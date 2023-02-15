@@ -16,7 +16,7 @@ let wetherPosition;
 let dataForPag;
 
 async function renderByCategory(selectedCategory) {
-  console.log('tyt');
+  // console.log('tyt');
   // console.log(selectedCategory.replaceAll(' ', '-'));
   if (window.innerWidth < 768) {
     windowWidth = 4;
@@ -41,9 +41,9 @@ async function renderByCategory(selectedCategory) {
   // }
   try {
     console.log('try1');
-    console.log(selectedCategory);
+    // console.log(selectedCategory);
     const dataNewsArray = await getArticleByCategory(selectedCategory);
-    console.log(dataNewsArray);
+    // console.log(dataNewsArray);
     dataForPag = dataNewsArray;
     const markup = getFiltredArr(dataNewsArray, windowWidth)
       .map(data => {
@@ -53,17 +53,16 @@ async function renderByCategory(selectedCategory) {
         if (check === true) {
           opacity = 'opacity';
         }
-        console.log('before createMarkup');
+        // console.log('before createMarkup');
         return createMarkup(data, opacity);
       })
       .join('');
-    console.log(markup);
+    // console.log(markup);
     refs.listNewsEl.innerHTML = markup;
     refs.loader.classList.add('is-hidden');
 
     getWetherPosition();
   } catch {
-    console.log('catch');
     // если не удалось найти по категории
     refs.loader.classList.add('is-hidden');
     refs.newsList.innerHTML = '';
@@ -88,7 +87,7 @@ async function renderByCategory(selectedCategory) {
 //     .join('');
 // }
 
-let media;
+// let media;
 function createMarkup(
   { section, multimedia, title, first_published_date, abstract, url, uri },
   opacity
