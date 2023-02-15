@@ -18,7 +18,7 @@ refs.listButtons.addEventListener('click', () => {
     .classList.add('pagination-cat-hidden');
 });
 
-let selectedCategory;
+let selectedCategory = '';
 let selectedCategoryEl;
 
 let currentNumberCategories = 0;
