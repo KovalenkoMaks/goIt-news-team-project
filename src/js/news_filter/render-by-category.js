@@ -16,6 +16,7 @@ let wetherPosition;
 let dataForPag;
 
 async function renderByCategory(selectedCategory) {
+  console.log('tyt');
   // console.log(selectedCategory.replaceAll(' ', '-'));
   if (window.innerWidth < 768) {
     windowWidth = 4;
