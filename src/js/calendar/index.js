@@ -1,3 +1,6 @@
+import { selectedCategory } from "../news_filter/fillter-news-buttons";
+import { renderByCategory } from "../news_filter/render-by-category";
+
 const daysTag = document.querySelector('.days'),
   currentDate = document.querySelector('.current-date'),
   prevNextIcon = document.querySelectorAll('.calendar-icons span');
@@ -49,6 +52,8 @@ let date = new Date(),
       document.getElementById('input-picker').value = '';
       localStorage.removeItem('VALUE');
       localStorage.removeItem('date');
+
+      renderByCategory(selectedCategory.toLowerCase());
     }
   }
 })();
@@ -141,6 +146,8 @@ const renderCalendar = number => {
     document
       .querySelector('.calendar__button-calendar')
       .classList.remove('switchedColor');
+
+      renderByCategory(selectedCategory.toLowerCase());
   });
   //}
 };
