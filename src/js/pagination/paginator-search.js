@@ -20,16 +20,34 @@ async function onClickPAgination(e) {
   if (
     !e.target.classList.contains('pg-item-search') &&
     !e.target.classList.contains('next-page-search') &&
-    !e.target.classList.contains('prev-page-search')
+    !e.target.classList.contains('prev-page-search') &&
+    !e.target.classList.contains('btn-prev') &&
+    !e.target.classList.contains('btn-next')
   ) {
     return;
   }
-  let btn = +valuePage.curPage - 1;
-  if (e.target.classList.contains('next-page-search')) {
-    btn += 1;
+
+  if (
+    e.target.classList.contains('next-page-search') ||
+    e.target.classList.contains('btn-prev')
+  ) {
+    if (valuePage.curPage <= 1) {
+      valuePage.curPage = 1;
+      return;
+    }
+
+    valuePage.curPage -= 1;
   }
-  if (e.target.classList.contains('prev-page-search')) {
-    btn -= 1;
+  if (
+    e.target.classList.contains('prev-page-search') ||
+    e.target.classList.contains('btn-next')
+  ) {
+    if (valuePage.curPage >= valuePage.totalPages) {
+      valuePage.curPage = valuePage.totalPages;
+      return;
+    }
+
+    valuePage.curPage += 1;
   }
   if (window.innerWidth < 768) {
     windowWidth = 4;
@@ -47,7 +65,7 @@ async function onClickPAgination(e) {
   load.classList.remove('is-hidden');
   refs.newsList.innerHTML = '';
   window.scrollTo(0, 0);
-  const data = await dataSource(value, btn);
+  const data = await dataSource(value, valuePage.curPage - 1);
   load.classList.add('is-hidden');
   const markup = render(data, windowWidth);
   refs.newsList.innerHTML = markup;
@@ -204,3 +222,4 @@ function textCardFormat(element) {
 }
 
 export { initPagination, pagination, textCardFormat };
+console.log('Hi');
