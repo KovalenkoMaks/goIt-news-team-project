@@ -39,7 +39,7 @@ async function renderByCategory(selectedCategory) {
   // }
   try {
     const dataNewsArray = await getArticleByCategory(selectedCategory);
-
+    document.querySelector('.underfined').classList.add('underfined-hidden');
     dataForPag = dataNewsArray;
     const markup = getFiltredArr(dataNewsArray, windowWidth)
       .map(data => {
