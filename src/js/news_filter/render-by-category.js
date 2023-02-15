@@ -37,28 +37,26 @@ async function renderByCategory(selectedCategory) {
   //   refs.pagination.classList.remove('pagination-hidden');
   //   refs.errorMarkup.classList.add('underfined-hidden');
   // }
-
   try {
     const dataNewsArray = await getArticleByCategory(selectedCategory);
 
     dataForPag = dataNewsArray;
-    // Массив обьекта для рендера
-    const markup = getFiltredArr(dataNewsArray, windowWidth).map(data => {
-        // console.log(data);
+    const markup = getFiltredArr(dataNewsArray, windowWidth)
+      .map(data => {
         let opacity = '';
         let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
         let check = checkLokalStorage(data, localArr);
         if (check === true) {
           opacity = 'opacity';
         }
-  
+
         return createMarkup(data, opacity);
       })
       .join('');
-  
+
     refs.listNewsEl.innerHTML = markup;
     refs.loader.classList.add('is-hidden');
-  
+
     getWetherPosition();
   } catch {
     // если не удалось найти по категории
@@ -511,21 +509,8 @@ function handleButtonRight() {
   }
 }
 function getFiltredArr(array, windowWidth) {
-  return byCalendarFilter(array.slice(0, windowWidth));
-}
-function byCalendarFilter(array) {
-  if (localStorage.getItem("date")) {
-    const date = JSON.parse(localStorage.getItem("date"));
-    
-    const filteredArray = array.filter(item => {
-      return item.first_published_date
-      .split('')
-      .splice(0, 10)
-      .join('')
-      .replaceAll('-', '/') === date;
-    });
-    return filteredArray;
-  }
-  return array;
+  // deleteItems = array.slice(windowWidth);
+  // firstItems = array;
+  return array.slice(0, windowWidth);
 }
 export { renderByCategory };

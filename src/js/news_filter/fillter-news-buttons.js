@@ -131,7 +131,6 @@ async function getCategoryRender() {
     });
   }
 }
-
 function addActiveClass(evt) {
   if (selectedCategoryEl) {
     selectedCategoryEl.classList.remove('isActive-outsideBt');
@@ -221,5 +220,5 @@ function onClickListNews(evt) {
     .querySelector('.page-container-cat')
     .classList.remove('pagination-cat-hidden');
 }
-export { selectedCategory };
+
 // ===========================================================================
