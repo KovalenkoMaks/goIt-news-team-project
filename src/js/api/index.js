@@ -57,6 +57,7 @@ async function getArticleByCategory(value) {
   const articleFetch = await fetch(
     `${BASE_URL}/news/v3/content/all/${newValue}.json?${KEY}&limit=26`
   );
+  console.log('after fetch');
   const articles = await articleFetch.json();
   let { results } = articles;
   return results;
