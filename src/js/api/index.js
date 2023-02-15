@@ -38,7 +38,13 @@ async function getSearchArticle(value, page) {
   );
   const articles = await articleFetch.json();
 
-  let { response } = articles;
+  let { response, errors } = articles;
+
+  if (errors) {
+    alert(JSON.parse(errors));
+    return;
+  }
+
   if (response.meta.hits > 1000) {
     sumPage = 1000;
   } else {
