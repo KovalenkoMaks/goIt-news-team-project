@@ -43,7 +43,7 @@ async function renderByCategory(selectedCategory) {
     console.log('try1');
     console.log(selectedCategory);
     const dataNewsArray = await getArticleByCategory(selectedCategory);
-    console.log('try2');
+    console.log(dataNewsArray);
     dataForPag = dataNewsArray;
     const markup = getFiltredArr(dataNewsArray, windowWidth)
       .map(data => {
