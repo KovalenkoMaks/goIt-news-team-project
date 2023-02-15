@@ -114,12 +114,15 @@ async function getCategoryRender() {
       );
       refs.listButtons.addEventListener('click', evt => {
         onClickCategory(evt);
+
         refs.othersBtEl.textContent = 'Others';
       });
+
       document
         .querySelector('.filter-category__list')
         .addEventListener('click', evt => {
           onClickCategory(evt);
+
           if (selectedCategory !== undefined) {
             changeButtonName();
           }
@@ -138,7 +141,6 @@ function addActiveClass(evt) {
 function onClickCategory(evt) {
   addActiveClass(evt);
   if (evt.target.textContent.length > 20) {
-    console.log(selectedCategory);
     return;
   }
   selectedCategory = evt.target.textContent;

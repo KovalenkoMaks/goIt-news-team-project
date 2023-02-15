@@ -1,5 +1,12 @@
-.date-list {
+.date-list,
+.date-list-search {
   padding-top: 40px;
+  padding-bottom: 40px;
+}
+.date-list-search {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
 }
 .date-list__btn {
   display: flex;

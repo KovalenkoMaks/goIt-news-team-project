@@ -16,7 +16,6 @@ let wetherPosition;
 let dataForPag;
 
 async function renderByCategory(selectedCategory) {
-  // console.log(selectedCategory.replaceAll(' ', '-'));
   if (window.innerWidth < 768) {
     windowWidth = 4;
     wetherPosition = -1;
@@ -30,16 +29,17 @@ async function renderByCategory(selectedCategory) {
     wetherPosition = 1;
   }
 
-  if (!selectedCategory) {
-    return;
-  }
+  // if (!selectedCategory) {
+  //   return;
+  // }
 
-  if (refs.pagination.classList.contains('pagination-hidden')) {
-    refs.pagination.classList.remove('pagination-hidden');
-    refs.errorMarkup.classList.add('underfined-hidden');
-  }
+  // if (refs.pagination.classList.contains('pagination-hidden')) {
+  //   refs.pagination.classList.remove('pagination-hidden');
+  //   refs.errorMarkup.classList.add('underfined-hidden');
+  // }
   try {
     const dataNewsArray = await getArticleByCategory(selectedCategory);
+
     dataForPag = dataNewsArray;
     const markup = getFiltredArr(dataNewsArray, windowWidth)
       .map(data => {
@@ -53,6 +53,7 @@ async function renderByCategory(selectedCategory) {
         return createMarkup(data, opacity);
       })
       .join('');
+
     refs.listNewsEl.innerHTML = markup;
     refs.loader.classList.add('is-hidden');
 
@@ -82,7 +83,7 @@ async function renderByCategory(selectedCategory) {
 //     .join('');
 // }
 
-let media;
+// let media;
 function createMarkup(
   { section, multimedia, title, first_published_date, abstract, url, uri },
   opacity
@@ -95,8 +96,8 @@ function createMarkup(
     'https://img.freepik.com/free-vector/internet-network-warning-404-error-page-or-file-not-found-for-web-page_1150-48326.jpg?w=996&t=st=1676297842~exp=1676298442~hmac=6cad659e6a3076ffcb73bbb246c4f7e5e1bf7cee7fa095d67fcced0a51c2405c';
   if (mediaElem !== null && mediaElem.length >= 2) {
     mediaUrl = multimedia[2].url;
-    }
-  
+  }
+
   if (!title) {
     title = '';
   }
@@ -197,7 +198,7 @@ function getWetherPosition() {
     wetherPlaceDesk.after(secondElInList);
   } else {
     wetherPlaceDesk = document.querySelector('.list-news').children[0];
-    //  console.log(wetherPlaceDesk);
+
     secondElInList = document.createElement('li');
     secondElInList.classList.add('list-news__item');
     secondElInList.innerHTML = `<div class="weather">
@@ -231,7 +232,6 @@ function getWetherPosition() {
     wetherPlaceDesk.before(secondElInList);
   }
 
-  // console.log(secondElInList);
   getWeatherRefs();
   // return secondElInList;
 }
@@ -372,20 +372,20 @@ async function onPagClick(e) {
   }
 }
 
-function renderforPagination(data) {
-  return data
-    .map(data => {
-      let opacity = '';
-      let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
-      let check = checkLokalStorage(data, localArr);
-      if (check === true) {
-        opacity = 'opacity';
-      }
+// function renderforPagination(data) {
+//   return data
+//     .map(data => {
+//       let opacity = '';
+//       let localArr = JSON.parse(localStorage.getItem('readMoreLocal'));
+//       let check = checkLokalStorage(data, localArr);
+//       if (check === true) {
+//         opacity = 'opacity';
+//       }
 
-      return createMarkup(data, opacity);
-    })
-    .join('');
-}
+//       return createMarkup(data, opacity);
+//     })
+//     .join('');
+// }
 
 const valuePage = {
   curPage: 1,
@@ -403,7 +403,7 @@ pg.addEventListener('click', e => {
 
     valuePage.curPage = pageNumber;
     pagination(valuePage);
-    console.log(valuePage);
+
     handleButtonLeft();
     handleButtonRight();
   }
@@ -501,7 +501,6 @@ function handleButtonLeft() {
 }
 function handleButtonRight() {
   if (valuePage.curPage === valuePage.totalPages) {
-    console.log(valuePage.curPage);
     btnNextPg.disabled = true;
     //  btnLastPg.disabled = true;
   } else {
@@ -510,8 +509,8 @@ function handleButtonRight() {
   }
 }
 function getFiltredArr(array, windowWidth) {
-  deleteItems = array.slice(windowWidth);
-  firstItems = array;
+  // deleteItems = array.slice(windowWidth);
+  // firstItems = array;
   return array.slice(0, windowWidth);
 }
 export { renderByCategory };

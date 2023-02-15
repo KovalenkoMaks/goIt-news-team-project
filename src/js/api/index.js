@@ -51,13 +51,22 @@ async function getSearchArticle(value, page) {
   return docs;
 }
 async function getArticleByCategory(value) {
-  newValue = encodeURIComponent(value);
-  const articleFetch = await fetch(
-    `${BASE_URL}/news/v3/content/all/${newValue}.json?${KEY}&limit=26`
-  );
-  const articles = await articleFetch.json();
-  let { results } = articles;
-  return results;
+  try {
+    let newValue = encodeURIComponent(value);
+
+    const articleFetch = await fetch(
+      `${BASE_URL}/news/v3/content/all/${newValue}.json?${KEY}&limit=26`
+    );
+
+    const articles = await articleFetch.json();
+
+    let { results } = articles;
+
+    // console.log(results);
+    return results;
+  } catch (error) {
+    // console.log('pizdec');
+  }
 }
 
 export {
