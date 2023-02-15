@@ -49,6 +49,7 @@ async function onClickPAgination(e) {
 
     valuePage.curPage += 1;
   }
+  let windowWidth = 0;
   if (window.innerWidth < 768) {
     windowWidth = 4;
     wetherPosition = -1;
