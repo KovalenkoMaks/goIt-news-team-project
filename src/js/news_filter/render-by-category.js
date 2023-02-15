@@ -40,8 +40,9 @@ async function renderByCategory(selectedCategory) {
   //   refs.errorMarkup.classList.add('underfined-hidden');
   // }
   try {
-    console.log('try');
+    console.log('try1');
     const dataNewsArray = await getArticleByCategory(selectedCategory);
+    console.log('try2');
     dataForPag = dataNewsArray;
     const markup = getFiltredArr(dataNewsArray, windowWidth)
       .map(data => {
