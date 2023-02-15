@@ -51,18 +51,23 @@ async function getSearchArticle(value, page) {
   return docs;
 }
 async function getArticleByCategory(value) {
-  console.log(`перед транслит: ${value}`);
-  let newValue = encodeURIComponent(value);
-  console.log(`after транслит: ${newValue}`);
-  const articleFetch = await fetch(
-    `${BASE_URL}/news/v3/content/all/${newValue}.json?${KEY}&limit=26`
-  );
-  console.log('after fetch');
-  const articles = await articleFetch.json();
-  let { results } = articles;
-  console.log(`result ${articles}`);
-  console.log(`articles.result///`, JSON.parse(articles.results));
-  return results;
+  try {
+    console.log(`перед транслит: ${value}`);
+    let newValue = encodeURIComponent(value);
+    console.log(`after транслит: ${newValue}`);
+    const articleFetch = await fetch(
+      `${BASE_URL}/news/v3/content/all/${newValue}.json?${KEY}&limit=26`
+    );
+    console.log('after fetch');
+    const articles = await articleFetch.json();
+    console.log(articles);
+    let { results } = articles;
+    console.log(`result ${articles}`);
+    console.log(results);
+    return results;
+  } catch (error) {
+    console.log('pizdec');
+  }
 }
 
 export {
