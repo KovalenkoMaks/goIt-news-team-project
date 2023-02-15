@@ -41,6 +41,7 @@ async function renderByCategory(selectedCategory) {
   // }
   try {
     console.log('try1');
+    console.log(selectedCategory);
     const dataNewsArray = await getArticleByCategory(selectedCategory);
     console.log('try2');
     dataForPag = dataNewsArray;
