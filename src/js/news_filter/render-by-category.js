@@ -57,6 +57,7 @@ async function renderByCategory(selectedCategory) {
         return createMarkup(data, opacity);
       })
       .join('');
+    console.log(markup);
     refs.listNewsEl.innerHTML = markup;
     refs.loader.classList.add('is-hidden');
 
