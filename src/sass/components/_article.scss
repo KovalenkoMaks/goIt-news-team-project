@@ -3,8 +3,6 @@
   // display: block;
   opacity: 1;
   pointer-events: auto;
-  transition-duration: 2000ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
   max-height: 630px;
   // padding-bottom: 20px;
@@ -22,9 +20,6 @@
   pointer-events: auto;
   position: relative;
   margin-bottom: 20px;
-
-  transition-duration: 2000ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .item-news__img {
@@ -230,8 +225,6 @@
     // display: block;
     opacity: 1;
     pointer-events: auto;
-    transition-duration: 2000ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
