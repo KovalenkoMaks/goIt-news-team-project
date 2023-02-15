@@ -30,9 +30,9 @@ async function renderByCategory(selectedCategory) {
     wetherPosition = 1;
   }
 
-  if (!selectedCategory) {
-    return;
-  }
+  // if (!selectedCategory) {
+  //   return;
+  // }
 
   // if (refs.pagination.classList.contains('pagination-hidden')) {
   //   refs.pagination.classList.remove('pagination-hidden');
