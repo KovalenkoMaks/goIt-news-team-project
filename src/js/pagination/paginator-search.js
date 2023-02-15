@@ -223,4 +223,3 @@ function textCardFormat(element) {
 }
 
 export { initPagination, pagination, textCardFormat };
-console.log('Hi');
