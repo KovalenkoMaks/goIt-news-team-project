@@ -60,7 +60,8 @@ async function getArticleByCategory(value) {
   console.log('after fetch');
   const articles = await articleFetch.json();
   let { results } = articles;
-  console.log(`result ${results}`);
+  console.log(`result ${articles}`);
+  console.log(`articles.result ${articles.results}`);
   return results;
 }
 
