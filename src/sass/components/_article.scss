@@ -8,6 +8,23 @@
   // padding-bottom: 20px;
 }
 
+.favorite-container {
+  @media screen and (max-width: $pre_tablet) {
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+
+  @media screen and (min-width: $tablet) and (max-width: $pre_desktop) {
+    padding-top: 48px;
+    padding-bottom: 100px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    padding-top: 60px;
+    padding-bottom: 300px;
+  }
+}
+
 .list-news {
   display: flex;
   flex-wrap: wrap;
