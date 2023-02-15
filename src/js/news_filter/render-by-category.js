@@ -34,10 +34,10 @@ async function renderByCategory(selectedCategory) {
     return;
   }
 
-  if (refs.pagination.classList.contains('pagination-hidden')) {
-    refs.pagination.classList.remove('pagination-hidden');
-    refs.errorMarkup.classList.add('underfined-hidden');
-  }
+  // if (refs.pagination.classList.contains('pagination-hidden')) {
+  //   refs.pagination.classList.remove('pagination-hidden');
+  //   refs.errorMarkup.classList.add('underfined-hidden');
+  // }
   try {
     console.log('try');
     const dataNewsArray = await getArticleByCategory(selectedCategory);
