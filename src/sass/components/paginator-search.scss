@@ -27,11 +27,11 @@
   display: flex;
   justify-content: center;
   height: 28px;
-  width: 288px;
+  width: 300px;
 
   @media screen and (min-width: $tablet) {
     height: 31px;
-    width: 470px;
+    width: 500px;
   }
 }
 
@@ -87,7 +87,7 @@ button.prev-page-search {
 button.next-page-search {
   margin-left: 6px;
 }
-.page-containe-search button:disabled a {
+.page-container-search button:disabled a {
     color: var(--text-color);
       font-family: Manrope;
       font-size: 14px;
