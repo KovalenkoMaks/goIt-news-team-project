@@ -516,8 +516,8 @@ function handleButtonRight() {
   }
 }
 function getFiltredArr(array, windowWidth) {
-  deleteItems = array.slice(windowWidth);
-  firstItems = array;
+  // deleteItems = array.slice(windowWidth);
+  // firstItems = array;
   return array.slice(0, windowWidth);
 }
 export { renderByCategory };
