@@ -529,3 +529,4 @@ function byCalendarFilter(array) {
   return array;
 }
 export { renderByCategory };
+
