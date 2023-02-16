@@ -514,3 +514,4 @@ function getFiltredArr(array, windowWidth) {
   return array.slice(0, windowWidth);
 }
 export { renderByCategory };
+
