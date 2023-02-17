@@ -178,3 +178,4 @@ prevNextIcon.forEach(icon => {
 });
 
 localStorage.removeItem('VALUE');
+localStorage.removeItem('date');
