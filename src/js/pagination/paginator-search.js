@@ -50,6 +50,7 @@ async function onClickPAgination(e) {
     valuePage.curPage += 1;
   }
   let windowWidth = 0;
+  let wetherPosition = 0;
   if (window.innerWidth < 768) {
     windowWidth = 4;
     wetherPosition = -1;
@@ -94,7 +95,7 @@ pg.addEventListener('click', e => {
 
     valuePage.curPage = pageNumber;
     pagination(valuePage);
-    console.log(valuePage);
+    // console.log(valuePage);
     handleButtonLeft();
     handleButtonRight();
   }
