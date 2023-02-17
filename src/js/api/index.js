@@ -29,7 +29,7 @@ async function getSearchArticle(value, page) {
       .replace('/', '')
       .replace('/', '');
     // console.log(date);
-    dateForUrl = ` &begin_date=${date}&end_date=${date}`;
+    dateForUrl = `&begin_date=${date}&end_date=${date}`;
   } catch (error) {
     // dateForUrl = '';
   }
